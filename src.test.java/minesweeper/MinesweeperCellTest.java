@@ -7,8 +7,9 @@ import org.junit.Test;
 public class MinesweeperCellTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void isOpenCell() {
+		MinesweeperCell cell = new MinesweeperCell();
+		assertTrue(cell.isOpen());
 	}
 
 }
