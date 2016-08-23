@@ -7,6 +7,17 @@ import org.junit.Test;
 public class MinesweeperCellTest {
 
 	@Test
+	public void isBlockedTest() {
+	  MinesweeperCell cell = new MinesweeperCell();
+	  cell.putMine();
+	  assertTrue(cell.isBlocked());
+	}
+	
+	@Test
+  public void notBlockedTest() {
+	  MinesweeperCell cell = new MinesweeperCell();	  
+	  assertFalse(cell.isBlocked());
+  }
 	public void hasMineFalse(){
 		MinesweeperCell cell = new MinesweeperCell();
 		assertFalse(cell.hasMine());
