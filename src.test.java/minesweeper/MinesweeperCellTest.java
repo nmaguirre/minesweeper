@@ -11,5 +11,10 @@ public class MinesweeperCellTest {
 		MinesweeperCell cell = new MinesweeperCell();
 		assertTrue(cell.isOpen());
 	}
+	@Test
+	public void isClose(){
+		MinesweeperCell cell = new MinesweeperCell();
+		assertTrue(cell.isClose());
+	}
 
 }
