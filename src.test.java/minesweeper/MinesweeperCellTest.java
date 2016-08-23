@@ -18,7 +18,6 @@ public class MinesweeperCellTest {
 	  MinesweeperCell cell = new MinesweeperCell();	  
 	  assertFalse(cell.isBlocked());
   }
-
 	public void hasMineFalse(){
 		MinesweeperCell cell = new MinesweeperCell();
 		assertFalse(cell.hasMine());
@@ -40,5 +39,6 @@ public class MinesweeperCellTest {
 		MinesweeperCell cell = new MinesweeperCell();
 		assertTrue(cell.isClose());
 	}
+	
 
 }
