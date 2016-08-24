@@ -30,8 +30,9 @@ public class MinesweeperCellTest {
 		assertTrue(cell.hasMine());
 	}
 		
-	public void isOpenCell() {
+	public void isOpen() {
 		MinesweeperCell cell = new MinesweeperCell();
+		cell.open();
 		assertTrue(cell.isOpen());
 	}
 	@Test
