@@ -29,5 +29,9 @@ public class MinesweeperCell {
 	public boolean isOpen(){
 		return this.openCell;
 	}
+
+	public boolean hasMine(){
+		return this.emptyCell == false;	
+	}
 	
 }
