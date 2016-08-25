@@ -17,5 +17,17 @@ public class MinesweeperBoard {
 	public int numberOfMinedNeighbours(int row, int col) {
 		return 0;
 	}
+	
+	public int getBoardRows(){
+    return boardRows;
+  }
+	  
+  public int getBoardCols(){
+    return boardCols;
+  }
+
+  public int getBoardMines(){
+    return boardMines;
+  }
 
 }
