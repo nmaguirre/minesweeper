@@ -7,6 +7,14 @@ public class MinesweeperBoard {
 	private int boardCols;
 	private int boardMines;
 	
+	/**
+   * constructor
+   * create the game's board
+   * 
+   * @param rows - number of rows of the board
+   * @param cols - number of colums of the board
+   * @param mines - number of mines of the board
+   */
 	public MinesweeperBoard(int rows, int cols, int mines) {
 		// TODO Auto-generated constructor stub
 	  boardRows = rows;
