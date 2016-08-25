@@ -12,7 +12,11 @@ public class MinesweeperCell {
 		this.openCell = false;
 		this.closeCell = true;
 	}
-		
+	
+	/**
+	 * 
+	 * @return true if cell is blocked
+	 */
 	public boolean isBlocked(){
 		return this.blockedCell;
 	}
