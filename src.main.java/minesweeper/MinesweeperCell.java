@@ -12,7 +12,11 @@ public class MinesweeperCell {
 		this.openCell = false;
 		this.closeCell = true;
 	}
-		
+	
+	/**
+	 * 
+	 * @return true if cell is blocked
+	 */
 	public boolean isBlocked(){
 		return this.blockedCell;
 	}
@@ -20,9 +24,11 @@ public class MinesweeperCell {
 	public boolean isClose(){
 		return this.closeCell;
 	}
+
 	
 	/**
-	 * This method complete the cell with a mine. 
+	 * This method fill the cell with a mine. 
+	 * 
 	 */
 	public void putMine(){
 		if (!this.emptyCell && this.blockedCell ) throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
@@ -32,7 +38,21 @@ public class MinesweeperCell {
 	public boolean isOpen(){
 		return this.openCell;
 	}
-
+	
+	/**
+	 * change the state of the cell if this is close
+	 * 
+	 */
+	public void open(){
+	  if (this.isClose()){
+	    this.openCell = true;
+	    this.closeCell = false;
+	  }
+  }
+	/**
+	 * 
+	 * @return true iff cell has a mine
+	 */
 	public boolean hasMine(){
 		return this.emptyCell == false;	
 	}
