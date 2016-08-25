@@ -45,7 +45,11 @@ public class MinesweeperCell {
 	    this.closeCell = false;
 	  }
   }
-
+	/**
+	 * 
+	 * 
+	 * @return true iff cell has a mine
+	 */
 	public boolean hasMine(){
 		return this.emptyCell == false;	
 	}
