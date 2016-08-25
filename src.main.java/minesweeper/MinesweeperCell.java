@@ -25,6 +25,10 @@ public class MinesweeperCell {
 		return this.closeCell;
 	}
 
+	/**
+	 * Change the state of the cell when put a new mine
+	 * 
+	 */
 	public void putMine(){
 		if (!this.emptyCell && this.blockedCell ) throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
 		this.emptyCell = false;
