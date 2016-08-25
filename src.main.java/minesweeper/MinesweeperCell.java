@@ -51,7 +51,6 @@ public class MinesweeperCell {
   }
 	/**
 	 * 
-	 * 
 	 * @return true iff cell has a mine
 	 */
 	public boolean hasMine(){
