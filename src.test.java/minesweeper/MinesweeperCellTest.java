@@ -24,7 +24,7 @@ public class MinesweeperCellTest {
 	}
 	
 	@Test
-	private void hasMineTrue() {
+	public void hasMineTrue() {
 		MinesweeperCell cell = new MinesweeperCell();
 		cell.putMine();
 		assertTrue(cell.hasMine());
