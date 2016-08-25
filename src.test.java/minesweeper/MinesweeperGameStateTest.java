@@ -11,5 +11,11 @@ public class MinesweeperGameStateTest {
 		MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
 		assertTrue(board.getRows() == 10);
 	}
+        
+        @Test
+        public void gameEndedTest () {
+            MinesweeperGameState gameState = new MinesweeperGameState();
+            assertTrue(gameState.gameEnded());
+        }
 
 }
