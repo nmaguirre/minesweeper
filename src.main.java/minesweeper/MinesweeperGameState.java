@@ -26,7 +26,7 @@ public class MinesweeperGameState {
 	}
 	
 	public boolean gameEnded() {
-		return false;
+		return this.gameEnded;
 	}
 	
 	public boolean isMarked(int row, int col) {
