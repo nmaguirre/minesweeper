@@ -22,7 +22,7 @@ public class MinesweeperCell {
 	}
 
 	public void putMine(){
-		if (!this.emptyCell && this.blockedCell ) throw IllegalStateException("Can't put mine while the cell is bloked or is not empty");
+		if (!this.emptyCell && this.blockedCell ) throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
 		this.emptyCell = false;
 	}
 
