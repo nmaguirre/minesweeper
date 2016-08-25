@@ -30,6 +30,11 @@ public class MinesweeperCell {
 		return this.openCell;
 	}
 	
+	/**
+	 * change the state of the cell if this is close
+	 * 
+	 * @see isClose()
+	 */
 	public void open(){
 	  if (this.isClose()){
 	    this.openCell = true;
