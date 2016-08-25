@@ -21,6 +21,11 @@ public class MinesweeperCell {
 		return this.blockedCell;
 	}
 	
+	/**
+	*
+	* @return true if the cell is close
+	* 
+	*/
 	public boolean isClose(){
 		return this.closeCell;
 	}
@@ -42,6 +47,7 @@ public class MinesweeperCell {
 	/**
 	 * change the state of the cell if this is close
 	 * 
+	 * @see isClose()
 	 */
 	public void open(){
 	  if (this.isClose()){

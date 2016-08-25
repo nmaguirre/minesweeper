@@ -24,14 +24,16 @@ public class MinesweeperCellTest {
 	}
 	
 	@Test
-	private void hasMineTrue() {
+	public void hasMineTrue() {
 		MinesweeperCell cell = new MinesweeperCell();
 		cell.putMine();
 		assertTrue(cell.hasMine());
 	}
-		
-	public void isOpenCell() {
+	
+	@Test
+	public void isOpen() {
 		MinesweeperCell cell = new MinesweeperCell();
+		cell.open();
 		assertTrue(cell.isOpen());
 	}
 	@Test
@@ -40,5 +42,10 @@ public class MinesweeperCellTest {
 		assertTrue(cell.isClose());
 	}
 	
-
+	@Test
+  public void putMineTest(){
+    MinesweeperCell cell = new MinesweeperCell();
+    cell.putMine();
+    assertTrue(cell.hasMine());
+  }
 }
