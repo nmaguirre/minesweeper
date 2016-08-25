@@ -21,12 +21,18 @@ public class MinesweeperCell {
 		return this.blockedCell;
 	}
 	
+	/**
+	*
+	* @return true if the cell is close
+	* 
+	*/
 	public boolean isClose(){
 		return this.closeCell;
 	}
 
+	
 	/**
-	 * Change the state of the cell when put a new mine
+	 * This method fill the cell with a mine. 
 	 * 
 	 */
 	public void putMine(){
