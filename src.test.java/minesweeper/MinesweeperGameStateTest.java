@@ -10,5 +10,11 @@ public class MinesweeperGameStateTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
+        
+        @Test
+        public void gameEndedTest () {
+            MinesweeperGameState gameState = new MinesweeperGameState();
+            assertTrue(gameState.gameEnded());
+        }
 
 }
