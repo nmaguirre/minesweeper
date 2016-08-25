@@ -22,12 +22,9 @@ public class MinesweeperCell {
 	}
 	
 	/**
-	* the method isClose() return a boolean
-	* this boolean  it means if the cell is close or not
 	*
-	* @author  Ezequiel Depetris
-	* @version 1.0
-	* @since   2014-08-25 
+	* @return true if the cell is close
+	* 
 	*/
 	public boolean isClose(){
 		return this.closeCell;
