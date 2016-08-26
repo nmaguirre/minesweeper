@@ -48,4 +48,19 @@ public class MinesweeperCellTest {
     cell.putMine();
     assertTrue(cell.hasMine());
   }
+	
+	@Test
+	public void blockAClosedCell(){
+		MinesweeperCell cell = new MinesweeperCell();
+		cell.block();
+		assertTrue(cell.isBlocked());
+	}
+	
+	@Test(expected=IllegalStateException.class)
+	public void blockAOpenCell(){
+		MinesweeperCell cell = new MinesweeperCell();
+		cell.open();
+		cell.block();
+		assertFalse(cell.isBlocked());
+	}
 }
