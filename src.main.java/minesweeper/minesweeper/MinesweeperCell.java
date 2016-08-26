@@ -4,13 +4,11 @@ public class MinesweeperCell {
 	private boolean blockedCell;
 	private boolean emptyCell;
 	private boolean openCell;
-	private boolean closeCell;
 	
 	public MinesweeperCell (){
 		this.blockedCell = false;
 		this.emptyCell = true;
 		this.openCell = false;
-		this.closeCell = true;
 	}
 	
 	/**
@@ -27,7 +25,7 @@ public class MinesweeperCell {
 	* 
 	*/
 	public boolean isClose(){
-		return this.closeCell;
+		return !(this.openCell);
 	}
 
 	
@@ -52,7 +50,6 @@ public class MinesweeperCell {
 	public void open(){
 	  if (this.isClose()){
 	    this.openCell = true;
-	    this.closeCell = false;
 	  }
   }
 	/**
@@ -61,6 +58,14 @@ public class MinesweeperCell {
 	 */
 	public boolean hasMine(){
 		return this.emptyCell == false;	
+	}
+	
+	/**
+	 * This method block the cell when 
+	 */
+	public void block(){
+		if(this.isOpen()) throw new IllegalStateException("Can't block a cell when it's open "); 
+		this.blockedCell = true;
 	}
 	
 }
