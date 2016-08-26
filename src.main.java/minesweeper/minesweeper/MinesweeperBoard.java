@@ -29,7 +29,12 @@ public class MinesweeperBoard {
 	public int getBoardRows(){
     return boardRows;
   }
-	  
+	 
+	/**
+	 * 
+	 * 
+	 * @return number of rows of the board
+	 **/
   public int getBoardCols(){
     return boardCols;
   }
