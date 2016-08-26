@@ -60,4 +60,10 @@ public class MinesweeperCell {
 		return this.emptyCell == false;	
 	}
 	
+	/**
+	 * This method block the cell when 
+	 */
+	public void block(){
+	}
+	
 }
