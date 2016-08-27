@@ -68,4 +68,10 @@ public class MinesweeperCell {
 		this.blockedCell = true;
 	}
 	
+	/**
+	 * This method unblock the cell blocked
+	 */
+	public void unblock(){
+		if(this.isBlocked()) this.blockedCell = false;
+	}
 }
