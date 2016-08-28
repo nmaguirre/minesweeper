@@ -21,7 +21,12 @@ public class MinesweeperBoard {
 	  boardCols = cols;
 	  boardMines = mines;
 	}
-
+	/**
+	 * 
+	 * @return This method should indicate the quantity of mines nearby of a cell. 
+	 * @param rows - number of rows of the board
+     * @param cols - number of colums of the board
+	 **/
 	public int numberOfMinedNeighbours(int row, int col) {
 		return 0;
 	}
