@@ -22,7 +22,7 @@ public class MinesweeperGameState {
 	}
 	
 	public int numberOfMines() {
-		return 0;
+		return board.getBoardMines();
 	}
 	
 	public boolean gameEnded() {
