@@ -9,7 +9,7 @@ public class MinesweeperCellTest {
     public void isBlockedTest() {
         MinesweeperCell cell = new MinesweeperCell();
         cell.putMine();
-        assertTrue(cell.isBlocked());
+        assertTrue(cell.hasMine());
     }
 
     @Test

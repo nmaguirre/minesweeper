@@ -14,7 +14,7 @@ public class MinesweeperGameStateTest {
     @Test
     public void gameEndedTest () {
         MinesweeperGameState gameState = new MinesweeperGameState();
-        assertTrue(gameState.gameEnded());
+        assertFalse(gameState.gameEnded());
     }
 
 }
