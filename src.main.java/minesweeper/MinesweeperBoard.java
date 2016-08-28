@@ -46,7 +46,7 @@ public class MinesweeperBoard {
     }
 
     private boolean checkValidPositionWithMine(int row, int col) {
-        return row >= 0 && row <= boardRows && col >= 0 && col <= boardCols && board[row][col].hasMine()
+        return row >= 0 && row <= boardRows && col >= 0 && col <= boardCols && board[row][col].hasMine();
     }
 
     /**
