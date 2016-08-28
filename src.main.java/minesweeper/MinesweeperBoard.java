@@ -2,95 +2,91 @@ package minesweeper;
 
 public class MinesweeperBoard {
 
-	private MinesweeperCell[][] board;
-	private int boardRows;
-	private int boardCols;
-	private int boardMines;
+    private MinesweeperCell[][] board;
+    private int boardRows;
+    private int boardCols;
+    private int boardMines;
 
-	/**
-   * constructor
-   * create the game's board
-   *
-   * @param rows - number of rows of the board
-   * @param cols - number of colums of the board
-   * @param mines - number of mines of the board
-   */
-	public MinesweeperBoard(int rows, int cols, int mines) {
-		// TODO Auto-generated constructor stub
-	  boardRows = rows;
-	  boardCols = cols;
-	  boardMines = mines;
-	}
-	/**
-	 *
-	 * @return This method should indicate the quantity of mines nearby of a cell.
-	 * @param rows - number of rows of the board
+    /**
+     * constructor create the game's board
+     * @param rows - number of rows of the board
      * @param cols - number of colums of the board
-	 **/
-	public int numberOfMinedNeighbours(int row, int col) {
-		int mine=0;
-		if (checkValidPositionWithMine(row,col+1))   mine++;
-		if (checkValidPositionWithMine(row+1,col+1)) mine++;
-		if (checkValidPositionWithMine(row+1,col))   mine++;
-		if (checkValidPositionWithMine(row+1,col-1)) mine++;
-		if (checkValidPositionWithMine(row,col-1))   mine++;
-		if (checkValidPositionWithMine(row-1,col-1)) mine++;
-		if (checkValidPositionWithMine(row-1,col))   mine++;
-		if (checkValidPositionWithMine(row-1,col+1)) mine++;
-		return mine;
-	}
+     * @param mines - number of mines of the board
+     */
+    public MinesweeperBoard(int rows, int cols, int mines) {
+        boardRows = rows;
+        boardCols = cols;
+        boardMines = mines;
+    }
 
-	private boolean checkValidPositionWithMine(int row, int col){
-		boolean cellWithMine = false;
-		if (row>=0 && row <=boardRows && col >=0 && col <=boardCols && board[row][col].hasMine() ){
-			cellWithMine=true;
-		}
-		return cellWithMine;
-	}
+    /**
+     * @return This method should indicate the quantity of mines nearby of a cell.
+     * @param rows - number of rows of the board
+     * @param cols - number of colums of the board
+     **/
+    public int numberOfMinedNeighbours(int row, int col) {
+        int mine = 0;
+        if (checkValidPositionWithMine(row, col + 1))
+            mine++;
+        if (checkValidPositionWithMine(row + 1, col + 1))
+            mine++;
+        if (checkValidPositionWithMine(row + 1, col))
+            mine++;
+        if (checkValidPositionWithMine(row + 1, col - 1))
+            mine++;
+        if (checkValidPositionWithMine(row, col - 1))
+            mine++;
+        if (checkValidPositionWithMine(row - 1, col - 1))
+            mine++;
+        if (checkValidPositionWithMine(row - 1, col))
+            mine++;
+        if (checkValidPositionWithMine(row - 1, col + 1))
+            mine++;
+        return mine;
+    }
 
-	/**
-	 *
-	 * @return number of rows of the board
-	 *
-	 **/
-	public int getBoardRows(){
-		return boardRows;
-	}
+    private boolean checkValidPositionWithMine(int row, int col) {
+        return row >= 0 && row <= boardRows && col >= 0 && col <= boardCols && board[row][col].hasMine()
+    }
 
-	/**
-	 *
-	 *
-	 * @return number of rows of the board
-	 **/
-  public int getBoardCols(){
-    return boardCols;
-  }
+    /**
+     * @return number of rows of the board
+     **/
+    public int getBoardRows() {
+        return boardRows;
+    }
 
-  public int getBoardMines(){
-    return boardMines;
-  }
+    /**
+     * @return number of rows of the board
+     **/
+    public int getBoardCols() {
+        return boardCols;
+    }
 
-	public boolean isMarked(int row, int col) {
-		return board[row][col].isBlocked();
-	}
+    public int getBoardMines() {
+        return boardMines;
+    }
 
-  /**
-   *
-   * @param row
-   * @param col
-   * @return true if the cell located at the given position is Opened.
-   */
-  public boolean isOpened(int row, int col) {
-    MinesweeperCell cell = board[row][col];
-    return !cell.isClose();
-  }
+    public boolean isMarked(int row, int col) {
+        return board[row][col].isBlocked();
+    }
 
-	public int getRows() {
-		return 0;
-	}
+    /**
+     * @param row
+     * @param col
+     * @return true if the cell located at the given position is Opened.
+     */
+    public boolean isOpened(int row, int col) {
+        MinesweeperCell cell = board[row][col];
+        return !cell.isClose();
+    }
 
-	public void mark(int row, int col){
-		board[row][col].block();
-	}
+    public int getRows() {
+        return 0;
+    }
+
+    public void mark(int row, int col) {
+        board[row][col].block();
+    }
 
 }
