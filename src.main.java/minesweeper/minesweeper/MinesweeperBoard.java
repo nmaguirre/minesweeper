@@ -28,7 +28,16 @@ public class MinesweeperBoard {
      * @param cols - number of colums of the board
 	 **/
 	public int numberOfMinedNeighbours(int row, int col) {
-		return 0;
+		int mine=0;
+		if (checkValidPositionWithMine(row,col+1))   mine++;
+		if (checkValidPositionWithMine(row+1,col+1)) mine++;
+		if (checkValidPositionWithMine(row+1,col))   mine++;
+		if (checkValidPositionWithMine(row+1,col-1)) mine++;
+		if (checkValidPositionWithMine(row,col-1))   mine++;
+		if (checkValidPositionWithMine(row-1,col-1)) mine++;
+		if (checkValidPositionWithMine(row-1,col))   mine++;
+		if (checkValidPositionWithMine(row-1,col+1)) mine++;
+		return mine;
 	}
 	
 	private boolean checkValidPositionWithMine(int row, int col){
