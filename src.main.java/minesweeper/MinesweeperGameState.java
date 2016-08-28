@@ -14,7 +14,7 @@ public class MinesweeperGameState {
     }
 
     public int numberOfRows() {
-        return board.getRows();
+        return board.getBoardRows();
     }
 
     public int numberofColumns() {

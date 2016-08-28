@@ -81,10 +81,6 @@ public class MinesweeperBoard {
         return !cell.isClose();
     }
 
-    public int getRows() {
-        return 0;
-    }
-
     public void mark(int row, int col) {
         board[row][col].block();
     }
