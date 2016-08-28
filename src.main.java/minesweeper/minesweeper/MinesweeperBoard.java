@@ -61,4 +61,8 @@ public class MinesweeperBoard {
 		return 0;
 	}
 
+	public void mark(int row, int col){
+		board[row][col].block();
+	}
+
 }
