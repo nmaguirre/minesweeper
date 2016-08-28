@@ -47,7 +47,11 @@ public class MinesweeperBoard {
   public int getBoardMines(){
     return boardMines;
   }
-
+  	
+  	public boolean isMarked(int row, int col) {
+		return board[row][col].isBlocked();
+	}
+  	
 	public int getRows() {
 		return 0;
 	}
