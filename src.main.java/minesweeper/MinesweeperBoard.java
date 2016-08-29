@@ -76,7 +76,10 @@ public class MinesweeperBoard {
     public int getBoardCols() {
         return boardCols;
     }
+    
     /**
+     * Return number of mines of the board. This method allows you to see outside 
+     * of class the number of mines on the board
      * @return number of mines of the board
      */
     public int getBoardMines() {
@@ -96,14 +99,23 @@ public class MinesweeperBoard {
 		}
 		
 	}
-
+    
+    /**
+     * Returns true if the cell located at the given position is Marked. This method
+     * allows you to see outside of class if a cell of the board is mark or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * @return if the cell located at the given position is Marked.
+     */
     public boolean isMarked(int row, int col) {
         return board[row][col].isBlocked();
     }
 
     /**
-     * @param row
-     * @param col
+     * Returns true if the cell located at the given position is Opened. This method
+     * allows you to see outside of class if a cell of the board is open or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
      * @return true if the cell located at the given position is Opened.
      */
     public boolean isOpened(int row, int col) {
