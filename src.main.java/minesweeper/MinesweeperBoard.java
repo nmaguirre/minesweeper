@@ -101,9 +101,10 @@ public class MinesweeperBoard {
 	}
     
     /**
-     * 
-     * @param row number of the file of the cell
-     * @param col number of the colum of the cell
+     * Returns true if the cell located at the given position is Marked. This method
+     * allows you to see outside of class if a cell of the board is mark or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
     public boolean isMarked(int row, int col) {
@@ -112,7 +113,7 @@ public class MinesweeperBoard {
 
     /**
      * Returns true if the cell located at the given position is Opened. This method
-     * allows you to see outside of class if a cell of the boar is open or not.
+     * allows you to see outside of class if a cell of the board is open or not.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
      * @return true if the cell located at the given position is Opened.
