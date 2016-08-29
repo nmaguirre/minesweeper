@@ -99,9 +99,10 @@ public class MinesweeperBoard {
         return boardMines;
     }
     /**
-     * put mine in board
-     * @param row
-     * @param col
+     * put mine in board in the cell located at the given position
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * @throws IllegalStateException if the cell is open or already content a mine
      */
     
     public void putMine(int row, int col) {
