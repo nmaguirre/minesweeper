@@ -13,5 +13,13 @@ public class MinesweeperBoardTest {
         boolean checkMines = board.getBoardMines() == 10;
         assertTrue(checkRows && checkCols && checkMines);
     }
-
+    
+    @Test
+    public void getBoardMinesTest() {
+      int rows = 7;
+      int cols = 8;
+      int mines = 10;
+      MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
+      assertTrue(board.getBoardMines() == mines);
+    }
 }
