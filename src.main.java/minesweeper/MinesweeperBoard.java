@@ -110,7 +110,9 @@ public class MinesweeperBoard {
     }
 
     public void mark(int row, int col) {
-        board[row][col].block();
+    	if (isValidIndex(row,col)){
+    		board[row][col].block();
+    	}
     }
 
 }
