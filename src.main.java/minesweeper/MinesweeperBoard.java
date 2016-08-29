@@ -40,27 +40,39 @@ public class MinesweeperBoard {
      **/
     public int numberOfMinedNeighbours(int row, int col) {
         int mine = 0;
-        if (checkValidPositionWithMine(row, col + 1))
-            mine++;
-        if (checkValidPositionWithMine(row + 1, col + 1))
-            mine++;
-        if (checkValidPositionWithMine(row + 1, col))
-            mine++;
-        if (checkValidPositionWithMine(row + 1, col - 1))
-            mine++;
-        if (checkValidPositionWithMine(row, col - 1))
-            mine++;
-        if (checkValidPositionWithMine(row - 1, col - 1))
-            mine++;
-        if (checkValidPositionWithMine(row - 1, col))
-            mine++;
-        if (checkValidPositionWithMine(row - 1, col + 1))
-            mine++;
+        if (isValidIndex(row,col+1) ){
+        	if ( board[row][col+1].hasMine() )
+        		mine++;
+        }        	
+        if (isValidIndex(row + 1, col + 1)){
+        	if ( board[row+1][col+1].hasMine() )
+        		mine++;
+        }        
+        if (isValidIndex(row + 1, col)){
+        	if( board[row+1][col].hasMine())
+        		mine++
+        }            
+        if (isValidIndex(row + 1, col - 1)){
+        	if ( board[row+1][col-1].hasMine())
+        		mine++;
+        }
+        if (isValidIndex(row, col - 1)){
+        	if (board[row][col-1].hasMine())
+        		mine++;
+        }
+        if (isValidIndex(row - 1, col - 1)){
+        	if(board[row-1][col-1].hasMine())
+        		mine++;        		
+        }
+        if (isValidIndex(row - 1, col)){
+        	if(board[row-1][col].hasMine())
+        		mine++;
+        }
+        if (isValidIndex(row - 1, col + 1)){
+        	if (board[row-1][col+1].hasMine())
+        		mine++;
+        }
         return mine;
-    }
-
-    private boolean checkValidPositionWithMine(int row, int col) {
-        return row >= 0 && row <= boardRows && col >= 0 && col <= boardCols && board[row][col].hasMine();
     }
 
     /**
