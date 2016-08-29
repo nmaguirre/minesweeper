@@ -33,6 +33,12 @@ public class MinesweeperGameState {
         return false;
     }
 
+    
+    /**
+     * Change state of a cell to blocked if the game is not ended
+     * @param row
+     * @param col
+     */
     public void mark(int row, int col) { 
     	if(!gameEnded){
     		board.mark(row, col);
