@@ -80,6 +80,20 @@ public class MinesweeperBoard {
     public int getBoardMines() {
         return boardMines;
     }
+    /**
+     * put mine in board
+     * @param row
+     * @param col
+     */
+    
+    public void putMine(int row, int col) {
+		if (isValidIndex(row,col)) {
+			if (board[row][col].isOpen() || board[row][col].hasMine()) throw
+			  new IllegalStateException("cell open or already exists mine");
+		         board[row][col].putMine(); 
+		}
+		
+	}
 
     public boolean isMarked(int row, int col) {
         return board[row][col].isBlocked();
