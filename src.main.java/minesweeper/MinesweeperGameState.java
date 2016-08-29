@@ -33,7 +33,11 @@ public class MinesweeperGameState {
         return false;
     }
 
-    public void mark(int row, int col) { }
+    public void mark(int row, int col) { 
+    	if(!gameEnded){
+    		board.mark(row, col);
+    	}
+    }
 
     /**
      * @param row
