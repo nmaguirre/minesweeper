@@ -22,4 +22,17 @@ public class MinesweeperBoardTest {
       MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
       assertTrue(board.getBoardMines() == mines);
     }
+    
+    @Test
+    public void isValidIndexTest() {
+      int rows = 7;
+      int cols = 8;
+      int mines = 10;
+      MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
+      for (int i=0; i<cols; i++){
+        for (int j=0; i<rows; i++){
+          assertTrue(board.isValidIndex(i,j));
+        }
+      }
+    }
 }
