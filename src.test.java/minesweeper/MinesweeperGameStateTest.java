@@ -23,5 +23,12 @@ public class MinesweeperGameStateTest {
 		 mwgs.mark(0, 0);		
 		 assertTrue(mwgs.isMarked(0, 0));
 	}
+	
+	@Test
+	public void mark(){
+		MinesweeperGameState state = new MinesweeperGameState();
+		state.mark(1, 1);	
+		assertTrue(state.isMarked(1, 1));
+	}
 
 }
