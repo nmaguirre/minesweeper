@@ -71,7 +71,7 @@ public class MinesweeperBoard {
     }
 
     /**
-     * @return number of rows of the board
+     * @return number of cols of the board
      **/
     public int getBoardCols() {
         return boardCols;
