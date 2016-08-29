@@ -40,6 +40,7 @@ public class MinesweeperBoard {
      **/
     public int numberOfMinedNeighbours(int row, int col) {
         int mine = 0;
+        //neighbors look limiting
         if (isValidIndex(row,col+1) ){
         	if ( board[row][col+1].hasMine() )
         		mine++;
@@ -50,7 +51,7 @@ public class MinesweeperBoard {
         }        
         if (isValidIndex(row + 1, col)){
         	if( board[row+1][col].hasMine())
-        		mine++
+        		mine++;
         }            
         if (isValidIndex(row + 1, col - 1)){
         	if ( board[row+1][col-1].hasMine())
