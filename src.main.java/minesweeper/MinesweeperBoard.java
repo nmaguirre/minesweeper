@@ -20,6 +20,20 @@ public class MinesweeperBoard {
     }
 
     /**
+	 * 
+	 * @param row
+	 * @param col
+	 * @return true when index is valid
+	 */
+	public boolean isValidIndex(int row, int col) {
+		
+		if (row<0 || col<0 || row>= boardRows || col>=boardCols) {
+			throw new IllegalArgumentException("error index of matrix");
+		} else return true;
+		
+	}
+
+    /**
      * @return This method should indicate the quantity of mines nearby of a cell.
      * @param rows - number of rows of the board
      * @param cols - number of colums of the board
