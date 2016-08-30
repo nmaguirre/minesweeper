@@ -28,27 +28,27 @@ public class MinesweeperBoardTest {
 	}
     
     @Test
-    private void putMineTrueTest() {
+    public void putMineTrueTest() {
     	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
     	board.putMine(1, 2);
     	assertTrue(board.hasMine(1,2));
 	}
     
     @Test
-    private void putMineFalseTest() {
+    public void putMineFalseTest() {
     	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
     	assertFalse(board.hasMine(2,2));
 	}
     
     @Test(expected=IllegalStateException.class)
-    private void putMineExeptionTest() {
+    public void putMineExeptionTest() {
     	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
     	board.putMine(2, 2);
     	board.putMine(2, 2);
 	}
     
     @Test(expected=IllegalStateException.class)
-    private void putMineExeptionTest2() {
+    public void putMineExeptionTest2() {
     	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
     	board.open(2, 2);
     	board.putMine(2, 2);
