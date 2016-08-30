@@ -21,6 +21,10 @@ public class MinesweeperGameState {
         return board.getBoardCols();
     }
 
+    /**
+     * 
+     * @return returns the number of mines on the board 
+     */
     public int numberOfMines() {
         return board.getBoardMines();
     }
