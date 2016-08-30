@@ -24,7 +24,12 @@ public class MinesweeperGameState {
     public int numberOfMines() {
         return board.getBoardMines();
     }
-
+    
+    /**
+     * Return true if the game is ended.This method is used to see the 
+     * outside of class if the game is ended or not
+     * @return true if this.gameEnded is true
+     */
     public boolean gameEnded() {
         return this.gameEnded;
     }

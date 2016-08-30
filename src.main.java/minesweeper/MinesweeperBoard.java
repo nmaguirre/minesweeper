@@ -12,11 +12,17 @@ public class MinesweeperBoard {
      * @param rows - number of rows of the board
      * @param cols - number of colums of the board
      * @param mines - number of mines of the board
+     * 		creates all the cells in the matrix
      */
     public MinesweeperBoard(int rows, int cols, int mines) {
         boardRows = rows;
         boardCols = cols;
         boardMines = mines;
+        
+        board = new MinesweeperCell[boardRows][boardCols];
+        for (int r=0; r < boardRows;r++)
+        	for (int c=0; c < boardCols; c++) 
+        		board[r][c]=new MinesweeperCell();       
     }
 
     /**
@@ -35,8 +41,8 @@ public class MinesweeperBoard {
 
     /**
      * @return This method should indicate the quantity of mines nearby of a cell.
-     * @param rows - number of rows of the board
-     * @param cols - number of colums of the board
+     * @param row - number of row of the board
+     * @param col - number of column of the board
      **/
     public int numberOfMinedNeighbours(int row, int col) {
         int mine = 0;
@@ -98,12 +104,13 @@ public class MinesweeperBoard {
     public int getBoardMines() {
         return boardMines;
     }
-    /**
-     * put mine in board
-     * @param row
-     * @param col
-     */
     
+    /**
+     * put mine in board in the cell located at the given position
+     * @param row - file number of the board where the cell is located.
+     * @param col - column number of the board where the cell is located.
+     * @throws IllegalStateException if the cell is open or already content a mine
+     */
     public void putMine(int row, int col) {
 		if (isValidIndex(row,col)) {
 			if (board[row][col].isOpen() || board[row][col].hasMine()) throw
@@ -116,8 +123,8 @@ public class MinesweeperBoard {
     /**
      * Returns true if the cell located at the given position is Marked. This method
      * allows you to see outside of class if a cell of the board is mark or not.
-     * @param row file number of the board where the cell is located.
-     * @param col column number of the board where the cell is located.
+     * @param row  - file number of the board where the cell is located.
+     * @param col - column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
     public boolean isMarked(int row, int col) {
@@ -127,8 +134,8 @@ public class MinesweeperBoard {
     /**
      * Returns true if the cell located at the given position is Opened. This method
      * allows you to see outside of class if a cell of the board is open or not.
-     * @param row file number of the board where the cell is located.
-     * @param col column number of the board where the cell is located.
+     * @param row - file number of the board where the cell is located.
+     * @param col - column number of the board where the cell is located.
      * @return true if the cell located at the given position is Opened.
      */
     public boolean isOpened(int row, int col) {

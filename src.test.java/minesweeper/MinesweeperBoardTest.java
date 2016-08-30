@@ -53,4 +53,58 @@ public class MinesweeperBoardTest {
     	board.open(2, 2);
     	board.putMine(2, 2);
     }	
+
+    public void numberOfRowsTest() {
+        MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
+        assertTrue(board.getBoardRows() == 10);
+    }
+    
+    @Test
+    public void numberOfColumnsTest() {
+        MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
+        assertTrue(board.getBoardCols() == 10);
+    }
+    
+    @Test
+    public void getBoardMinesTest() {
+      int rows = 7;
+      int cols = 8;
+      int mines = 10;
+      MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
+      assertTrue(board.getBoardMines() == mines);
+    }
+    
+    @Test
+    public void isValidIndexTest() {
+      int rows = 7;
+      int cols = 8;
+      int mines = 10;
+      MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
+      for (int i=0; i<cols; i++){
+        for (int j=0; i<rows; i++){
+          assertTrue(board.isValidIndex(i,j));
+        }
+      }
+    }
+    
+    @Test
+    public void isMarkedTest() {
+    	MinesweeperBoard mwb = new MinesweeperBoard(8,8,10);
+    	assertFalse(mwb.isMarked(0, 0));
+    	mwb.mark(0, 0);
+    	assertTrue(mwb.isMarked(0, 0));
+    }
+    
+    @Test
+    public void numberOfMinedNeighboursTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(10, 10, 2);
+    	board.putMine(1,1);
+    	board.putMine(2,2);
+    	board.putMine(8, 8);
+    	assertEquals(1,board.numberOfMinedNeighbours(2,2));
+    	assertEquals(1,board.numberOfMinedNeighbours(1,1));
+    	assertNotEquals(2,board.numberOfMinedNeighbours(1,1));
+    	assertEquals(0,board.numberOfMinedNeighbours(8,8));
+    }
+    
 }
