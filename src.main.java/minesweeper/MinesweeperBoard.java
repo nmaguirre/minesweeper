@@ -176,4 +176,11 @@ public class MinesweeperBoard {
     	return board[row][col].hasMine();
     }	
     
+    public void unMarked (int row, int col){
+    	if(isValidIndex(row,col)){
+    		if(isMarked(row,col)){
+    			board[row][col].unblock();
+    		}
+    	}
+}
 }
