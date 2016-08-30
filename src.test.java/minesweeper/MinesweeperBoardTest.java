@@ -56,4 +56,16 @@ public class MinesweeperBoardTest {
     	assertTrue(mwb.isMarked(0, 0));
     }
     
+    @Test
+    public void numberOfMinedNeighboursTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(10, 10, 2);
+    	board.putMine(1,1);
+    	board.putMine(2,2);
+    	board.putMine(8, 8);
+    	assertEquals(1,board.numberOfMinedNeighbours(2,2));
+    	assertEquals(1,board.numberOfMinedNeighbours(1,1));
+    	assertNotEquals(2,board.numberOfMinedNeighbours(1,1));
+    	assertEquals(0,board.numberOfMinedNeighbours(8,8));
+    }
+    
 }
