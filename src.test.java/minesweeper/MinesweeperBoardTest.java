@@ -15,6 +15,45 @@ public class MinesweeperBoardTest {
     }
     
     @Test
+	public void isOpenedTrueTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+    	board.open(1,2);
+        assertTrue(board.isOpened(1, 2));
+	}
+    
+    @Test
+	public void isOpenedFalseTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+        assertFalse(board.isOpened(1,2));
+	}
+    
+    @Test
+    private void putMineTrueTest() {
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+    	board.putMine(1, 2);
+    	assertTrue(board.hasMine(1,2));
+	}
+    
+    @Test
+    private void putMineFalseTest() {
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+    	assertFalse(board.hasMine(2,2));
+	}
+    
+    @Test(expected=IllegalStateException.class)
+    private void putMineExeptionTest() {
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+    	board.putMine(2, 2);
+    	board.putMine(2, 2);
+	}
+    
+    @Test(expected=IllegalStateException.class)
+    private void putMineExeptionTest2() {
+    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+    	board.open(2, 2);
+    	board.putMine(2, 2);
+    }	
+
     public void numberOfRowsTest() {
         MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
         assertTrue(board.getBoardRows() == 10);
@@ -70,7 +109,18 @@ public class MinesweeperBoardTest {
     	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
     	assertEquals(5, board.getBoardRows());
     	board = new MinesweeperBoard(25, 25, 6);
-    	assertEquals(25, board.getBoardRows()); 
+    	assertEquals(25, board.getBoardRows()); 	
+    }
+    
+    public void numberOfMinedNeighboursTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(10, 10, 2);
+    	board.putMine(1,1);
+    	board.putMine(2,2);
+    	board.putMine(8, 8);
+    	assertEquals(1,board.numberOfMinedNeighbours(2,2));
+    	assertEquals(1,board.numberOfMinedNeighbours(1,1));
+    	assertNotEquals(2,board.numberOfMinedNeighbours(1,1));
+    	assertEquals(0,board.numberOfMinedNeighbours(8,8));
     }
     
 }
