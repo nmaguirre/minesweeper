@@ -15,6 +15,18 @@ public class MinesweeperBoardTest {
     }
     
     @Test
+    public void numberOfRowsTest() {
+        MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
+        assertTrue(board.getBoardRows() == 10);
+    }
+    
+    @Test
+    public void numberOfColumnsTest() {
+        MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
+        assertTrue(board.getBoardCols() == 10);
+    }
+    
+    @Test
     public void getBoardMinesTest() {
       int rows = 7;
       int cols = 8;
