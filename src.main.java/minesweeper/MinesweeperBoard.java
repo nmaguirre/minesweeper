@@ -12,11 +12,17 @@ public class MinesweeperBoard {
      * @param rows - number of rows of the board
      * @param cols - number of colums of the board
      * @param mines - number of mines of the board
+     * 		creates all the cells in the matrix
      */
     public MinesweeperBoard(int rows, int cols, int mines) {
         boardRows = rows;
         boardCols = cols;
         boardMines = mines;
+        
+        board = new MinesweeperCell[boardRows][boardCols];
+        for (int r=0; r < boardRows;r++)
+        	for (int c=0; c < boardCols; c++) 
+        		board[r][c]=new MinesweeperCell();       
     }
 
     /**
