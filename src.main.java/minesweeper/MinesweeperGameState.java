@@ -38,10 +38,16 @@ public class MinesweeperGameState {
         return this.gameEnded;
     }
 
+    /**
+     * Returns true if the cell located at the given position is Marked. This method
+     * allows you to see outside of class if a cell of the board is mark or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * @return if the cell located at the given position is Marked.
+     */
     public boolean isMarked(int row, int col) {
-        return false;
+        return board.isMarked(row, col);
     }
-
     
     /**
      * Change state of a cell to blocked if the game is not ended
@@ -63,6 +69,11 @@ public class MinesweeperGameState {
         return board.isOpened(row, col);
     }
 
+    /**
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * This method open a cell in a position.
+     */
     public void open(int row, int col) { }
 
 }

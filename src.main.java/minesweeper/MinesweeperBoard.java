@@ -142,11 +142,34 @@ public class MinesweeperBoard {
         MinesweeperCell cell = board[row][col];
         return !cell.isClose();
     }
+    
+    /**
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * This method open a cell in a position.
+     */
+    public void open(int row, int col) {
+    	MinesweeperCell cell = board[row][col];
+        cell.open();
+    }
 
+
+    /**
+     * This method receive the position of a cell board and should block it.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     */
     public void mark(int row, int col) {
     	if (isValidIndex(row,col)){
     		board[row][col].block();
     	}
     }
 
+    public void open(int row, int col){
+    }
+    
+    public boolean hasMine(int row, int col){
+    	return false;
+    }	
+    
 }
