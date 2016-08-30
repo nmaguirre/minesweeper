@@ -165,11 +165,15 @@ public class MinesweeperBoard {
     	}
     }
 
-    public void open(int row, int col){
-    }
     
+    /**
+     * This method return true if the cell on the position given of the board has mine, otherwise return false.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * @return true if the cell on the position given of the board has mine.
+     */
     public boolean hasMine(int row, int col){
-    	return false;
+    	return board[row][col].hasMine();
     }	
     
 }
