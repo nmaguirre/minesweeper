@@ -12,11 +12,19 @@ public class MinesweeperGameState {
         // mines: 8 (randomly distributed)
         // all cells closed, none marked
     }
+    /**
+     * 
+     * @return return the number of the rows of the board
+     */
 
     public int numberOfRows() {
         return board.getBoardRows();
     }
-
+    
+    /**
+     * 
+     * @return return the number of columns of the board
+     */
     public int numberofColumns() {
         return board.getBoardCols();
     }
