@@ -10,6 +10,12 @@ public class MinesweeperGameStateTest {
         MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
         assertTrue(board.getBoardRows() == 10);
     }
+    
+    @Test
+    public void numberOfColumnsTest() {
+        MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
+        assertTrue(board.getBoardCols() == 10);
+    }
 
     @Test
     public void gameEndedTest () {
