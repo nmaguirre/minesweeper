@@ -18,4 +18,10 @@ public class MinesweeperGameStateTest {
 		assertTrue(state.isMarked(0, 0));
 	}
 	
+	@Test
+	public void isOpenTets(){
+		MinesweeperGameState gameState = new MinesweeperGameState();
+		assertTrue(gameState.isOpened(0, 0));
+	}
+	
 }
