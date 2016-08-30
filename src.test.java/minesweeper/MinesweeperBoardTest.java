@@ -65,4 +65,12 @@ public class MinesweeperBoardTest {
     	
     }
     
+    @Test
+    public void getBoardRowsTest(){
+    	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
+    	assertEquals(5, board.getBoardRows());
+    	board = new MinesweeperBoard(25, 25, 6);
+    	assertEquals(25, board.getBoardRows()); 
+    }
+    
 }
