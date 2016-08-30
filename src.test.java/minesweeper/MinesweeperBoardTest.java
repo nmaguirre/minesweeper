@@ -53,7 +53,8 @@ public class MinesweeperBoardTest {
     	board.open(2, 2);
     	board.putMine(2, 2);
     }	
-
+    
+    @Test
     public void numberOfRowsTest() {
         MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
         assertTrue(board.getBoardRows() == 10);
@@ -112,6 +113,7 @@ public class MinesweeperBoardTest {
     	assertEquals(25, board.getBoardRows()); 	
     }
     
+    @Test
     public void numberOfMinedNeighboursTest(){
     	MinesweeperBoard board = new MinesweeperBoard(10, 10, 2);
     	board.putMine(1,1);
