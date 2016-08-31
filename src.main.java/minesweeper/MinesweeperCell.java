@@ -1,13 +1,22 @@
 package minesweeper;
 
+/** This class represents a cell in the game, 
+ * its structure and the operations valid for this.
+ */
 public class MinesweeperCell {
-    private boolean blockedCell;
-    private boolean emptyCell;
+    
+	/**
+     * blockedCell represents if the cell is blocked or not
+     * hasMine represents if the cell has a mine inside or not
+     * openCell represents if the cell is open or not
+     */
+	private boolean blockedCell;
+    private boolean hasMine;
     private boolean openCell;
 
     public MinesweeperCell() {
         this.blockedCell = false;
-        this.emptyCell = true;
+        this.hasMine = false;
         this.openCell = false;
     }
 
@@ -29,9 +38,9 @@ public class MinesweeperCell {
      * This method fill the cell with a mine.
      */
     public void putMine() {
-        if (!this.emptyCell && this.blockedCell)
-            throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
-        this.emptyCell = false;
+        if (this.hasMine || this.openCell)
+            throw new IllegalStateException("Can't put mine while the cell is open or already have a mine ");
+        this.hasMine = true;
     }
 
     public boolean isOpen() {
@@ -52,7 +61,7 @@ public class MinesweeperCell {
      * @return true iff cell has a mine
      */
     public boolean hasMine() {
-        return this.emptyCell == false;
+        return this.hasMine;
     }
 
     /**

@@ -53,7 +53,8 @@ public class MinesweeperBoardTest {
     	board.open(2, 2);
     	board.putMine(2, 2);
     }	
-
+    
+    @Test
     public void numberOfRowsTest() {
         MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
         assertTrue(board.getBoardRows() == 10);
@@ -80,9 +81,9 @@ public class MinesweeperBoardTest {
       int cols = 8;
       int mines = 10;
       MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
-      for (int i=0; i<cols; i++){
-        for (int j=0; i<rows; i++){
-          assertTrue(board.isValidIndex(i,j));
+      for (int i=0; i< cols; i++){
+        for (int j=0; i< rows; i++){
+          assertTrue(board.isValidCoordenate(i,j));
         }
       }
     }
@@ -93,6 +94,23 @@ public class MinesweeperBoardTest {
     	assertFalse(mwb.isMarked(0, 0));
     	mwb.mark(0, 0);
     	assertTrue(mwb.isMarked(0, 0));
+    }
+    
+    @Test
+    public void getBoardColsTest(){
+    	MinesweeperBoard board  = new MinesweeperBoard(2, 2, 4);
+    	assertEquals(2, board.getBoardCols());
+    	board = new MinesweeperBoard(10, 10, 4);
+    	assertEquals(10, board.getBoardCols()); 	
+    	
+    }
+    
+    @Test
+    public void getBoardRowsTest(){
+    	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
+    	assertEquals(5, board.getBoardRows());
+    	board = new MinesweeperBoard(25, 25, 6);
+    	assertEquals(25, board.getBoardRows()); 	
     }
     
     @Test
