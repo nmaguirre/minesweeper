@@ -21,7 +21,11 @@ public class MinesweeperGameStateTest {
 	@Test
 	public void isOpenTets(){
 		MinesweeperGameState gameState = new MinesweeperGameState();
-		assertTrue(gameState.isOpened(0, 0));
+		//In this step the board should be created whith all cell blocked
+		gameState.open(0, 0);
+		assertTrue(!gameState.isOpened(0, 0));
+		
+		
 	}
 	
 }
