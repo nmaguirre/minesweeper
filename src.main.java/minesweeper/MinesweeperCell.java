@@ -29,8 +29,8 @@ public class MinesweeperCell {
      * This method fill the cell with a mine.
      */
     public void putMine() {
-        if (!this.emptyCell && this.blockedCell)
-            throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
+        if (this.hasMine() || this.isOpen())
+            throw new IllegalStateException("Can't put mine while the cell has mine or is opened");
         this.emptyCell = false;
     }
 
