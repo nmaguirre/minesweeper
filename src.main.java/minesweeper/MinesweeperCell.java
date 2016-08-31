@@ -1,5 +1,8 @@
 package minesweeper;
 
+/** This class represents a cell in the game, 
+ * its structure and the operations valid for this.
+ */
 public class MinesweeperCell {
     private boolean blockedCell;
     private boolean hasMine;
