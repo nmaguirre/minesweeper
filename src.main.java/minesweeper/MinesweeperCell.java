@@ -4,7 +4,13 @@ package minesweeper;
  * its structure and the operations valid for this.
  */
 public class MinesweeperCell {
-    private boolean blockedCell;
+    
+	/**
+     * blockedCell represents if the cell is blocked or not
+     * hasMine represents if the cell has a mine inside or not
+     * openCell represents if the cell is open or not
+     */
+	private boolean blockedCell;
     private boolean hasMine;
     private boolean openCell;
 
