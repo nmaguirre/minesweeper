@@ -29,12 +29,12 @@ public class MinesweeperBoard {
 	 * 
 	 * @param row
 	 * @param col
-	 * @return true when index is valid
+	 * @return true when coordinate is valid range
 	 */
 	public boolean isValidCoordenate(int row, int col) {
 		
 		if (row<0 || col<0 || row>= boardRows || col>=boardCols) {
-			throw new IllegalArgumentException("error index of matrix");
+			return false;
 		} else return true;
 		
 	}
