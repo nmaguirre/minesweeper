@@ -45,6 +45,9 @@ public class MinesweeperBoard {
      * @return This method should indicate the quantity of mines nearby of a cell.
      **/
     public int numberOfMinedNeighbours(int row, int col) {
+    	if (!isValidCoordenate(row,col)){
+    		throw new IllegalArgumentException("Invalid coordenate.");
+    	}
         int mine = 0;
         //neighbors look limiting
         if (isValidCoordenate(row,col+1) ){
