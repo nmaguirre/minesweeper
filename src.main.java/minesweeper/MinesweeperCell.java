@@ -2,12 +2,12 @@ package minesweeper;
 
 public class MinesweeperCell {
     private boolean blockedCell;
-    private boolean emptyCell;
+    private boolean hasMine;
     private boolean openCell;
 
     public MinesweeperCell() {
         this.blockedCell = false;
-        this.emptyCell = true;
+        this.hasMine = true;
         this.openCell = false;
     }
 
@@ -29,9 +29,9 @@ public class MinesweeperCell {
      * This method fill the cell with a mine.
      */
     public void putMine() {
-        if (this.hasMine() || this.isOpen())
-            throw new IllegalStateException("Can't put mine while the cell has mine or is opened");
-        this.emptyCell = false;
+        if (!this.hasMine && this.blockedCell)
+            throw new IllegalStateException("Can't put mine while the cell is bloked or is not empty");
+        this.hasMine = false;
     }
 
     public boolean isOpen() {
@@ -52,7 +52,7 @@ public class MinesweeperCell {
      * @return true iff cell has a mine
      */
     public boolean hasMine() {
-        return this.emptyCell == false;
+        return this.hasMine== false;
     }
 
     /**
