@@ -34,11 +34,6 @@ public class MinesweeperBoardTest {
     	assertTrue(board.hasMine(1,2));
 	}
     
-    @Test
-    public void putMineFalseTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-    	assertFalse(board.hasMine(2,2));
-	}
     
     @Test(expected=IllegalStateException.class)
     public void putMineExeptionTest() {
