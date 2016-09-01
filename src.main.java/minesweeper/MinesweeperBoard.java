@@ -1,5 +1,6 @@
 package minesweeper;
 
+
 public class MinesweeperBoard {
 
     private MinesweeperCell[][] board;
@@ -55,6 +56,83 @@ public class MinesweeperBoard {
 		boolean validCoordinate = row>=0 && row<boardRows && col>=0 && col<boardCols;
 		return validCoordinate;
 
+	}
+	
+	public void openNeighboringMines(int row, int col){
+		if (!isValidCoordinate(row,col)){
+    		throw new IllegalArgumentException("Invalid coordenate.");
+    	} else {
+            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isMarked(row, col+1) && !hasMine(row, col+1)){
+            	if ( numberOfMinedNeighbours(row, col+1) == 0){
+            		open(row, col+1);
+            		openNeighboringMines(row, col+1);
+            		
+            	} else{
+            		open(row, col+1);
+            	}
+            }   
+            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isMarked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
+            	if ( numberOfMinedNeighbours(row + 1, col + 1) == 0){
+            		open(row+1, col+1);
+            		openNeighboringMines(row+1, col+1);
+            	} else{
+            		open(row + 1, col + 1);
+            	}
+            }
+            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isMarked(row + 1, col) && !hasMine(row + 1, col)){
+            	if ( numberOfMinedNeighbours(row + 1, col) == 0){
+            		open(row + 1, col);
+            		openNeighboringMines(row+1, col);
+            	} else{
+            		open(row + 1, col);
+            	}
+            }
+            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isMarked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
+            	if ( numberOfMinedNeighbours(row + 1, col - 1) == 0){
+            		open(row + 1, col - 1);
+            		openNeighboringMines(row+1, col-1);
+            		
+            	} else{
+            		open(row + 1, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isMarked(row, col - 1) && !hasMine(row, col - 1)){
+            	if ( numberOfMinedNeighbours(row, col - 1) == 0){
+            		open(row, col - 1);
+            		openNeighboringMines(row, col-1);
+            		
+            	} else{
+            		open(row, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isMarked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
+            	if ( numberOfMinedNeighbours(row - 1, col - 1) == 0){
+            		open(row - 1, col - 1);
+            		openNeighboringMines(row-1, col-1);
+            		
+            	} else{
+            		open(row - 1, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isMarked(row - 1, col) && !hasMine(row - 1, col)){
+            	if ( numberOfMinedNeighbours(row - 1, col) == 0){
+            		open(row - 1, col);
+            		openNeighboringMines(row-1, col);
+            		
+            	} else{
+            		open(row - 1, col);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isMarked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
+            	if ( numberOfMinedNeighbours(row - 1, col + 1) == 0){
+            		open(row - 1, col + 1);
+            		openNeighboringMines(row-1, col+1);
+            		
+            	} else{
+            		open(row - 1, col + 1);
+            	}
+            }
+		}
 	}
 
     /**
@@ -203,5 +281,6 @@ public class MinesweeperBoard {
     			board[row][col].unblock();
     		}
     	}
-}
+    }
+    
 }
