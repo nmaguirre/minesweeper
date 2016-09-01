@@ -130,4 +130,18 @@ public class MinesweeperBoardTest {
     	assertEquals(0,board.numberOfMinedNeighbours(8,8));
     }
     
+    @Test
+    public void hasMineFalseTest() {
+    	MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
+    	assertFalse(board.hasMine(1, 1));
+
+	}
+    
+    @Test
+    public void hasMineTrueTest() {
+    	MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
+    	board.putMine(1,1);
+    	assertTrue(board.hasMine(1, 1));
+    	
+	}
 }
