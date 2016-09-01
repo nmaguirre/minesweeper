@@ -7,15 +7,28 @@ public class MinesweeperGameState {
     private MinesweeperBoard board;
     private boolean gameEnded;
 
+    /**
+     * constructor create the default state game
+     * board: 10x10, mines: 8, all cells closed and none marked
+     */
     public MinesweeperGameState() {
-        // default game
-        // game started
-        // board: 10x10
-        // mines: 8 (randomly distributed)
-        // all cells closed, none marked
+      
+    	board = new MinesweeperBoard(10, 10, 8);
+    	gameEnded = false;
     }
     
+    /**
+     * constructor create the state game with the params
+     * @param rows - number of rows of the board
+     * @param cols - number of colums of the board
+     * @param mines - number of mines of the board
+     */
     
+    public MinesweeperGameState(int rows, int cols, int mines){
+    	board = new MinesweeperBoard(rows, cols, mines);
+    	gameEnded = false;
+    	
+    }
     /**
      * 
      * @return return the number of the rows of the board
