@@ -32,7 +32,7 @@ public class MinesweeperCellTest {
         // In this step, the cell is not blocked
         
         cell.block();
-        // In this step, the cell is not blocked
+        // In this step, the cell is blocked
         
         assertTrue(cell.isBlocked());
     }
