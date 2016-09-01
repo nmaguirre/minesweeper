@@ -1,7 +1,7 @@
 package minesweeper;
 
-/** This class represents a cell in the game, 
- * its structure and the operations valid for this.
+/** This class represents a cell in the game 
+ * and their members and methods to ensure this.
  */
 public class MinesweeperCell {
     
@@ -48,8 +48,8 @@ public class MinesweeperCell {
     }
 
     /**
-     * change the state of the cell if this is close
-     * @see isClose()
+     * This method open a cell.
+     * A cell can be open if the cell is close.
      */
     public void open() {
         if (this.isClose()) {
