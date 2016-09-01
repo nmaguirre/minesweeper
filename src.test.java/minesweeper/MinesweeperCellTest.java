@@ -71,5 +71,36 @@ public class MinesweeperCellTest {
         cell.block();
         assertFalse(cell.isBlocked());
     }
+    
+    @Test(expected = IllegalStateException.class)
+    public void unblockAnUnblockedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.unblock();
+    }
+
+    @Test
+    public void unblockABlockedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.block();
+    	cell.unblock();
+    	assertFalse(cell.isBlocked());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void unblockAnOpenCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	cell.unblock();
+    }
+
+    @Test
+    public void unblockACellWithMines(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.putMine();
+    	cell.block();
+    	cell.unblock();
+    	assertFalse(cell.isBlocked());
+    }
+
 
 }
