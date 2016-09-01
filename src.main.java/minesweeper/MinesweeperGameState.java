@@ -107,5 +107,9 @@ public class MinesweeperGameState {
     	}
     }
     
+    public void endGame(){
+    	gameEnded = true;
+    }
+    
 
 }
