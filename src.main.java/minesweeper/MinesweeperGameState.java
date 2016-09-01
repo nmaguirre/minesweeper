@@ -5,20 +5,43 @@ public class MinesweeperGameState {
     private MinesweeperBoard board;
     private boolean gameEnded;
 
+    /**
+     * constructor create the default state game
+     * board: 10x10, mines: 8, all cells closed and none marked
+     */
     public MinesweeperGameState() {
-        // default game
-        // game started
-        // board: 10x10
-        // mines: 8 (randomly distributed)
-        // all cells closed, none marked
+      
+    	board = new MinesweeperBoard(10, 10, 8);
+    	gameEnded = false;
     }
+    
+    /**
+     * constructor create the state game with the params
+     * @param rows - number of rows of the board
+     * @param cols - number of colums of the board
+     * @param mines - number of mines of the board
+     */
+    
+    public MinesweeperGameState(int rows, int cols, int mines){
+    	board = new MinesweeperBoard(rows, cols, mines);
+    	gameEnded = false;
+    	
+    }
+    /**
+     * 
+     * @return return the number of the rows of the board
+     */
 
     public int numberOfRows() {
-        return board.getBoardRows();
+        return board.getRowCount();
     }
-
+    
+    /**
+     * 
+     * @return return the number of columns of the board
+     */
     public int numberofColumns() {
-        return board.getBoardCols();
+        return board.getColCount();
     }
 
     /**
@@ -26,7 +49,7 @@ public class MinesweeperGameState {
      * @return returns the number of mines on the board
      */
     public int numberOfMines() {
-        return board.getBoardMines();
+        return board.getMineCount();
     }
     
     /**
@@ -74,6 +97,15 @@ public class MinesweeperGameState {
      * @param col column number of the board where the cell is located.
      * This method open a cell in a position.
      */
-    public void open(int row, int col) { }
+    public void open(int row, int col) {
+    	if( !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
+    		board.open(row, col);//open the cell
+    		if(!board.hasMine(row, col)){//if the cell has not a mine
+    			board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    			
+    		}
+    	}
+    }
+    
 
 }

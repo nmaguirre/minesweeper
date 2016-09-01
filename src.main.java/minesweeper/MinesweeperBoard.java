@@ -1,4 +1,10 @@
 package minesweeper;
+/**
+ * This Class MinesweeperBoard represents a 
+ * particular board in the game with the necessary 
+ * methods for handling. In addition, the board is composed
+ * of cells.
+ **/
 
 public class MinesweeperBoard {
 
@@ -26,56 +32,154 @@ public class MinesweeperBoard {
     }
 
     /**
+     * constructor create the game's board without mines
+     * @param height - number of rows of the board
+     * @param width - number of colums of the board
+     */
+
+    public MinesweeperBoard (int height, int width){
+
+        boardRows = height;
+        boardCols = width;
+        boardMines = 0;
+        
+        board = new MinesweeperCell[boardRows][boardCols];
+        
+        for (int r=0; r < boardRows;r++)
+        	for (int c=0; c < boardCols; c++) 
+        		board[r][c]=new MinesweeperCell(); 
+    }
+
+    /**
 	 * 
 	 * @param row
 	 * @param col
-	 * @return true when index is valid
+	 * @return true when coordinate is valid rangethat takes
 	 */
-	public boolean isValidIndex(int row, int col) {
-		
-		if (row<0 || col<0 || row>= boardRows || col>=boardCols) {
-			throw new IllegalArgumentException("error index of matrix");
-		} else return true;
-		
+	public boolean isValidCoordinate(int row, int col) {
+
+		boolean validCoordinate = row>=0 && row<boardRows && col>=0 && col<boardCols;
+		return validCoordinate;
+
+	}
+	
+	public void openNeighboringMines(int row, int col){
+		if (!isValidCoordinate(row,col)){
+    		throw new IllegalArgumentException("Invalid coordenate.");
+    	} else {
+            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isMarked(row, col+1) && !hasMine(row, col+1)){
+            	if ( numberOfMinedNeighbours(row, col+1) == 0){
+            		open(row, col+1);
+            		openNeighboringMines(row, col+1);
+            		
+            	} else{
+            		open(row, col+1);
+            	}
+            }   
+            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isMarked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
+            	if ( numberOfMinedNeighbours(row + 1, col + 1) == 0){
+            		open(row+1, col+1);
+            		openNeighboringMines(row+1, col+1);
+            	} else{
+            		open(row + 1, col + 1);
+            	}
+            }
+            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isMarked(row + 1, col) && !hasMine(row + 1, col)){
+            	if ( numberOfMinedNeighbours(row + 1, col) == 0){
+            		open(row + 1, col);
+            		openNeighboringMines(row+1, col);
+            	} else{
+            		open(row + 1, col);
+            	}
+            }
+            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isMarked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
+            	if ( numberOfMinedNeighbours(row + 1, col - 1) == 0){
+            		open(row + 1, col - 1);
+            		openNeighboringMines(row+1, col-1);
+            		
+            	} else{
+            		open(row + 1, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isMarked(row, col - 1) && !hasMine(row, col - 1)){
+            	if ( numberOfMinedNeighbours(row, col - 1) == 0){
+            		open(row, col - 1);
+            		openNeighboringMines(row, col-1);
+            		
+            	} else{
+            		open(row, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isMarked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
+            	if ( numberOfMinedNeighbours(row - 1, col - 1) == 0){
+            		open(row - 1, col - 1);
+            		openNeighboringMines(row-1, col-1);
+            		
+            	} else{
+            		open(row - 1, col - 1);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isMarked(row - 1, col) && !hasMine(row - 1, col)){
+            	if ( numberOfMinedNeighbours(row - 1, col) == 0){
+            		open(row - 1, col);
+            		openNeighboringMines(row-1, col);
+            		
+            	} else{
+            		open(row - 1, col);
+            	}
+            }
+            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isMarked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
+            	if ( numberOfMinedNeighbours(row - 1, col + 1) == 0){
+            		open(row - 1, col + 1);
+            		openNeighboringMines(row-1, col+1);
+            		
+            	} else{
+            		open(row - 1, col + 1);
+            	}
+            }
+		}
 	}
 
     /**
-     * @return This method should indicate the quantity of mines nearby of a cell.
      * @param row - number of row of the board
      * @param col - number of column of the board
+     * @return This method should indicate the quantity of mines nearby of a cell.
      **/
     public int numberOfMinedNeighbours(int row, int col) {
+    	if (!isValidCoordinate(row,col)){
+    		throw new IllegalArgumentException("Invalid coordenate.");
+    	}
         int mine = 0;
         //neighbors look limiting
-        if (isValidIndex(row,col+1) ){
+        if (isValidCoordinate(row,col+1) ){
         	if ( board[row][col+1].hasMine() )
         		mine++;
         }        	
-        if (isValidIndex(row + 1, col + 1)){
+        if (isValidCoordinate(row + 1, col + 1)){
         	if ( board[row+1][col+1].hasMine() )
         		mine++;
         }        
-        if (isValidIndex(row + 1, col)){
+        if (isValidCoordinate(row + 1, col)){
         	if( board[row+1][col].hasMine())
         		mine++;
         }            
-        if (isValidIndex(row + 1, col - 1)){
+        if (isValidCoordinate(row + 1, col - 1)){
         	if ( board[row+1][col-1].hasMine())
         		mine++;
         }
-        if (isValidIndex(row, col - 1)){
+        if (isValidCoordinate(row, col - 1)){
         	if (board[row][col-1].hasMine())
         		mine++;
         }
-        if (isValidIndex(row - 1, col - 1)){
+        if (isValidCoordinate(row - 1, col - 1)){
         	if(board[row-1][col-1].hasMine())
         		mine++;        		
         }
-        if (isValidIndex(row - 1, col)){
+        if (isValidCoordinate(row - 1, col)){
         	if(board[row-1][col].hasMine())
         		mine++;
         }
-        if (isValidIndex(row - 1, col + 1)){
+        if (isValidCoordinate(row - 1, col + 1)){
         	if (board[row-1][col+1].hasMine())
         		mine++;
         }
@@ -85,14 +189,14 @@ public class MinesweeperBoard {
     /**
      * @return number of rows of the board
      **/
-    public int getBoardRows() {
+    public int getRowCount() {
         return boardRows;
     }
 
     /**
      * @return number of cols of the board
      **/
-    public int getBoardCols() {
+    public int getColCount() {
         return boardCols;
     }
     
@@ -101,7 +205,7 @@ public class MinesweeperBoard {
      * of class the number of mines on the board
      * @return number of mines of the board
      */
-    public int getBoardMines() {
+    public int getMineCount() {
         return boardMines;
     }
     
@@ -112,7 +216,7 @@ public class MinesweeperBoard {
      * @throws IllegalStateException if the cell is open or already content a mine
      */
     public void putMine(int row, int col) {
-		if (isValidIndex(row,col)) {
+		if (isValidCoordinate(row,col)) {
 			if (board[row][col].isOpen() || board[row][col].hasMine()) throw
 			  new IllegalStateException("cell open or already exists mine");
 		         board[row][col].putMine(); 
@@ -160,16 +264,28 @@ public class MinesweeperBoard {
      * @param col column number of the board where the cell is located.
      */
     public void mark(int row, int col) {
-    	if (isValidIndex(row,col)){
+    	if (isValidCoordinate(row,col)){
     		board[row][col].block();
     	}
     }
 
-    public void open(int row, int col){
-    }
     
+    /**
+     * This method return true if the cell on the position given of the board has mine, otherwise return false.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * @return true if the cell on the position given of the board has mine.
+     */
     public boolean hasMine(int row, int col){
-    	return false;
+    	return board[row][col].hasMine();
     }	
+    
+    public void unMarked (int row, int col){
+    	if(isValidCoordinate(row,col)){
+    		if(isMarked(row,col)){
+    			board[row][col].unblock();
+    		}
+    	}
+    }
     
 }
