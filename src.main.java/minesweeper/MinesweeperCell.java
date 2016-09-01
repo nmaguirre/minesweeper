@@ -66,7 +66,7 @@ public class MinesweeperCell {
 
     /**
      * This method blocks the cell when closed .
-     * When the cell is open or blocked throw a IllegalStateException 
+     * @throws IllegalStateException When the cell is open or blocked 
      */
     public void block() {
         if (this.isOpen() || this.isBlocked())
