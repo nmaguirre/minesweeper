@@ -83,7 +83,7 @@ public class MinesweeperBoardTest {
       MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
       for (int i=0; i< cols; i++){
         for (int j=0; i< rows; i++){
-          assertTrue(board.isValidCoordenate(i,j));
+          assertTrue(board.isValidCoordinate(i,j));
         }
       }
     }
