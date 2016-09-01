@@ -150,6 +150,19 @@ public class MinesweeperCellTest {
     	cell.open();
     }
 
+    @Test
+    public void closedCellTest(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	assertTrue(cell.isClose());
+    }
 
+    @Test
+    public void notClosedCellTest(){
+    	// the name of the test is the negation of closedCellTest
+    	// because check the method isClose
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	assertFalse(cell.isClose());
+    }
 
 }
