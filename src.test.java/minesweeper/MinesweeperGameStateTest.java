@@ -19,6 +19,13 @@ public class MinesweeperGameStateTest {
     }
     
     @Test
+    public void numberOfColsGameTest(){
+    	MinesweeperGameState mwgState = new MinesweeperGameState();
+    	int cols = 10;
+    	assertEquals(cols,mwgState.numberofColumns());
+    }
+    
+    @Test
     public void numberOfMinesTest(){
     	MinesweeperGameState mwgState = new MinesweeperGameState();
     	int numberOfMines = 8;
