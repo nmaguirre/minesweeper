@@ -111,12 +111,17 @@ public class MinesweeperBoardTest {
     }
 
     @Test
-    public void getBoardRowsTest(){
+    public void getBoardRowsTest1(){
     	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
-    	assertEquals(5, board.getRowCount()); 
-    	board = new MinesweeperBoard(25, 25, 6);
+    	assertEquals(5, board.getRowCount()); 	
+    }
+
+    @Test
+    public void getBoardRowsTest2(){
+    	MinesweeperBoard board  = new MinesweeperBoard(25, 25, 6);
     	assertEquals(25, board.getRowCount()); 	
     }
+    
     
     @Test
     public void numberOfMinedNeighboursTest(){
