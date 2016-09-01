@@ -10,6 +10,21 @@ public class MinesweeperGameStateTest {
         MinesweeperGameState gameState = new MinesweeperGameState();
         assertFalse(gameState.gameEnded());
     }
+    @Test
+    public void numberOfRowsGameTest(){
+    	MinesweeperGameState mwgState = new MinesweeperGameState();
+    	int rows = 10;
+    	assertEquals(rows,mwgState.numberOfRows());
+    	rows= 11;
+    	assertNotEquals(rows,mwgState.numberOfRows());
+    }
+    
+    @Test
+    public void numberOfMinesTest(){
+    	MinesweeperGameState mwgState = new MinesweeperGameState();
+    	int numberOfMines = 8;
+    	assertEquals(numberOfMines,mwgState.numberOfMines());
+    }
     
 	@Test
 	public void markTest() {
@@ -21,7 +36,11 @@ public class MinesweeperGameStateTest {
 	@Test
 	public void isOpenTets(){
 		MinesweeperGameState gameState = new MinesweeperGameState();
-		assertTrue(gameState.isOpened(0, 0));
+		//In this step the board should be created whith all cell blocked
+		gameState.open(0, 0);
+		assertTrue(!gameState.isOpened(0, 0));
+		
+		
 	}
 	
 }
