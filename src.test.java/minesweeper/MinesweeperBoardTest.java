@@ -84,11 +84,16 @@ public class MinesweeperBoardTest {
     }
     
     @Test
-    public void isMarkedTest() {
-    	MinesweeperBoard mwb = new MinesweeperBoard(8,8,10);
-    	assertFalse(mwb.isMarked(0, 0));
-    	mwb.mark(0, 0);
-    	assertTrue(mwb.isMarked(0, 0));
+    public void isMarkedTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+    	board.mark(0,0);
+    	assertTrue(board.isMarked(0, 0));
+    }
+
+    @Test
+    public void isNotMarkedTest(){
+    	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+    	assertFalse(board.isMarked(0,0));
     }
     
     @Test
