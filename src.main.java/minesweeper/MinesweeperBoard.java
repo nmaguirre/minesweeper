@@ -165,14 +165,14 @@ public class MinesweeperBoard {
     /**
      * @return number of rows of the board
      **/
-    public int getBoardRows() {
+    public int getRowCount() {
         return boardRows;
     }
 
     /**
      * @return number of cols of the board
      **/
-    public int getBoardCols() {
+    public int getColCount() {
         return boardCols;
     }
     
@@ -181,7 +181,7 @@ public class MinesweeperBoard {
      * of class the number of mines on the board
      * @return number of mines of the board
      */
-    public int getBoardMines() {
+    public int getMineCount() {
         return boardMines;
     }
     
