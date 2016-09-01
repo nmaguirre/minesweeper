@@ -17,6 +17,25 @@ public class MinesweeperCellTest {
         MinesweeperCell cell = new MinesweeperCell();
         assertFalse(cell.isBlocked());
     }
+    
+    @Test
+    public void isBlockedTestWithNotBlockedCell() {
+        MinesweeperCell cell = new MinesweeperCell();
+        // In this step, the cell is not blocked
+        
+        assertFalse(cell.isBlocked());
+    }
+    
+    @Test
+    public void isBlockedTestWithBlockedCell() {
+        MinesweeperCell cell = new MinesweeperCell();
+        // In this step, the cell is not blocked
+        
+        cell.block();
+        // In this step, the cell is blocked
+        
+        assertTrue(cell.isBlocked());
+    }
 
     @Test
     public void hasMineFalse(){
@@ -71,5 +90,36 @@ public class MinesweeperCellTest {
         cell.block();
         assertFalse(cell.isBlocked());
     }
+    
+    @Test(expected = IllegalStateException.class)
+    public void unblockAnUnblockedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.unblock();
+    }
+
+    @Test
+    public void unblockABlockedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.block();
+    	cell.unblock();
+    	assertFalse(cell.isBlocked());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void unblockAnOpenCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	cell.unblock();
+    }
+
+    @Test
+    public void unblockACellWithMines(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.putMine();
+    	cell.block();
+    	cell.unblock();
+    	assertFalse(cell.isBlocked());
+    }
+
 
 }
