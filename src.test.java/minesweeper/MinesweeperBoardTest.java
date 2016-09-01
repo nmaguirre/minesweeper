@@ -97,18 +97,23 @@ public class MinesweeperBoardTest {
     }
     
     @Test
-    public void getBoardColsTest(){
+    public void getBoardColsTest1(){
     	MinesweeperBoard board  = new MinesweeperBoard(2, 2, 4);
-    	assertEquals(2, board.getColCount());
-    	board = new MinesweeperBoard(10, 10, 4);
-    	assertEquals(10, board.getColCount()); 	
+    	assertEquals(2, board.getColCount()); 	
     	
     }
     
     @Test
+    public void getBoardColsTest2(){
+    	MinesweeperBoard board  = new MinesweeperBoard(10, 10, 4);
+    	assertEquals(10, board.getColCount()); 	
+    	
+    }
+
+    @Test
     public void getBoardRowsTest(){
     	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
-    	assertEquals(5, board.getRowCount());
+    	assertEquals(5, board.getRowCount()); 
     	board = new MinesweeperBoard(25, 25, 6);
     	assertEquals(25, board.getRowCount()); 	
     }
