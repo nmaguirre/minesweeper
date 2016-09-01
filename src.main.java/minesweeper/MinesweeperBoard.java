@@ -1,5 +1,10 @@
 package minesweeper;
-
+/**
+ * This Class MinesweeperBoard represents a 
+ * particular board in the game with the necessary 
+ * methods for handling. In addition, the board is composed
+ * of cells.
+ **/
 
 public class MinesweeperBoard {
 
