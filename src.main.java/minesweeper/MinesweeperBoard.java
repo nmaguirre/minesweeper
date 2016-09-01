@@ -27,10 +27,29 @@ public class MinesweeperBoard {
     }
 
     /**
+     * constructor create the game's board without mines
+     * @param height - number of rows of the board
+     * @param width - number of colums of the board
+     */
+
+    public MinesweeperBoard (int height, int width){
+
+        boardRows = height;
+        boardCols = width;
+        boardMines = 0;
+        
+        board = new MinesweeperCell[boardRows][boardCols];
+        
+        for (int r=0; r < boardRows;r++)
+        	for (int c=0; c < boardCols; c++) 
+        		board[r][c]=new MinesweeperCell(); 
+    }
+
+    /**
 	 * 
 	 * @param row
 	 * @param col
-	 * @return true when coordinate is valid range
+	 * @return true when coordinate is valid rangethat takes
 	 */
 	public boolean isValidCoordinate(int row, int col) {
 
