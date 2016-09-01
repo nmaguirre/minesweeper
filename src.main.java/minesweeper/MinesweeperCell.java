@@ -6,9 +6,9 @@ package minesweeper;
 public class MinesweeperCell {
     
 	/**
-     * blockedCell represents if the cell is blocked or not
-     * hasMine represents if the cell has a mine inside or not
-     * openCell represents if the cell is open or not
+     * isBlockedCell represents if the cell is blocked or not
+     * isMine represents if the cell has a mine inside or not
+     * isOpenCell represents if the cell is open or not
      */
 	private boolean isBlockedCell;
     private boolean isMine;
