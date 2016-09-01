@@ -17,6 +17,25 @@ public class MinesweeperCellTest {
         MinesweeperCell cell = new MinesweeperCell();
         assertFalse(cell.isBlocked());
     }
+    
+    @Test
+    public void isBlockedTestWithNotBlockedCell() {
+        MinesweeperCell cell = new MinesweeperCell();
+        // In this step, the cell is not blocked
+        
+        assertFalse(cell.isBlocked());
+    }
+    
+    @Test
+    public void isBlockedTestWithBlockedCell() {
+        MinesweeperCell cell = new MinesweeperCell();
+        // In this step, the cell is not blocked
+        
+        cell.block();
+        // In this step, the cell is blocked
+        
+        assertTrue(cell.isBlocked());
+    }
 
     @Test
     public void hasMineFalse(){
