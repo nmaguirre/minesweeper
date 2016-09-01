@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.awt.Color;
+
 public class MinesweeperGameState {
 
     private MinesweeperBoard board;
@@ -12,6 +14,8 @@ public class MinesweeperGameState {
         // mines: 8 (randomly distributed)
         // all cells closed, none marked
     }
+    
+    
     /**
      * 
      * @return return the number of the rows of the board
@@ -82,6 +86,15 @@ public class MinesweeperGameState {
      * @param col column number of the board where the cell is located.
      * This method open a cell in a position.
      */
-    public void open(int row, int col) { }
+    public void open(int row, int col) {
+    	if( !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
+    		board.open(row, col);//open the cell
+    		if(!board.hasMine(row, col)){//if the cell has not a mine
+    			board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    			
+    		}
+    	}
+    }
+    
 
 }
