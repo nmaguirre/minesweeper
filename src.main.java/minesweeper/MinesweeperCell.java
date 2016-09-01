@@ -15,6 +15,11 @@ public class MinesweeperCell {
     private boolean isMine;
     private boolean isOpenCell;
 
+    /**
+     * The constructor of MinesweeperCell class sets the new cell
+     * properties as false.
+     * The created cell is not blocked, it does not have a mine inside and it is not open.
+     */
     public MinesweeperCell() {
         this.isBlockedCell = false;
         this.isMine = false;
