@@ -41,4 +41,12 @@ public class MinesweeperGameStateTest {
 		
 	}
 	
+	@Test
+	public void endGame(){
+		MinesweeperGameState gameState = new MinesweeperGameState();
+		gameState.endGame();
+		assertTrue(gameState.gameEnded())
+		
+	}
+	
 }
