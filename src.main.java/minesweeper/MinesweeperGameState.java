@@ -74,7 +74,7 @@ public class MinesweeperGameState {
     
     /**
      * Change state of a cell to blocked if the game is not ended
-     * @param row file number of the board where the cell is located.
+     * @param row row number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
      */
     public void mark(int row, int col) { 
@@ -107,6 +107,9 @@ public class MinesweeperGameState {
     	}
     }
     
+    /**
+     *This method finish the game. 
+     */
     public void endGame(){
     	gameEnded = true;
     }

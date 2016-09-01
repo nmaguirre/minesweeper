@@ -120,6 +120,49 @@ public class MinesweeperCellTest {
     	cell.unblock();
     	assertFalse(cell.isBlocked());
     }
+    
+    @Test (expected = IllegalStateException.class)
+    public void openAnOpenedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	cell.open();
+    }
 
+    @Test 
+    public void openAClosedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	assertTrue(cell.isOpen());
+    }
+    
+    @Test
+    public void openACellWithMines(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.putMine();
+    	cell.open();
+    	assertTrue(cell.isOpen());
+    }
+    
+    @Test (expected = IllegalStateException.class)
+    public void openABlockedCell(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.block();
+    	cell.open();
+    }
+
+    @Test
+    public void closedCellTest(){
+    	MinesweeperCell cell = new MinesweeperCell();
+    	assertTrue(cell.isClose());
+    }
+
+    @Test
+    public void notClosedCellTest(){
+    	// the name of the test is the negation of closedCellTest
+    	// because check the method isClose
+    	MinesweeperCell cell = new MinesweeperCell();
+    	cell.open();
+    	assertFalse(cell.isClose());
+    }
 
 }
