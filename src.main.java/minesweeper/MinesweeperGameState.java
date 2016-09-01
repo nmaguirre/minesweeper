@@ -18,7 +18,7 @@ public class MinesweeperGameState {
      */
 
     public int numberOfRows() {
-        return board.getBoardRows();
+        return board.getRowCount();
     }
     
     /**
@@ -26,7 +26,7 @@ public class MinesweeperGameState {
      * @return return the number of columns of the board
      */
     public int numberofColumns() {
-        return board.getBoardCols();
+        return board.getColCount();
     }
 
     /**
@@ -34,7 +34,7 @@ public class MinesweeperGameState {
      * @return returns the number of mines on the board
      */
     public int numberOfMines() {
-        return board.getBoardMines();
+        return board.getMineCount();
     }
     
     /**
