@@ -57,7 +57,7 @@ public class MinesweeperGameStateTest {
 	public void endGame(){
 		MinesweeperGameState gameState = new MinesweeperGameState();
 		gameState.endGame();
-		assertTrue(gameState.gameEnded())
+		assertTrue(gameState.gameEnded());
 		
 	}
 	
