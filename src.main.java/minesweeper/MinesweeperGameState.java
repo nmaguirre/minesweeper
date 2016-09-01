@@ -1,7 +1,5 @@
 package minesweeper;
 
-import java.awt.Color;
-
 public class MinesweeperGameState {
 
     private MinesweeperBoard board;
