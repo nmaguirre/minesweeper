@@ -19,6 +19,13 @@ public class MinesweeperGameStateTest {
     	assertNotEquals(rows,mwgState.numberOfRows());
     }
     
+    @Test
+    public void numberOfMinesTest(){
+    	MinesweeperGameState mwgState = new MinesweeperGameState();
+    	int numberOfMines = 8;
+    	assertEquals(numberOfMines,mwgState.numberOfMines());
+    }
+    
 	@Test
 	public void markTest() {
 		MinesweeperGameState state = new MinesweeperGameState();
