@@ -75,7 +75,15 @@ public class MinesweeperCellTest {
         cell.putMine();
         assertTrue(cell.hasMine());
     }
-
+    
+    @Test(expected=IllegalStateException.class)
+    public void notPutMineTest(){
+        MinesweeperCell cell = new MinesweeperCell();
+        cell.open();
+        cell.putMine();
+        assertFalse(cell.hasMine());
+    }
+    
     @Test
     public void blockAClosedCell(){
         MinesweeperCell cell = new MinesweeperCell();
