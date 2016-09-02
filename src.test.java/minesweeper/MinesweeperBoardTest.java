@@ -71,7 +71,7 @@ public class MinesweeperBoardTest {
     }
     
     @Test
-    public void isValidIndexTest() {
+    public void isValidCoordenateTest() {
       int rows = 7;
       int cols = 8;
       int mines = 10;
@@ -81,6 +81,22 @@ public class MinesweeperBoardTest {
           assertTrue(board.isValidCoordinate(i,j));
         }
       }
+    }
+    
+    @Test
+    public void notValidCoordenateTest() {
+      int rows = 7;
+      int cols = 8;
+      int mines = 10;
+      MinesweeperBoard board = new MinesweeperBoard(rows,cols,mines);
+      assertFalse(board.isValidCoordinate(0,-1));
+      assertFalse(board.isValidCoordinate(8,0));
+      assertFalse(board.isValidCoordinate(-1,6));
+      assertFalse(board.isValidCoordinate(0,8));
+      assertFalse(board.isValidCoordinate(-2,-2));
+      assertFalse(board.isValidCoordinate(9,9));
+      assertFalse(board.isValidCoordinate(5,9));
+      assertFalse(board.isValidCoordinate(9,5));
     }
     
     @Test
