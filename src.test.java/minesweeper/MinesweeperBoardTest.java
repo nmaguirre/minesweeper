@@ -6,12 +6,29 @@ import static org.junit.Assert.*;
 public class MinesweeperBoardTest {
 
     @Test
-    public void ConstructorTest() {
-        MinesweeperBoard board = new MinesweeperBoard(5,5,10);
-        boolean checkRows = board.getRowCount() == 5;
-        boolean checkCols = board.getColCount() == 5;
-        boolean checkMines = board.getMineCount() == 10;
-        assertTrue(checkRows && checkCols && checkMines);
+    public void ConstructorTestWithMinesPositive() {
+      MinesweeperBoard board = new MinesweeperBoard(5,5,10);
+      boolean checkRows = board.getRowCount() == 5;
+      boolean checkCols = board.getColCount() == 5;
+      boolean checkMines = board.getMineCount() == 10;
+      assertTrue(checkRows && checkCols && checkMines);
+    }
+    
+    public void ConstructorTestWithoutMinesPositive() {
+      MinesweeperBoard board = new MinesweeperBoard(5,5);
+      boolean checkRows = board.getRowCount() == 5;
+      boolean checkCols = board.getColCount() == 5;
+      assertTrue(checkRows && checkCols );
+    }
+
+    public void ConstructorTestWithMinesNegative() {
+      MinesweeperBoard board = new MinesweeperBoard(-5,-5,10);
+      assertTrue(board == null);
+    }
+    
+    public void ConstructorTestWithoutMinesNegative() {
+      MinesweeperBoard board = new MinesweeperBoard(-5,-5);
+      assertTrue(board == null);
     }
     
     @Test
