@@ -8,8 +8,8 @@ public class MinesweeperCellTest {
     @Test
     public void isBlockedTest() {
         MinesweeperCell cell = new MinesweeperCell();
-        cell.putMine();
-        assertTrue(cell.hasMine());
+        cell.block();
+        assertTrue(cell.isBlocked());
     }
 
     @Test
