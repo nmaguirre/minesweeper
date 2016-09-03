@@ -295,9 +295,9 @@ public class MinesweeperBoard {
     
     /**
      * This method takes a integer value that represents how many mines to add to the board,
-     *  and adds them in random coordinates.
-	 * @param quantity of mines to add to the board
-	 */
+     * and adds them in random coordinates.
+     * @param n - quantity of mines to add to the board.
+     */
     public void addRandomMines(int n){
     	ArrayList<MinesweeperCell> freeCells = new ArrayList<MinesweeperCell>();
     	for (int row = 0; row < this.getRowCount(); row ++){
