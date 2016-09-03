@@ -1,9 +1,26 @@
 package minesweeper;
 
 import org.junit.Test;
+import org.junit.Before;
 import static org.junit.Assert.*;
 
 public class MinesweeperBoardTest {
+	private MinesweeperBoard boardAux;
+		
+	@Before
+	public void setUp(){
+		boardAux = new MinesweeperBoard(10,10);
+		boardAux.putMine(0,0);
+		boardAux.putMine(0,1);
+		boardAux.putMine(0,2);
+		boardAux.putMine(1,0);
+		boardAux.putMine(1,1);
+		boardAux.putMine(1,2);
+		boardAux.putMine(2,0);
+		boardAux.putMine(2,1);
+		boardAux.putMine(2,2);
+		boardAux.putMine(9,9);
+	}
 
     @Test
     public void ConstructorTestWithMinesPositive() {
@@ -162,16 +179,115 @@ public class MinesweeperBoardTest {
     }
     
     @Test
-    public void numberOfMinedNeighboursTest(){
-    	MinesweeperBoard board = new MinesweeperBoard(10, 10, 2);
-    	board.putMine(1,1);
-    	board.putMine(2,2);
-    	board.putMine(8, 8);
-    	assertEquals(1,board.numberOfMinedNeighbours(2,2));
-    	assertEquals(1,board.numberOfMinedNeighbours(1,1));
-    	assertNotEquals(2,board.numberOfMinedNeighbours(1,1));
-    	assertEquals(0,board.numberOfMinedNeighbours(8,8));
+    /*
+     * [+][*][ ]
+     * [*][*][ ]
+     * [ ][ ][ ]
+     */
+    public void numberOfMinedNeighboursTest1(){
+    	assertEquals(3,boardAux.numberOfMinedNeighbours(0,0));
     }
+    
+    @Test
+    /*
+     * [*][+][*]
+     * [*][*][*]
+     * [ ][ ][ ]
+     */
+    public void numberOfMinedNeighboursTest2(){
+    	assertEquals(5,boardAux.numberOfMinedNeighbours(0,1));
+    }
+    
+    @Test
+    /*
+     * [ ][*][+]
+     * [ ][*][*]
+     * [ ][ ][ ]
+     */
+    public void numberOfMinedNeighboursTest3(){
+    	assertEquals(3,boardAux.numberOfMinedNeighbours(0,2));
+    }
+    
+    @Test
+    /*
+     * [*][*][ ]
+     * [+][*][ ]
+     * [*][*][ ]
+     */
+    public void numberOfMinedNeighboursTest4(){
+    	assertEquals(5,boardAux.numberOfMinedNeighbours(1,0));
+    }
+    
+    @Test
+    /*
+     * [*][*][*]
+     * [*][+][*]
+     * [*][*][*]
+     */
+    public void numberOfMinedNeighboursTest5(){
+    	assertEquals(8,boardAux.numberOfMinedNeighbours(1,1));
+    }
+    
+    @Test
+    /*
+     * [ ][*][*]
+     * [ ][*][+]
+     * [ ][*][*]
+     */
+    public void numberOfMinedNeighboursTest6(){
+    	assertEquals(5,boardAux.numberOfMinedNeighbours(1,2));
+    }
+    
+    @Test
+    /*
+     * [ ][ ][ ]
+     * [*][*][ ]
+     * [+][*][ ]
+     */
+    public void numberOfMinedNeighboursTest7(){
+    	assertEquals(3,boardAux.numberOfMinedNeighbours(2,0));
+    }
+    
+    @Test
+    /*
+     * [ ][ ][ ]
+     * [*][*][*]
+     * [*][+][*]
+     */
+    public void numberOfMinedNeighboursTest8(){
+    	assertEquals(5,boardAux.numberOfMinedNeighbours(2,1));
+    }
+    
+    @Test
+    /*
+     * [ ][ ][ ]
+     * [ ][*][*]
+     * [ ][*][+]
+     */
+    public void numberOfMinedNeighboursTest9(){
+    	assertEquals(3,boardAux.numberOfMinedNeighbours(2,2));
+    }
+    
+    @Test
+    /*
+     * [ ][ ][ ]
+     * [ ][ ][ ]
+     * [ ][ ][+]
+     */
+    public void numberOfMinedNeighboursTest10(){
+    	assertEquals(0,boardAux.numberOfMinedNeighbours(9,9));
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    /*
+     * [ ][ ][ ]
+     * [ ][ ][ ]
+     * [ ][ ][ ]
+     */
+    public void numberOfMinedNeighboursTest11(){
+    	boardAux.numberOfMinedNeighbours(30,10);
+    }
+
     
     @Test
     public void hasMineFalseTest() {
