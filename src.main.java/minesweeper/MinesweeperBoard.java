@@ -1,4 +1,8 @@
 package minesweeper;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * This Class MinesweeperBoard represents a 
  * particular board in the game with the necessary 
@@ -285,6 +289,30 @@ public class MinesweeperBoard {
     		if(isMarked(row,col)){
     			board[row][col].unblock();
     		}
+    	}
+    }
+    
+    
+    public void addRandomMines(int n){
+    	ArrayList<MinesweeperCell> freeCells = new ArrayList<MinesweeperCell>();
+    	for (int row = 0; row < this.getRowCount(); row ++){
+    		for (int col = 0; col < this.getColCount(); col++){
+    			if (!((board[row][col].isBlocked())
+    				||(board[row][col].isOpen())
+    				||(board[row][col].hasMine()))){
+    				
+    				freeCells.add(board[row][col]);
+    			}
+    		}
+    	}
+    	if (!((0<n)&&(n<freeCells.size()))) {
+    		throw new IllegalArgumentException("The argument is not valid.");
+    	}
+    	// freeCells is reordered by the Fisher-Yates algorithm implemented in shuffle(List<?> list) method. This method runs in linear time.
+    	Collections.shuffle(freeCells);
+    	//In each of the first N cells in the freeCells list, a mine is inserted.
+    	for (MinesweeperCell cell : freeCells.subList(0, n)){
+    		cell.putMine();
     	}
     }
     
