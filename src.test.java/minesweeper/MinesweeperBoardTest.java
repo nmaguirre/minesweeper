@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 public class MinesweeperBoardTest {
 	private MinesweeperBoard boardAux;
 		
+	
+	
 	@Before
 	public void setUp(){
 		boardAux = new MinesweeperBoard(10,10);
@@ -83,6 +85,12 @@ public class MinesweeperBoardTest {
     	board.putMine(2, 2);
     }	
     
+    @Test(expected=IllegalArgumentException.class)
+    public void putMineExeptionTest3(){
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.putMine(-5,8);
+    }
+    
     @Test
     public void numberOfRowsTest() {
         MinesweeperBoard board = new MinesweeperBoard(10, 10, 8);
@@ -144,6 +152,12 @@ public class MinesweeperBoardTest {
     public void isNotMarkedTest(){
     	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
     	assertFalse(board.isMarked(0,0));
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void markExeptionTest(){
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.mark(-5,8);
     }
     
     @Test
