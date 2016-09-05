@@ -67,5 +67,14 @@ public class MinesweeperGameStateTest {
 		assertTrue(gameState.gameEnded());
 		
 	}
+        
+        @Test
+        public void openTest (){
+            MinesweeperGameState gameState = new MinesweeperGameState();
+		gameState.open(0, 0);	
+                assertFalse(gameState.isMarked(0, 0));
+		assertTrue(gameState.isOpened(0, 0));               
+        
+        }
 	
 }

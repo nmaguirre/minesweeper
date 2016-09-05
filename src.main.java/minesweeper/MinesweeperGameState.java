@@ -58,7 +58,7 @@ public class MinesweeperGameState {
      * @return true if this.gameEnded is true
      */
     public boolean gameEnded() {
-        return this.gameEnded;
+        return gameEnded;
     }
 
     /**

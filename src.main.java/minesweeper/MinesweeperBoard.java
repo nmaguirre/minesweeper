@@ -66,7 +66,14 @@ public class MinesweeperBoard {
 		return validCoordinate;
 
 	}
-	
+        
+	/**
+	 * This method open recursively all neighboring cells to a specific cell
+	 * @param row
+	 * @param col
+	 *
+	 */
+        
 	public void openNeighboringMines(int row, int col){
 		if (!isValidCoordinate(row,col)){
     		throw new IllegalArgumentException("Invalid coordenate.");
