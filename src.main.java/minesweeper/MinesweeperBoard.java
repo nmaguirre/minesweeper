@@ -291,6 +291,12 @@ public class MinesweeperBoard {
     	return board[row][col].hasMine();
     }	
     
+    /**
+     * This method Unmark the current position if a mine is Marked.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     */
+    
     public void unMarked (int row, int col){
     	if(isValidCoordinate(row,col)){
     		if(isMarked(row,col)){
