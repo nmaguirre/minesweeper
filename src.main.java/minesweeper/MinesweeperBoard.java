@@ -55,9 +55,8 @@ public class MinesweeperBoard {
     }
 
     /**
-	 * 
-	 * @param row
-	 * @param col
+	 * @param row - number of row of the board
+     * @param col - number of column of the board
 	 * @return true when coordinate is valid rangethat takes
 	 */
 	public boolean isValidCoordinate(int row, int col) {
