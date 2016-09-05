@@ -317,6 +317,7 @@ public class MinesweeperBoardTest {
     	assertTrue(board.hasMine(1, 1));
     	
 	}
+    //Test for AddRandomMines
     @Test
     public void addRandomMinesTestNominal(){
     	boardAux = new MinesweeperBoard(10,10);
