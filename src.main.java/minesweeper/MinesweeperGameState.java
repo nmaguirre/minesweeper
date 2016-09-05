@@ -84,8 +84,9 @@ public class MinesweeperGameState {
     }
 
     /**
-     * @param row
-     * @param col
+     * This method return a if the cell is opened or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
      * @return true if the cell located at the given position is Opened.
      */
     public boolean isOpened(int row, int col) {
