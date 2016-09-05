@@ -121,8 +121,12 @@ public class MinesweeperGameState {
      * TODO improve this description.
      */
     public String toString() {
-    	//TODO implement this method
-    	return "";
+    	System.out.println(board.toString());
+    	if(gameEnded){
+    		return"Game Over";
+    	}else{
+    		return"Game On";
+    	}
     }
 
 }
