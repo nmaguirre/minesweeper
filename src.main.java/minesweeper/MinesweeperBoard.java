@@ -224,15 +224,15 @@ public class MinesweeperBoard {
      * @param row - file number of the board where the cell is located.
      * @param col - column number of the board where the cell is located.
      * @throws IllegalStateException if the cell is open or already content a mine
+     * @throws IllegalArgumentException if coordenate is invalid
+     * 
      */
     public void putMine(int row, int col) {
-		if (isValidCoordinate(row,col)) {
-			if (board[row][col].isOpen() || board[row][col].hasMine()) throw
-			  new IllegalStateException("cell open or already exists mine");
-		         board[row][col].putMine(); 
-		}
+		if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+		if (board[row][col].isOpen() || board[row][col].hasMine() || board[row][col].isBlocked()) throw
+			  new IllegalStateException("cell open,blocked or already exists mine");
+		board[row][col].putMine(); 
 		++this.boardMines;
-		
 	}
     
     /**
