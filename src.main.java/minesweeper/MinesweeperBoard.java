@@ -335,12 +335,37 @@ public class MinesweeperBoard {
     }
     
     /**
-     * Provides a text-based representation of the current state
-     * of the board.
-     * TODO improve this description.
+     * String that represent visually the board
      */
     public String toString() {
-    	//TODO implement this method
-    	return "";
+    	String result = "";
+    	MinesweeperCell actualCell;
+    	for (int row = 0; row<this.getRowCount(); row++){
+    		for (int col = 0; col<this.getColCount(); col++){
+    			actualCell = board[row][col];
+    			if(actualCell.isOpen()){
+    				if(actualCell.hasMine()){
+    					//ABIERTA CON MINAS (X)
+    					result = result + " X ";
+    				}
+    				else{
+    					//ABIERTA SIN MINAS (0-9)
+    					result = result + " " + Integer.toString(this.numberOfMinedNeighbours(row, col)) + " ";
+    				}
+    			}
+    			else{
+    				if(actualCell.isBlocked()){
+    					//CERRADA Y BLOQUEADA (B)
+    					result = result + " B ";
+    				}
+    				else{
+    					//CERRADA Y DESBLOQUEADA (-)
+    					result = result + " - ";
+    				}
+    			}
+    		}
+    		result = result + "\n";
+    	}
+    	return result;
     }
 }
