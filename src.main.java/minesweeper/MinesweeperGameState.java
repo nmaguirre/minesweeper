@@ -115,5 +115,14 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    /**
+     * Provides a text-based representation of the current
+     * state of the game.
+     * TODO improve this description.
+     */
+    public String toString() {
+    	//TODO implement this method
+    	return "";
+    }
 
 }

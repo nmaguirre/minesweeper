@@ -334,4 +334,13 @@ public class MinesweeperBoard {
     	}
     }
     
+    /**
+     * Provides a text-based representation of the current state
+     * of the board.
+     * TODO improve this description.
+     */
+    public String toString() {
+    	//TODO implement this method
+    	return "";
+    }
 }

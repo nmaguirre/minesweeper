@@ -317,4 +317,66 @@ public class MinesweeperBoardTest {
     	assertTrue(board.hasMine(1, 1));
     	
 	}
+    //Test for AddRandomMines
+    @Test
+    public void addRandomMinesTestNominal(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	int n=8;
+    	boardAux.addRandomMines(n);
+    	assertEquals(n,boardAux.getMineCount());
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void addRandomMinesTestExceptionNegative(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	int n=-1;
+    	boardAux.addRandomMines(n);
+    	
+    }
+    @Test(expected=IllegalArgumentException.class)
+    public void addRandomMinesTestExceptionZero(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	int n=0;
+    	boardAux.addRandomMines(n);
+    	
+    }
+    @Test(expected=IllegalArgumentException.class)
+    public void addRandomMinesTestExceptionEdgeTop(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	int n=100;
+    	boardAux.addRandomMines(n);
+
+    } 
+    @Test(expected=IllegalArgumentException.class)
+    public void addRandomMinesTestExceptionEdgeTop2(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	int n=101;
+    	boardAux.addRandomMines(n);
+
+    }
+
+    @Test 
+    public void addRandomMinesTestMark(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	boardAux.mark(0, 0);
+    	int n=3;
+    	boardAux.addRandomMines(n);
+    	assertEquals(n,boardAux.getMineCount());
+    }
+    @Test
+    public void addRandomMinesOpen(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	boardAux.open(3, 3);
+    	int n=4;
+    	boardAux.addRandomMines(n);
+    	assertEquals(n,boardAux.getMineCount());
+    }
+    @Test
+    public void addRandomMinesTestPutMine(){
+    	boardAux = new MinesweeperBoard(10,10);
+    	boardAux.putMine(3, 3);
+    	int n=3;
+    	boardAux.addRandomMines(n);
+    	assertEquals(n,boardAux.getMineCount());
+    }
 }
