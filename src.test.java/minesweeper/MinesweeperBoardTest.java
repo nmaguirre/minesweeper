@@ -379,4 +379,13 @@ public class MinesweeperBoardTest {
     	boardAux1.addRandomMines(n);
     	assertEquals(n,boardAux1.getMineCount());
     }
+    
+    @Test
+    public void unMarkedTest() {
+	  MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+	  board.mark(0,0);
+	  assertTrue(board.isMarked(0, 0));
+	  board.unMarked(0, 0);
+	  assertFalse(board.isMarked(0, 0));
+    }
 }
