@@ -231,6 +231,7 @@ public class MinesweeperBoard {
 			  new IllegalStateException("cell open or already exists mine");
 		         board[row][col].putMine(); 
 		}
+		++this.boardMines;
 		
 	}
     
