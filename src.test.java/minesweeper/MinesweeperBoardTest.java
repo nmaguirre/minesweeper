@@ -384,7 +384,7 @@ public class MinesweeperBoardTest {
     	boardAux1.putMine(3, 3);
     	int n=4;
     	boardAux1.addRandomMines(n);
-    	assertEquals(n,boardAux1.getMineCount());
+    	assertEquals(n+1,boardAux1.getMineCount());
     }
     
     @Test
