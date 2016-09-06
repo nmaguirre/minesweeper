@@ -102,7 +102,7 @@ public class MinesweeperGameState {
      * @param col column number of the board where the cell is located.
      * This method open a cell in a position.
      */
-<<<<<<< Updated upstream
+    
     public void open(int row, int col) {
     	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
     		board.open(row, col);//open the cell
@@ -136,8 +136,5 @@ public class MinesweeperGameState {
     		return "Game On.";
     	}
     }
-=======
-    public void open(int row, int col) { }
->>>>>>> Stashed changes
-
+    
 }
