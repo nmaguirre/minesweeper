@@ -66,9 +66,7 @@ public class MinesweeperBoard {
      */
     
     public String toHTML() {
-    	String code;
-    	
-    	
+        String code = "";
     	return code;    	
     }
 
@@ -355,6 +353,7 @@ public class MinesweeperBoard {
     /**
      * String that represent visually the board
      */
+    @Override
     public String toString() {
     	String result = "";
     	MinesweeperCell actualCell;
