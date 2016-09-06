@@ -368,4 +368,18 @@ public class MinesweeperBoard {
     	}
     	return result;
     }
+
+	
+    
+    public int getClosedCellsCount() {
+		int count = 0;
+		for(int col=0;col<getColCount();col++){
+			for(int row=0;row<getRowCount();row++ ){
+				if(!isOpened(row, col)){ //if cell is not open
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 }
