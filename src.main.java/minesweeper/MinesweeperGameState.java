@@ -1,7 +1,11 @@
 package minesweeper;
 
 public class MinesweeperGameState {
-
+	
+	/**
+     * board represents a instance of the board class
+     * gameEnded represents if the game is ended or not
+     */
     private MinesweeperBoard board;
     private boolean gameEnded;
 
