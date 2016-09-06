@@ -8,6 +8,8 @@ package minesweeper;
  */
 public class MinesweeperMain {
 	
+	private static MinesweeperGameState game;
+	
 	public static String getUserInput(){
 		String command;
 		String coord1;
@@ -25,7 +27,15 @@ public class MinesweeperMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//TODO implement this method.
+		game = new MinesweeperGameState();
+		
+		String cmd = "";
+		
+		while(!game.gameEnded()){
+			game.toString();
+			cmd = getUserInput();
+			//executeUserInptu(cmd);
+		}
 	}
 
 }
