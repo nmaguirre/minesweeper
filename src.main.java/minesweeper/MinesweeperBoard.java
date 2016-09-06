@@ -66,9 +66,23 @@ public class MinesweeperBoard {
      */
     
     public String toHTML() {
-    	String code="";
+    	MinesweeperCell cell;
+    	String code ="<table>";
+    	String temp="";
     	
-    	
+    	  for (int r=0; r < boardRows;r++) {
+    		code +="<tr>";
+          	for (int c=0; c < boardCols; c++) { 
+          		cell = board[r][c];
+          		if (cell.isBlocked()) temp="B";
+          		if (!cell.isBlocked() && cell.isClose()) temp="C";
+          		if (cell.isOpen() && !cell.hasMine()) temp = Integer.toString(this.numberOfMinedNeighbours(r,c));
+          		if (cell.isOpen() && cell.hasMine()) temp="M";
+          		code+="<td>" +temp+"</td>";
+          	}
+          	code +="</tr>";
+    	  }
+    	  code+="</table";
     	return code;    	
     }
 
@@ -277,14 +291,24 @@ public class MinesweeperBoard {
     }
     
     /**
+<<<<<<< Updated upstream
      * This method open a cell. A cell can be open if the cell is close.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
+=======
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * This method open a cell in a position.
+>>>>>>> Stashed changes
      */
     public void open(int row, int col) {
     	MinesweeperCell cell = board[row][col];
         cell.open();
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 
     /**
