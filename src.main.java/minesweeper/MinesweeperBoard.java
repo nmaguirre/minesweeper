@@ -11,7 +11,13 @@ import java.util.Collections;
  **/
 
 public class MinesweeperBoard {
-
+	
+	/**
+	 * board is a matrix of cells representing the game board.
+	 * boardRows represents the size of the rows of the board.
+	 * boardCols represents the size of the columns of the board.
+	 * boardMines represents the number of mines containing the board. 
+	 **/
     private MinesweeperCell[][] board;
     private int boardRows;
     private int boardCols;
