@@ -59,6 +59,18 @@ public class MinesweeperBoard {
         	for (int c=0; c < boardCols; c++) 
         		board[r][c]=new MinesweeperCell(); 
     }
+    /**
+     * 
+     * @return generates HTML code board
+     * 
+     */
+    
+    public String toHTML() {
+    	String code;
+    	
+    	
+    	return code;    	
+    }
 
     /**
 	 * @param row - number of row of the board
