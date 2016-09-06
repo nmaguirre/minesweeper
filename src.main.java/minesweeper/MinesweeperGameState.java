@@ -127,9 +127,9 @@ public class MinesweeperGameState {
     public String toString() {
     	System.out.println(board.toString());
     	if(gameEnded){
-    		return"Game Over";
+    		return "Game Over";
     	}else{
-    		return"Game On";
+    		return "Game On";
     	}
     }
 
