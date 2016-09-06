@@ -8,6 +8,10 @@ package minesweeper;
  */
 public class MinesweeperMain {
 	
+	/**
+	 * Take the actions provided by the user and return a String with the action and cell.
+	 * @return a String with the action and cell.
+	 */
 	public static String getUserInput(){
 		String command;
 		String coord1;
