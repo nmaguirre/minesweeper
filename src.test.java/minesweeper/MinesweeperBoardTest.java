@@ -375,7 +375,7 @@ public class MinesweeperBoardTest {
     public void addRandomMinesTestPutMine(){
     	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
     	boardAux1.putMine(3, 3);
-    	int n=3;
+    	int n=4;
     	boardAux1.addRandomMines(n);
     	assertEquals(n,boardAux1.getMineCount());
     }
