@@ -10,10 +10,12 @@ public class MinesweeperMain {
 	
 	public static String getUserInput(){
 		String command;
-		String coords;
+		String coord1;
+		String coord2;
 		command = System.in.toString();
-		coords = System.in.toString();
-		return command + coords;
+		coord1 = System.in.toString();
+		coord2 = System.in.toString();
+		return command + coord1 + "," + coord2;
 	}
 	
 	/**
