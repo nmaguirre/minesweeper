@@ -66,7 +66,9 @@ public class MinesweeperBoard {
      */
     
     public String toHTML() {
-        String code = "";
+    	String code;
+    	
+    	
     	return code;    	
     }
 
@@ -84,9 +86,9 @@ public class MinesweeperBoard {
         
 	/**
 	 * This method open recursively all neighboring cells to a specific cell
-	 * @param row
-	 * @param col
-	 *
+	 * @param row - file number of the board where the cell is located.
+	 * @param col - column number of the board where the cell is located.
+	 * @throws IllegarArgumentException if coordenate is invalid
 	 */
         
 	public void openNeighboringMines(int row, int col){
@@ -353,7 +355,6 @@ public class MinesweeperBoard {
     /**
      * String that represent visually the board
      */
-    @Override
     public String toString() {
     	String result = "";
     	MinesweeperCell actualCell;
