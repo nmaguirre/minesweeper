@@ -353,7 +353,9 @@ public class MinesweeperBoard {
     }
     
     /**
-     * String that represent visually the board
+     * This method provides a text-based representation of the board of the game.
+     * 
+     * @return String that represent visually the board.
      */
     public String toString() {
     	String result = "";
