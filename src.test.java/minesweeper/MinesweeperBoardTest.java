@@ -1,7 +1,10 @@
 package minesweeper;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 public class MinesweeperBoardTest {
@@ -154,9 +157,13 @@ public class MinesweeperBoardTest {
     	assertFalse(board.isMarked(0,0));
     }
     
-    @Test(expected=IllegalArgumentException.class)
+    @Rule
+    public ExpectedException expected = ExpectedException.none();
+    
+    @Test
     public void markExeptionTest(){
       MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      expected.expect(IllegalArgumentException.class);
       board.mark(-5,8);
     }
     

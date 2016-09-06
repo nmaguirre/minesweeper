@@ -66,9 +66,23 @@ public class MinesweeperBoard {
      */
     
     public String toHTML() {
-    	String code="";
+    	MinesweeperCell cell;
+    	String code ="<table>";
+    	String temp="";
     	
-    	
+    	  for (int r=0; r < boardRows;r++) {
+    		code +="<tr>";
+          	for (int c=0; c < boardCols; c++) { 
+          		cell = board[r][c];
+          		if (cell.isBlocked()) temp="B";
+          		if (!cell.isBlocked() && cell.isClose()) temp="C";
+          		if (cell.isOpen() && !cell.hasMine()) temp = Integer.toString(this.numberOfMinedNeighbours(r,c));
+          		if (cell.isOpen() && cell.hasMine()) temp="M";
+          		code+="<td>" +temp+"</td>";
+          	}
+          	code +="</tr>";
+    	  }
+    	  code+="</table";
     	return code;    	
     }
 
