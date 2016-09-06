@@ -66,7 +66,7 @@ public class MinesweeperBoard {
      */
     
     public String toHTML() {
-    	String code;
+    	String code="";
     	
     	
     	return code;    	
