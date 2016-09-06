@@ -1,4 +1,6 @@
 package minesweeper;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 /** 
  * Main class of the minesweeper game, CLI version.
@@ -8,6 +10,15 @@ package minesweeper;
  *
  */
 public class MinesweeperMain {
+	
+	public static String getUserInput(){
+		String command;
+		String coords;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		command = br.readLine();
+		coords = br.readLine();
+		return command + coords;
+	}
 	
 	/**
 	 * Runs minesweeper game with simple settings:
