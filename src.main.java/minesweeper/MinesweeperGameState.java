@@ -33,7 +33,7 @@ public class MinesweeperGameState {
     }
     
     public MinesweeperGameState(MinesweeperBoard b){
-    	if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
+    	if(b.getClosedCellsCount() == b.getMineCount()){ //if the number of closed cell is equal to number of mines
     		throw new IllegalArgumentException("the board must not be ended");
     	}
     	else{
