@@ -124,9 +124,8 @@ public class MinesweeperGameState {
     }
     
     /**
-     * Provides a text-based representation of the current
-     * state of the game.
-     * TODO improve this description.
+     * This method provides a text-based representation of the state of the game.
+     * @return String that represent visually the state of the game.
      */
     public String toString() {
     	System.out.println(board.toString());
@@ -136,5 +135,4 @@ public class MinesweeperGameState {
     		return "Game On.";
     	}
     }
-
 }
