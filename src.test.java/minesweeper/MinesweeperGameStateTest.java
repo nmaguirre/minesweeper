@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 public class MinesweeperGameStateTest {
 
+	
     @Test
     public void gameEndedTest () {
         MinesweeperGameState gameState = new MinesweeperGameState();
@@ -15,6 +16,13 @@ public class MinesweeperGameStateTest {
     	MinesweeperGameState mwgState = new MinesweeperGameState();
     	int rows = 10;
     	assertEquals(rows,mwgState.numberOfRows());
+    }
+    
+    @Test
+    public void numberOfColsGameTest(){
+    	MinesweeperGameState mwgState = new MinesweeperGameState();
+    	int cols = 10;
+    	assertEquals(cols,mwgState.numberofColumns());
     }
     
     @Test
@@ -32,13 +40,41 @@ public class MinesweeperGameStateTest {
 	}
 	
 	@Test
-	public void isOpenTets(){
+	public void isOpenedTets(){
 		MinesweeperGameState gameState = new MinesweeperGameState();
-		//In this step the board should be created whith all cell blocked
+		//In this step the board should be created with all cell blocked
 		gameState.open(0, 0);
-		assertTrue(!gameState.isOpened(0, 0));
-		
+		assertTrue(gameState.isOpened(0, 0));
+	}
+
+	@Test
+	public void MinesweeperGameStateWhithParams(){
+		MinesweeperGameState gamestate = new MinesweeperGameState(0,0,0);
+		assertEquals(0, gamestate.numberOfMines());
+				
+	}
+
+	@Test(expected=IllegalArgumentException.class)
+	public void MinesweeperGameStateWhithParamsError(){
+		MinesweeperGameState gamestate1 = new MinesweeperGameState(0,0,-2);	
+	}
+
+	
+	@Test
+	public void endGame(){
+		MinesweeperGameState gameState = new MinesweeperGameState();
+		gameState.endGame();
+		assertTrue(gameState.gameEnded());
 		
 	}
+        
+        @Test
+        public void openTest (){
+            MinesweeperGameState gameState = new MinesweeperGameState();
+		gameState.open(0, 0);	
+                assertFalse(gameState.isMarked(0, 0));
+		assertTrue(gameState.isOpened(0, 0));               
+        
+        }
 	
 }

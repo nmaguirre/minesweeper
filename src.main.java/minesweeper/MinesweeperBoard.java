@@ -1,4 +1,8 @@
 package minesweeper;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * This Class MinesweeperBoard represents a 
  * particular board in the game with the necessary 
@@ -7,7 +11,13 @@ package minesweeper;
  **/
 
 public class MinesweeperBoard {
-
+	
+	/**
+	 * board is a matrix of cells representing the game board.
+	 * boardRows represents the size of the rows of the board.
+	 * boardCols represents the size of the columns of the board.
+	 * boardMines represents the number of mines containing the board. 
+	 **/
     private MinesweeperCell[][] board;
     private int boardRows;
     private int boardCols;
@@ -49,11 +59,36 @@ public class MinesweeperBoard {
         	for (int c=0; c < boardCols; c++) 
         		board[r][c]=new MinesweeperCell(); 
     }
+    /**
+     * 
+     * @return generates HTML code board
+     * 
+     */
+    
+    public String toHTML() {
+    	MinesweeperCell cell;
+    	String code ="<table>";
+    	String temp="";
+    	
+    	  for (int r=0; r < boardRows;r++) {
+    		code +="<tr>";
+          	for (int c=0; c < boardCols; c++) { 
+          		cell = board[r][c];
+          		if (cell.isBlocked()) temp="B";
+          		if (!cell.isBlocked() && cell.isClose()) temp="C";
+          		if (cell.isOpen() && !cell.hasMine()) temp = Integer.toString(this.numberOfMinedNeighbours(r,c));
+          		if (cell.isOpen() && cell.hasMine()) temp="M";
+          		code+="<td>" +temp+"</td>";
+          	}
+          	code +="</tr>";
+    	  }
+    	  code+="</table";
+    	return code;    	
+    }
 
     /**
-	 * 
-	 * @param row
-	 * @param col
+	 * @param row - number of row of the board
+     * @param col - number of column of the board
 	 * @return true when coordinate is valid rangethat takes
 	 */
 	public boolean isValidCoordinate(int row, int col) {
@@ -62,7 +97,14 @@ public class MinesweeperBoard {
 		return validCoordinate;
 
 	}
-	
+        
+	/**
+	 * This method open recursively all neighboring cells to a specific cell
+	 * @param row - file number of the board where the cell is located.
+	 * @param col - column number of the board where the cell is located.
+	 * @throws IllegarArgumentException if coordenate is invalid
+	 */
+        
 	public void openNeighboringMines(int row, int col){
 		if (!isValidCoordinate(row,col)){
     		throw new IllegalArgumentException("Invalid coordenate.");
@@ -214,14 +256,15 @@ public class MinesweeperBoard {
      * @param row - file number of the board where the cell is located.
      * @param col - column number of the board where the cell is located.
      * @throws IllegalStateException if the cell is open or already content a mine
+     * @throws IllegalArgumentException if coordenate is invalid
+     * 
      */
     public void putMine(int row, int col) {
-		if (isValidCoordinate(row,col)) {
-			if (board[row][col].isOpen() || board[row][col].hasMine()) throw
-			  new IllegalStateException("cell open or already exists mine");
-		         board[row][col].putMine(); 
-		}
-		
+		if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+		if (board[row][col].isOpen() || board[row][col].hasMine() || board[row][col].isBlocked()) throw
+			  new IllegalStateException("cell open,blocked or already exists mine");
+		board[row][col].putMine(); 
+		++this.boardMines;
 	}
     
     /**
@@ -248,9 +291,9 @@ public class MinesweeperBoard {
     }
     
     /**
+     * This method open a cell. A cell can be open if the cell is close.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
-     * This method open a cell in a position.
      */
     public void open(int row, int col) {
     	MinesweeperCell cell = board[row][col];
@@ -280,6 +323,12 @@ public class MinesweeperBoard {
     	return board[row][col].hasMine();
     }	
     
+    /**
+     * This method Unmark the current position if a mine is Marked.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     */
+    
     public void unMarked (int row, int col){
     	if(isValidCoordinate(row,col)){
     		if(isMarked(row,col)){
@@ -288,4 +337,86 @@ public class MinesweeperBoard {
     	}
     }
     
+    
+    /**
+     * This method takes a integer value that represents how many mines to add to the board,
+     * and adds them in random coordinates.
+     * @param n - quantity of mines to add to the board.
+     */
+    public void addRandomMines(int n){
+    	ArrayList<MinesweeperCell> freeCells = new ArrayList<MinesweeperCell>();
+    	for (int row = 0; row < this.getRowCount(); row ++){
+    		for (int col = 0; col < this.getColCount(); col++){
+    			if (!((board[row][col].isBlocked())
+    				||(board[row][col].isOpen())
+    				||(board[row][col].hasMine()))){
+    				
+    				freeCells.add(board[row][col]);
+    			}
+    		}
+    	}
+    	if (!((0<n)&&(n<freeCells.size()))) {
+    		throw new IllegalArgumentException("The argument is not valid.");
+    	}
+    	// freeCells is reordered by the Fisher-Yates algorithm implemented in shuffle(List<?> list) method. This method runs in linear time.
+    	Collections.shuffle(freeCells);
+    	//In each of the first N cells in the freeCells list, a mine is inserted.
+    	for (MinesweeperCell cell : freeCells.subList(0, n)){
+    		cell.putMine();
+    	}
+    }
+    
+    /**
+     * This method provides a text-based representation of the board of the game.
+     * 
+     * @return String that represent visually the board.
+     */
+    public String toString() {
+    	String result = "";
+    	MinesweeperCell actualCell;
+    	for (int row = 0; row<this.getRowCount(); row++){
+    		for (int col = 0; col<this.getColCount(); col++){
+    			actualCell = board[row][col];
+    			if(actualCell.isOpen()){
+    				if(actualCell.hasMine()){
+    					//ABIERTA CON MINAS (X)
+    					result = result + " X ";
+    				}
+    				else{
+    					//ABIERTA SIN MINAS (0-9)
+    					result = result + " " + Integer.toString(this.numberOfMinedNeighbours(row, col)) + " ";
+    				}
+    			}
+    			else{
+    				if(actualCell.isBlocked()){
+    					//CERRADA Y BLOQUEADA (B)
+    					result = result + " B ";
+    				}
+    				else{
+    					//CERRADA Y DESBLOQUEADA (-)
+    					result = result + " - ";
+    				}
+    			}
+    		}
+    		result = result + "\n";
+    	}
+    	return result;
+    }
+
+	
+    /**
+     * Return number of closed mines from board.
+     * @return number of closed mines
+     */
+    public int getClosedCellsCount() {
+		int count = 0;
+		for(int col=0;col<getColCount();col++){
+			for(int row=0;row<getRowCount();row++ ){
+				if(!isOpened(row, col)){ //if cell is not open
+					count++;
+				}
+			}
+		}
+		return count;
+	}
 }

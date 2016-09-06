@@ -1,7 +1,11 @@
 package minesweeper;
 
 public class MinesweeperGameState {
-
+	
+	/**
+     * board represents a instance of the board class
+     * gameEnded represents if the game is ended or not
+     */
     private MinesweeperBoard board;
     private boolean gameEnded;
 
@@ -58,7 +62,7 @@ public class MinesweeperGameState {
      * @return true if this.gameEnded is true
      */
     public boolean gameEnded() {
-        return this.gameEnded;
+        return gameEnded;
     }
 
     /**
@@ -74,8 +78,8 @@ public class MinesweeperGameState {
     
     /**
      * Change state of a cell to blocked if the game is not ended
-     * @param row
-     * @param col
+     * @param row row number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
      */
     public void mark(int row, int col) { 
     	if(!gameEnded){
@@ -84,8 +88,9 @@ public class MinesweeperGameState {
     }
 
     /**
-     * @param row
-     * @param col
+     * This method return a if the cell is opened or not.
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
      * @return true if the cell located at the given position is Opened.
      */
     public boolean isOpened(int row, int col) {
@@ -98,14 +103,36 @@ public class MinesweeperGameState {
      * This method open a cell in a position.
      */
     public void open(int row, int col) {
-    	if( !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
+    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
     		board.open(row, col);//open the cell
     		if(!board.hasMine(row, col)){//if the cell has not a mine
     			board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
-    			
+    			if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
+    				endGame();
+    			}
+    		} else { //if the cell has a mine
+    			endGame();
     		}
     	}
     }
     
-
+    /**
+     *This method finish the game. 
+     */
+    public void endGame(){
+    	gameEnded = true;
+    }
+    
+    /**
+     * This method provides a text-based representation of the state of the game.
+     * @return String that represent visually the state of the game.
+     */
+    public String toString() {
+    	System.out.println(board.toString());
+    	if(gameEnded){
+    		return "Game Over.";
+    	}else{
+    		return "Game On.";
+    	}
+    }
 }
