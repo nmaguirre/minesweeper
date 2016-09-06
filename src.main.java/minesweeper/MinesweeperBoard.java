@@ -277,14 +277,24 @@ public class MinesweeperBoard {
     }
     
     /**
+<<<<<<< Updated upstream
      * This method open a cell. A cell can be open if the cell is close.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
+=======
+     * @param row file number of the board where the cell is located.
+     * @param col column number of the board where the cell is located.
+     * This method open a cell in a position.
+>>>>>>> Stashed changes
      */
     public void open(int row, int col) {
     	MinesweeperCell cell = board[row][col];
         cell.open();
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 
     /**
