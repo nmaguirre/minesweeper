@@ -1,7 +1,4 @@
 package minesweeper;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 /** 
  * Main class of the minesweeper game, CLI version.
  * TODO improve this description
@@ -13,11 +10,12 @@ public class MinesweeperMain {
 	
 	public static String getUserInput(){
 		String command;
-		String coords;
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		command = br.readLine();
-		coords = br.readLine();
-		return command + coords;
+		String coord1;
+		String coord2;
+		command = System.in.toString();
+		coord1 = System.in.toString();
+		coord2 = System.in.toString();
+		return command + coord1 + "," + coord2;
 	}
 	
 	/**
