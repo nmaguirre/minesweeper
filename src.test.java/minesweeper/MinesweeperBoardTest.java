@@ -129,5 +129,94 @@ public class MinesweeperBoardTest {
     	assertNotEquals(2,board.numberOfMinedNeighbours(1,1));
     	assertEquals(0,board.numberOfMinedNeighbours(8,8));
     }
+      @Test
+    public void openNeighboringMinesTestOne(){
+                    MinesweeperBoard board = new MinesweeperBoard(4,4);
+                    board.putMine(0, 1);
+                    board.putMine(1, 0);
+                    board.putMine(1, 1);
+                    board.openNeighboringMines(0, 0);
+                    boolean aux = true;
+                    for(int i=0;i<4;i++){
+                          for(int j=0;j<4;j++){
+                              if (i!=0 || j!=0){
+                                  aux = (aux && !(board.isOpened(i, j)));
+                              }
+                          }
+                    }
+                    assertEquals(true,(aux && board.isOpened(0, 0)) );
+    }
+    
+    @Test
+    public void openNeighboringMinesTestTwo(){
+                    MinesweeperBoard board = new MinesweeperBoard(4,4);
+                    board.putMine(0, 2);
+                    board.putMine(1, 2);
+                    board.putMine(1, 3);
+                    board.openNeighboringMines(0, 3);
+                    boolean aux = true;
+                    for(int i=0;i<4;i++){
+                          for(int j=0;j<4;j++){
+                              if(i!=0 || j!=3){
+                                  aux = (aux && !(board.isOpened(i, j)));
+                              }
+                          }
+                    }
+                    assertEquals(true,(aux && board.isOpened(0, 3)) );
+    }
+    
+    @Test
+    public void openNeighboringMinesTestThree(){
+                    MinesweeperBoard board = new MinesweeperBoard(4,4);
+                    board.putMine(2,0);
+                    board.putMine(2, 1);
+                    board.putMine(3, 1);
+                    board.openNeighboringMines(3, 0);
+                    boolean aux = true;
+                    for(int i=0;i<4;i++){
+                          for(int j=0;j<4;j++){
+                              if(i!=3 || j!=0){
+                                  aux = (aux && !(board.isOpened(i, j)));
+                              }
+                          }
+                    }
+                    assertEquals(true,(aux && board.isOpened(3, 0)) );
+    }
+    
+    @Test
+    public void openNeighboringMinesTestFour(){
+                    MinesweeperBoard board = new MinesweeperBoard(4,4);
+                    board.putMine(2,3);
+                    board.putMine(2, 2);
+                    board.putMine(3, 2);
+                    board.openNeighboringMines(3, 3);
+                    boolean aux = true;
+                    for(int i=0;i<4;i++){
+                          for(int j=0;j<4;j++){
+                              if(i!=3 || j!=3){
+                                  aux = (aux && !(board.isOpened(i, j)));
+                              }
+                          }
+                    }
+                    assertEquals(true,(aux && board.isOpened(3, 3)) );
+    }
+    
+    @Test
+    public void openNeighboringMinesTestFive(){
+                    MinesweeperBoard board = new MinesweeperBoard(5,5);
+                    board.putMine(2,2);
+                    board.openNeighboringMines(0, 0);
+                    boolean aux=true;
+                     for(int i=0;i<5;i++){
+                          for(int j=0;j<5;j++){
+                              if(i!=2 || j!=2){
+                                  aux = (aux && (board.isOpened(i, j)));
+                              }
+                          }
+                    }
+                    assertEquals(true,(aux && !(board.isOpened(2, 2))) );
+    }
+    
+    
     
 }
