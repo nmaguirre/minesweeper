@@ -7,6 +7,9 @@ package minesweeper;
  *
  */
 public class MinesweeperMain {
+
+	private static MinesweeperGameState game;
+	
 	
 	/**
 	 * Take the actions provided by the user and return a String with the action and cell.
@@ -29,7 +32,15 @@ public class MinesweeperMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//TODO implement this method.
+		game = new MinesweeperGameState();
+		
+		String cmd = "";
+		
+		while(!game.gameEnded()){
+			game.toString();
+			cmd = getUserInput();
+			//executeUserInptu(cmd);
+		}
 	}
 
 }
