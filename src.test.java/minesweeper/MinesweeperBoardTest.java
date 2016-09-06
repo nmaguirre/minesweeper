@@ -388,4 +388,18 @@ public class MinesweeperBoardTest {
 	  board.unMarked(0, 0);
 	  assertFalse(board.isMarked(0, 0));
     }
+    
+	@Test
+	public void getClosedCellsCountTestCase1() {
+	  MinesweeperBoard board = new MinesweeperBoard(8,8);
+	  board.putMine(2,2);
+	  board.open(2,2);
+	  assertEquals(63,board.getClosedCellsCount());
+	}
+	
+	@Test
+	public void getClosedCellsCountTestCase2() {
+	  MinesweeperBoard board = new MinesweeperBoard(8,8);
+	  assertEquals(64,board.getClosedCellsCount());
+	}
 }
