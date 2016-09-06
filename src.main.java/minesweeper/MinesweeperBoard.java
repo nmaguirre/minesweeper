@@ -370,7 +370,10 @@ public class MinesweeperBoard {
     }
 
 	
-    
+    /**
+     * Return number of closed mines from board.
+     * @return number of closed mines
+     */
     public int getClosedCellsCount() {
 		int count = 0;
 		for(int col=0;col<getColCount();col++){
