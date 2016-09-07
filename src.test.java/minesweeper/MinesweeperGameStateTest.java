@@ -3,8 +3,9 @@ package minesweeper;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class MinesweeperGameStateTest {
+import org.junit.Before;
 
+public class MinesweeperGameStateTest {
 	
     @Test
     public void gameEndedTest () {
@@ -75,6 +76,15 @@ public class MinesweeperGameStateTest {
                 assertFalse(gameState.isMarked(0, 0));
 		assertTrue(gameState.isOpened(0, 0));               
         
+        }
+        
+        @Test
+        public void openTestBugControl () {
+    		MinesweeperBoard boardAux = new MinesweeperBoard(10,10);
+    		boardAux.putMine(0,0);
+    		MinesweeperGameState StateAux=new MinesweeperGameState(boardAux);
+        	StateAux.open(0,1);
+        	assertFalse(StateAux.isOpened(1,1));
         }
 	
 }

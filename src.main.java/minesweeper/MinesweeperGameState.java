@@ -31,6 +31,22 @@ public class MinesweeperGameState {
     	gameEnded = false;
     	
     }
+    
+    /**
+     * constructor create the game state with a board initialized
+     * @param b board initialized
+     */
+        
+    public MinesweeperGameState(MinesweeperBoard b){
+    	if(b.getClosedCellsCount() == b.getMineCount()){ //if the number of closed cell is equal to number of mines
+    		throw new IllegalArgumentException("the board must not be ended");
+    	}
+    	else{
+    		board = b;
+    		gameEnded = false;
+    	}  	
+    }
+    
     /**
      * 
      * @return return the number of the rows of the board
@@ -72,8 +88,8 @@ public class MinesweeperGameState {
      * @param col column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
-    public boolean isMarked(int row, int col) {
-        return board.isMarked(row, col);
+    public boolean isBlocked(int row, int col) {
+        return board.isBlocked(row, col);
     }
     
     /**
@@ -103,7 +119,7 @@ public class MinesweeperGameState {
      * This method open a cell in a position.
      */
     public void open(int row, int col) {
-    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
+    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
     		board.open(row, col);//open the cell
     		if(!board.hasMine(row, col)){//if the cell has not a mine
     			if(board.numberOfMinedNeighbours(row, col) == 0){
@@ -126,17 +142,15 @@ public class MinesweeperGameState {
     }
     
     /**
-     * Provides a text-based representation of the current
-     * state of the game.
-     * TODO improve this description.
+     * This method provides a text-based representation of the state of the game.
+     * @return String that represent visually the state of the game.
      */
     public String toString() {
     	System.out.println(board.toString());
     	if(gameEnded){
-    		return "Game Over";
+    		return "Game Over.";
     	}else{
-    		return "Game On";
+    		return "Game On.";
     	}
     }
-
 }

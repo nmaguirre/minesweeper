@@ -82,12 +82,10 @@ public class MinesweeperCell {
         this.isBlockedCell = true;
     }
 
-    /**
-     * This method unblock the cell blocked.
-     * @throws IllegalStateException when called on unblocked or opened cell
-     */
+    /** This method unblock the cell blocked.
+     * @throws IllegalStateException when called on unblocked cell */
     public void unblock() {
-        if (!this.isBlocked() || this.isOpen())
+        if (!this.isBlocked())
             throw new IllegalStateException("Can't unblock an unblocked or opened cell");
         this.isBlockedCell = false;
     }
