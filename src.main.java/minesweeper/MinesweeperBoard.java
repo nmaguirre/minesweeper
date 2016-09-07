@@ -109,7 +109,7 @@ public class MinesweeperBoard {
 		if (!isValidCoordinate(row,col)){
     		throw new IllegalArgumentException("Invalid coordenate.");
     	} else {
-            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isMarked(row, col+1) && !hasMine(row, col+1)){
+            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isBlocked(row, col+1) && !hasMine(row, col+1)){
             	if ( numberOfMinedNeighbours(row, col+1) == 0){
             		open(row, col+1);
             		openNeighboringMines(row, col+1);
@@ -118,7 +118,7 @@ public class MinesweeperBoard {
             		open(row, col+1);
             	}
             }   
-            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isMarked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
+            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isBlocked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
             	if ( numberOfMinedNeighbours(row + 1, col + 1) == 0){
             		open(row+1, col+1);
             		openNeighboringMines(row+1, col+1);
@@ -126,7 +126,7 @@ public class MinesweeperBoard {
             		open(row + 1, col + 1);
             	}
             }
-            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isMarked(row + 1, col) && !hasMine(row + 1, col)){
+            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isBlocked(row + 1, col) && !hasMine(row + 1, col)){
             	if ( numberOfMinedNeighbours(row + 1, col) == 0){
             		open(row + 1, col);
             		openNeighboringMines(row+1, col);
@@ -134,7 +134,7 @@ public class MinesweeperBoard {
             		open(row + 1, col);
             	}
             }
-            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isMarked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
+            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isBlocked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
             	if ( numberOfMinedNeighbours(row + 1, col - 1) == 0){
             		open(row + 1, col - 1);
             		openNeighboringMines(row+1, col-1);
@@ -143,7 +143,7 @@ public class MinesweeperBoard {
             		open(row + 1, col - 1);
             	}
             }
-            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isMarked(row, col - 1) && !hasMine(row, col - 1)){
+            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isBlocked(row, col - 1) && !hasMine(row, col - 1)){
             	if ( numberOfMinedNeighbours(row, col - 1) == 0){
             		open(row, col - 1);
             		openNeighboringMines(row, col-1);
@@ -152,7 +152,7 @@ public class MinesweeperBoard {
             		open(row, col - 1);
             	}
             }
-            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isMarked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
+            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isBlocked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
             	if ( numberOfMinedNeighbours(row - 1, col - 1) == 0){
             		open(row - 1, col - 1);
             		openNeighboringMines(row-1, col-1);
@@ -161,7 +161,7 @@ public class MinesweeperBoard {
             		open(row - 1, col - 1);
             	}
             }
-            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isMarked(row - 1, col) && !hasMine(row - 1, col)){
+            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isBlocked(row - 1, col) && !hasMine(row - 1, col)){
             	if ( numberOfMinedNeighbours(row - 1, col) == 0){
             		open(row - 1, col);
             		openNeighboringMines(row-1, col);
@@ -170,7 +170,7 @@ public class MinesweeperBoard {
             		open(row - 1, col);
             	}
             }
-            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isMarked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
+            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isBlocked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
             	if ( numberOfMinedNeighbours(row - 1, col + 1) == 0){
             		open(row - 1, col + 1);
             		openNeighboringMines(row-1, col+1);
@@ -274,8 +274,10 @@ public class MinesweeperBoard {
      * @param col - column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
-    public boolean isMarked(int row, int col) {
-        return board[row][col].isBlocked();
+    public boolean isBlocked(int row, int col) {
+    	if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+    	return board[row][col].isBlocked();
+        
     }
 
     /**
@@ -331,7 +333,7 @@ public class MinesweeperBoard {
     
     public void unMarked (int row, int col){
     	if(isValidCoordinate(row,col)){
-    		if(isMarked(row,col)){
+    		if(isBlocked(row,col)){
     			board[row][col].unblock();
     		}
     	}
