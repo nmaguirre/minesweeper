@@ -35,7 +35,7 @@ public class MinesweeperMain {
 		command = comScanner.nextLine();
 		try {
 			if(command!="o" || command!="b" || command!="u" || command!="O" || command!="B" || command!="U"){
-				System.out.println("Comando incorrecto");
+				System.out.println("Incorrect Command");
 				getUserInput();
 			}
 		}catch(Exception e){
