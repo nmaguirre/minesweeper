@@ -32,6 +32,11 @@ public class MinesweeperGameState {
     	
     }
     
+    /**
+     * constructor create the game state with a board initialized
+     * @param b board initialized
+     */
+        
     public MinesweeperGameState(MinesweeperBoard b){
     	if(b.getClosedCellsCount() == b.getMineCount()){ //if the number of closed cell is equal to number of mines
     		throw new IllegalArgumentException("the board must not be ended");
