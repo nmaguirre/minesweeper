@@ -24,26 +24,26 @@ public class MinesweeperMain {
 	 */
 
 
-		public static String getUserInput(){
-			String command;
-			String coord1= new String("");
-			String coord2= new String("");
-			comScanner = new Scanner(System.in);
-			coord1Scanner = new Scanner(System.in);
-			coord2Scanner = new Scanner(System.in);
-			
-			command = comScanner.nextLine();
-			try {
-				if(command!="o" || command!="b" || command!="u" || command!="O" || command!="B" || command!="U"){
-					System.out.println("Comando incorrecto");
-					getUserInput();
-				}
-			}catch(Exception e){
-				coord1 = coord1Scanner.nextLine();
-				coord2 = coord2Scanner.nextLine();
+	public static String getUserInput(){
+		String command;
+		String coord1= new String("");
+		String coord2= new String("");
+		comScanner = new Scanner(System.in);
+		coord1Scanner = new Scanner(System.in);
+		coord2Scanner = new Scanner(System.in);
+
+		command = comScanner.nextLine();
+		try {
+			if(command!="o" || command!="b" || command!="u" || command!="O" || command!="B" || command!="U"){
+				System.out.println("Comando incorrecto");
+				getUserInput();
 			}
-			return command + coord1 + "," + coord2;
+		}catch(Exception e){
+			coord1 = coord1Scanner.nextLine();
+			coord2 = coord2Scanner.nextLine();
 		}
+		return command + coord1 + "," + coord2;
+	}
 	
 	/**
 	 * Runs minesweeper game with simple settings:
