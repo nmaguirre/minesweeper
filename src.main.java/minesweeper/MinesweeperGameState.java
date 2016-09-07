@@ -83,8 +83,8 @@ public class MinesweeperGameState {
      * @param col column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
-    public boolean isMarked(int row, int col) {
-        return board.isMarked(row, col);
+    public boolean isBlocked(int row, int col) {
+        return board.isBlocked(row, col);
     }
     
     /**
@@ -114,7 +114,7 @@ public class MinesweeperGameState {
      * This method open a cell in a position.
      */
     public void open(int row, int col) {
-    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
+    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
     		board.open(row, col);//open the cell
     		if(!board.hasMine(row, col)){//if the cell has not a mine
     			board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
