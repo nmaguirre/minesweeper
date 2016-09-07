@@ -377,8 +377,7 @@ public class MinesweeperBoard {
 
 	
     /**
-     * Return number of closed mines from board.
-     * @return number of closed mines
+     * @return number of closed mines from board.
      */
     public int getClosedCellsCount() {
 		int count = 0;

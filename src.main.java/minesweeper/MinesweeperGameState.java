@@ -106,7 +106,9 @@ public class MinesweeperGameState {
     	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isMarked(row, col)){ //if the cell is not open or marked
     		board.open(row, col);//open the cell
     		if(!board.hasMine(row, col)){//if the cell has not a mine
-    			board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    			if(board.numberOfMinedNeighbours(row, col) == 0){
+    				board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    			}
     			if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
     				endGame();
     			}
