@@ -117,25 +117,31 @@ public class MinesweeperGameState {
     }
 
     /**
+     * This method open a cell in a position.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
-     * This method open a cell in a position.
      */
     public void open(int row, int col) {
-    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
-    		board.open(row, col);//open the cell
-    		if(!board.hasMine(row, col)){//if the cell has not a mine
-    			if(board.numberOfMinedNeighbours(row, col) == 0){
-    				board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
-    			}
-    			if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
-    				endGame();
-    			}
-    		} else { //if the cell has a mine
+    	if(gameEnded){
+    		throw new IllegalStateException();
+    	}
+    	else {
+    		if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
+    			board.open(row, col);//open the cell
+    			if(!board.hasMine(row, col)){//if the cell has not a mine
+    				if(board.numberOfMinedNeighbours(row, col) == 0){
+    					board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    				}
+    				if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
+    					endGame();
+    				}
+    			} else { //if the cell has a mine
     			endGame();
+    			}
     		}
     	}
     }
+    
     
     /**
      *This method finish the game. 
