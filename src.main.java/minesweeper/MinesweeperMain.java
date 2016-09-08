@@ -125,7 +125,7 @@ public class MinesweeperMain {
 		game = new MinesweeperGameState();
 		String[] cmd;
 		while(!game.gameEnded()){
-			game.toString();
+			System.out.println(game.toString());
 			System.out.println(usage(""));
 			cmd = getUserInput();
 			
