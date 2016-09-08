@@ -145,7 +145,7 @@ public class MinesweeperMain {
 			} else if(cmd[0].equals(cmdBlock)) {
 				game.mark(coordX, coordY);
 			} else if(cmd[0].equals(cmdUnblock)) {
-				throw new Error("Unimplemented. Missing from API in game state");
+				game.unMarked(coordX, coordY);
 			} else {
 				// Should have been one of the above
 				// Get medieval!!
