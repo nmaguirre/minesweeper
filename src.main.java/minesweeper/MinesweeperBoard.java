@@ -41,8 +41,9 @@ public class MinesweeperBoard {
 	        }else{
 	        	board = new MinesweeperCell[boardRows][boardCols];
 	        	for (int r=0; r < boardRows;r++)
-	        		for (int c=0; c < boardCols; c++) 
-	        			board[r][c]=new MinesweeperCell();  
+	        		for (int c=0; c < boardCols; c++)
+	        			board[r][c]=new MinesweeperCell();
+	        	addRandomMines(mines);
 	        }
     	}
     }

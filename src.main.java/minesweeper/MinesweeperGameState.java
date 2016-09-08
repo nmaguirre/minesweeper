@@ -16,7 +16,6 @@ public class MinesweeperGameState {
     public MinesweeperGameState() {
       
     	board = new MinesweeperBoard(10, 10, 8);
-    	board.addRandomMines(8);
     	gameEnded = false;
     }
     
