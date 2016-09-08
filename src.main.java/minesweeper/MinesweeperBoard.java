@@ -33,12 +33,19 @@ public class MinesweeperBoard {
     public MinesweeperBoard(int rows, int cols, int mines) {
         boardRows = rows;
         boardCols = cols;
-        boardMines = mines;
-        
-        board = new MinesweeperCell[boardRows][boardCols];
-        for (int r=0; r < boardRows;r++)
-        	for (int c=0; c < boardCols; c++) 
-        		board[r][c]=new MinesweeperCell();       
+        if(rows < 1 || cols < 1){
+        	throw new IllegalArgumentException("Invalid size of board");
+        }else{
+	        if (mines > rows * cols){
+	        	throw new IllegalArgumentException("Invalid cant of mines");
+	        }else{
+	        	board = new MinesweeperCell[boardRows][boardCols];
+	        	for (int r=0; r < boardRows;r++)
+	        		for (int c=0; c < boardCols; c++)
+	        			board[r][c]=new MinesweeperCell();
+	        	addRandomMines(mines);
+	        }
+    	}
     }
 
     /**
@@ -52,12 +59,15 @@ public class MinesweeperBoard {
         boardRows = height;
         boardCols = width;
         boardMines = 0;
-        
-        board = new MinesweeperCell[boardRows][boardCols];
-        
-        for (int r=0; r < boardRows;r++)
-        	for (int c=0; c < boardCols; c++) 
-        		board[r][c]=new MinesweeperCell(); 
+        if(height < 1 || width < 1){
+        	throw new IllegalArgumentException("Invalid size of board");
+        }else{
+	        board = new MinesweeperCell[boardRows][boardCols];
+	        
+	        for (int r=0; r < boardRows;r++)
+	        	for (int c=0; c < boardCols; c++) 
+	        		board[r][c]=new MinesweeperCell(); 
+        }
     }
     /**
      * 
@@ -109,78 +119,27 @@ public class MinesweeperBoard {
 		if (!isValidCoordinate(row,col)){
     		throw new IllegalArgumentException("Invalid coordenate.");
     	} else {
-            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isMarked(row, col+1) && !hasMine(row, col+1)){
-            	if ( numberOfMinedNeighbours(row, col+1) == 0){
-            		open(row, col+1);
-            		openNeighboringMines(row, col+1);
-            		
-            	} else{
-            		open(row, col+1);
-            	}
-            }   
-            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isMarked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
-            	if ( numberOfMinedNeighbours(row + 1, col + 1) == 0){
-            		open(row+1, col+1);
-            		openNeighboringMines(row+1, col+1);
-            	} else{
-            		open(row + 1, col + 1);
-            	}
-            }
-            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isMarked(row + 1, col) && !hasMine(row + 1, col)){
-            	if ( numberOfMinedNeighbours(row + 1, col) == 0){
-            		open(row + 1, col);
-            		openNeighboringMines(row+1, col);
-            	} else{
-            		open(row + 1, col);
-            	}
-            }
-            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isMarked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
-            	if ( numberOfMinedNeighbours(row + 1, col - 1) == 0){
-            		open(row + 1, col - 1);
-            		openNeighboringMines(row+1, col-1);
-            		
-            	} else{
-            		open(row + 1, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isMarked(row, col - 1) && !hasMine(row, col - 1)){
-            	if ( numberOfMinedNeighbours(row, col - 1) == 0){
-            		open(row, col - 1);
-            		openNeighboringMines(row, col-1);
-            		
-            	} else{
-            		open(row, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isMarked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
-            	if ( numberOfMinedNeighbours(row - 1, col - 1) == 0){
-            		open(row - 1, col - 1);
-            		openNeighboringMines(row-1, col-1);
-            		
-            	} else{
-            		open(row - 1, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isMarked(row - 1, col) && !hasMine(row - 1, col)){
-            	if ( numberOfMinedNeighbours(row - 1, col) == 0){
-            		open(row - 1, col);
-            		openNeighboringMines(row-1, col);
-            		
-            	} else{
-            		open(row - 1, col);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isMarked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
-            	if ( numberOfMinedNeighbours(row - 1, col + 1) == 0){
-            		open(row - 1, col + 1);
-            		openNeighboringMines(row-1, col+1);
-            		
-            	} else{
-            		open(row - 1, col + 1);
-            	}
-            }
+    		openNeighbor(row,col+1);
+    		openNeighbor(row,col-1);
+    		openNeighbor(row+1,col);
+    		openNeighbor(row-1,col);
+    		openNeighbor(row+1,col+1);
+    		openNeighbor(row-1, col-1);
+    		openNeighbor(row+1,col-1);
+    		openNeighbor(row-1, col+1);
 		}
 	}
+	
+	
+	private void openNeighbor(int row, int col){
+		if (isValidCoordinate(row, col) && !isOpened(row, col) && !isBlocked(row, col) && !hasMine(row, col)){
+        	open(row, col);
+        	if ( numberOfMinedNeighbours(row, col) == 0){
+        		openNeighboringMines(row, col);
+        	}
+        }
+	}
+	
 
     /**
      * @param row - number of row of the board
@@ -274,8 +233,10 @@ public class MinesweeperBoard {
      * @param col - column number of the board where the cell is located.
      * @return if the cell located at the given position is Marked.
      */
-    public boolean isMarked(int row, int col) {
-        return board[row][col].isBlocked();
+    public boolean isBlocked(int row, int col) {
+    	if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+    	return board[row][col].isBlocked();
+        
     }
 
     /**
@@ -324,19 +285,18 @@ public class MinesweeperBoard {
     }	
     
     /**
-     * This method Unmark the current position if a mine is Marked.
+     * This method UnMarked the current position if a mine is Marked.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
+     * @throws IllegalArgumentException when invalid coordinates.
+     * @throws IllegalStateException when called on unblocked cell.
      */
     
     public void unMarked (int row, int col){
-    	if(isValidCoordinate(row,col)){
-    		if(isMarked(row,col)){
-    			board[row][col].unblock();
-    		}
-    	}
+      if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+      if (!isBlocked(row,col)) throw new IllegalStateException("Can't unblock an unblocked cell");
+      board[row][col].unblock(); 
     }
-    
     
     /**
      * This method takes a integer value that represents how many mines to add to the board,
@@ -355,7 +315,7 @@ public class MinesweeperBoard {
     			}
     		}
     	}
-    	if (!((0<n)&&(n<freeCells.size()))) {
+    	if (!((0<=n)&&(n<=freeCells.size()))) {
     		throw new IllegalArgumentException("The argument is not valid.");
     	}
     	// freeCells is reordered by the Fisher-Yates algorithm implemented in shuffle(List<?> list) method. This method runs in linear time.
@@ -363,6 +323,7 @@ public class MinesweeperBoard {
     	//In each of the first N cells in the freeCells list, a mine is inserted.
     	for (MinesweeperCell cell : freeCells.subList(0, n)){
     		cell.putMine();
+    		this.boardMines++;
     	}
     }
     
@@ -374,7 +335,10 @@ public class MinesweeperBoard {
     public String toString() {
     	String result = "";
     	MinesweeperCell actualCell;
+    	result = result + ("   0  1  2  3  4  5  6  7  8  9 \n");
+    	result = result + ("   ---------------------------- \n");
     	for (int row = 0; row<this.getRowCount(); row++){
+    		result = result + row + "|";
     		for (int col = 0; col<this.getColCount(); col++){
     			actualCell = board[row][col];
     			if(actualCell.isOpen()){
@@ -398,15 +362,16 @@ public class MinesweeperBoard {
     				}
     			}
     		}
-    		result = result + "\n";
+    		result = result + "|" + row + "\n";
     	}
+    	result = result + ("   ---------------------------- \n");
+    	result = result + ("   0  1  2  3  4  5  6  7  8  9\n");
     	return result;
     }
 
 	
     /**
-     * Return number of closed mines from board.
-     * @return number of closed mines
+     * @return number of closed mines from board.
      */
     public int getClosedCellsCount() {
 		int count = 0;
@@ -418,5 +383,19 @@ public class MinesweeperBoard {
 			}
 		}
 		return count;
+	}
+    
+    
+    /**
+     * This method open all mines from the board
+     */
+    public void openAllMines() {
+		for (int r = 0;r<getRowCount();r++){
+			for (int c = 0; c<getColCount();c++){
+				if (!board[r][c].isOpen())
+				board[r][c].open();
+			}
+		}
+		
 	}
 }
