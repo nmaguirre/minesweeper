@@ -152,6 +152,7 @@ public class MinesweeperMain {
 				assert false; 
 			}
 		}
+		System.out.print(game.toString());
 	}
 
 }
