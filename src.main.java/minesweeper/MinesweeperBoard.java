@@ -357,7 +357,7 @@ public class MinesweeperBoard {
     			}
     		}
     	}
-    	if (!((0<n)&&(n<freeCells.size()))) {
+    	if (!((0<=n)&&(n<=freeCells.size()))) {
     		throw new IllegalArgumentException("The argument is not valid.");
     	}
     	// freeCells is reordered by the Fisher-Yates algorithm implemented in shuffle(List<?> list) method. This method runs in linear time.
@@ -365,6 +365,7 @@ public class MinesweeperBoard {
     	//In each of the first N cells in the freeCells list, a mine is inserted.
     	for (MinesweeperCell cell : freeCells.subList(0, n)){
     		cell.putMine();
+    		this.boardMines++;
     	}
     }
     
