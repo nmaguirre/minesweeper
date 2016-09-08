@@ -128,7 +128,6 @@ public class MinesweeperMain {
 			System.out.println(game.toString());
 			System.out.println(usage(""));
 			cmd = getUserInput();
-			
 			int coordX = -1, coordY = -1; 
 			try {
 				coordX = Integer.parseInt(cmd[1]);
