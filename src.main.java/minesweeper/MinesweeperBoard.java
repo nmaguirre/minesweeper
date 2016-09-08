@@ -41,8 +41,9 @@ public class MinesweeperBoard {
 	        }else{
 	        	board = new MinesweeperCell[boardRows][boardCols];
 	        	for (int r=0; r < boardRows;r++)
-	        		for (int c=0; c < boardCols; c++) 
-	        			board[r][c]=new MinesweeperCell();  
+	        		for (int c=0; c < boardCols; c++)
+	        			board[r][c]=new MinesweeperCell();
+	        	addRandomMines(mines);
 	        }
     	}
     }
@@ -334,7 +335,10 @@ public class MinesweeperBoard {
     public String toString() {
     	String result = "";
     	MinesweeperCell actualCell;
+    	result = result + ("   0  1  2  3  4  5  6  7  8  9 \n");
+    	result = result + ("   ---------------------------- \n");
     	for (int row = 0; row<this.getRowCount(); row++){
+    		result = result + row + "|";
     		for (int col = 0; col<this.getColCount(); col++){
     			actualCell = board[row][col];
     			if(actualCell.isOpen()){
@@ -358,8 +362,10 @@ public class MinesweeperBoard {
     				}
     			}
     		}
-    		result = result + "\n";
+    		result = result + "|" + row + "\n";
     	}
+    	result = result + ("   ---------------------------- \n");
+    	result = result + ("   0  1  2  3  4  5  6  7  8  9\n");
     	return result;
     }
 
