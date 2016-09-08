@@ -8,24 +8,24 @@ import org.junit.rules.ExpectedException;
 import static org.junit.Assert.*;
 
 public class MinesweeperBoardTest {
-	private MinesweeperBoard boardAux;
-		
-	
-	
-	@Before
-	public void setUp(){
-		boardAux = new MinesweeperBoard(10,10);
-		boardAux.putMine(0,0);
-		boardAux.putMine(0,1);
-		boardAux.putMine(0,2);
-		boardAux.putMine(1,0);
-		boardAux.putMine(1,1);
-		boardAux.putMine(1,2);
-		boardAux.putMine(2,0);
-		boardAux.putMine(2,1);
-		boardAux.putMine(2,2);
-		boardAux.putMine(9,9);
-	}
+  private MinesweeperBoard boardAux;
+    
+  
+  
+  @Before
+  public void setUp(){
+    boardAux = new MinesweeperBoard(10,10);
+    boardAux.putMine(0,0);
+    boardAux.putMine(0,1);
+    boardAux.putMine(0,2);
+    boardAux.putMine(1,0);
+    boardAux.putMine(1,1);
+    boardAux.putMine(1,2);
+    boardAux.putMine(2,0);
+    boardAux.putMine(2,1);
+    boardAux.putMine(2,2);
+    boardAux.putMine(9,9);
+  }
 
     @Test
     public void ConstructorTestWithMinesPositive() {
@@ -36,57 +36,58 @@ public class MinesweeperBoardTest {
       assertTrue(checkRows && checkCols && checkMines);
     }
     
+    @Test
     public void ConstructorTestWithoutMinesPositive() {
       MinesweeperBoard board = new MinesweeperBoard(5,5);
       boolean checkRows = board.getRowCount() == 5;
       boolean checkCols = board.getColCount() == 5;
       assertTrue(checkRows && checkCols );
     }
-
-    public void ConstructorTestWithMinesNegative() {
-      MinesweeperBoard board = new MinesweeperBoard(-5,-5,10);
-      assertTrue(board == null);
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void ConstructorTestWithMwinesNegative() {
+      new MinesweeperBoard(-5,-5,10);
     }
     
+    @Test(expected=IllegalArgumentException.class)
     public void ConstructorTestWithoutMinesNegative() {
-      MinesweeperBoard board = new MinesweeperBoard(-5,-5);
-      assertTrue(board == null);
+      new MinesweeperBoard(-5,-5);
     }
     
     @Test
-	public void isOpenedTrueTest(){
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-    	board.open(1,2);
+  public void isOpenedTrueTest(){
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.open(1,2);
         assertTrue(board.isOpened(1, 2));
-	}
+  }
     
     @Test
-	public void isOpenedFalseTest(){
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+  public void isOpenedFalseTest(){
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
         assertFalse(board.isOpened(1,2));
-	}
+  }
     
     @Test
     public void putMineTrueTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-    	board.putMine(1, 2);
-    	assertTrue(board.hasMine(1,2));
-	}
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.putMine(1, 2);
+      assertTrue(board.hasMine(1,2));
+  }
     
     
     @Test(expected=IllegalStateException.class)
     public void putMineExeptionTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-    	board.putMine(2, 2);
-    	board.putMine(2, 2);
-	}
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.putMine(2, 2);
+      board.putMine(2, 2);
+  }
     
     @Test(expected=IllegalStateException.class)
     public void putMineExeptionTest2() {
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-    	board.open(2, 2);
-    	board.putMine(2, 2);
-    }	
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+      board.open(2, 2);
+      board.putMine(2, 2);
+    } 
     
     @Test(expected=IllegalArgumentException.class)
     public void putMineExeptionTest3(){
@@ -146,15 +147,15 @@ public class MinesweeperBoardTest {
     
     @Test
     public void isMarkedTest(){
-    	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
-    	board.mark(0,0);
-    	assertTrue(board.isBlocked(0, 0));
+      MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+      board.mark(0,0);
+      assertTrue(board.isBlocked(0, 0));
     }
 
     @Test
     public void isNotMarkedTest(){
-    	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
-    	assertFalse(board.isBlocked(0,0));
+      MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+      assertFalse(board.isBlocked(0,0));
     }
     
     @Rule
@@ -169,34 +170,34 @@ public class MinesweeperBoardTest {
     
     @Test
     public void getBoardColsTest1(){
-    	MinesweeperBoard board  = new MinesweeperBoard(2, 2, 4);
-    	assertEquals(2, board.getColCount()); 	
-    	
+      MinesweeperBoard board  = new MinesweeperBoard(2, 2, 4);
+      assertEquals(2, board.getColCount());   
+      
     }
     
     @Test
     public void getBoardColsTest2(){
-    	MinesweeperBoard board  = new MinesweeperBoard(10, 10, 4);
-    	assertEquals(10, board.getColCount()); 	
-    	
+      MinesweeperBoard board  = new MinesweeperBoard(10, 10, 4);
+      assertEquals(10, board.getColCount());  
+      
     }
 
     @Test
     public void getBoardRowsTest1(){
-    	MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
-    	assertEquals(5, board.getRowCount()); 	
+      MinesweeperBoard board  = new MinesweeperBoard(5, 5, 4);
+      assertEquals(5, board.getRowCount());   
     }
 
     @Test
     public void getBoardRowsTest2(){
-    	MinesweeperBoard board  = new MinesweeperBoard(25, 25, 6);
-    	assertEquals(25, board.getRowCount()); 	
+      MinesweeperBoard board  = new MinesweeperBoard(25, 25, 6);
+      assertEquals(25, board.getRowCount());  
     }
     
     @Test
     public void putMineFalseTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5,5,0);
-       	assertFalse(board.hasMine(2,2));
+      MinesweeperBoard board = new MinesweeperBoard(5,5,0);
+        assertFalse(board.hasMine(2,2));
     }
     
     @Test
@@ -206,7 +207,7 @@ public class MinesweeperBoardTest {
      * [ ][ ][ ]
      */
     public void numberOfMinedNeighboursTest1(){
-    	assertEquals(3,boardAux.numberOfMinedNeighbours(0,0));
+      assertEquals(3,boardAux.numberOfMinedNeighbours(0,0));
     }
     
     @Test
@@ -216,7 +217,7 @@ public class MinesweeperBoardTest {
      * [ ][ ][ ]
      */
     public void numberOfMinedNeighboursTest2(){
-    	assertEquals(5,boardAux.numberOfMinedNeighbours(0,1));
+      assertEquals(5,boardAux.numberOfMinedNeighbours(0,1));
     }
     
     @Test
@@ -226,7 +227,7 @@ public class MinesweeperBoardTest {
      * [ ][ ][ ]
      */
     public void numberOfMinedNeighboursTest3(){
-    	assertEquals(3,boardAux.numberOfMinedNeighbours(0,2));
+      assertEquals(3,boardAux.numberOfMinedNeighbours(0,2));
     }
     
     @Test
@@ -236,7 +237,7 @@ public class MinesweeperBoardTest {
      * [*][*][ ]
      */
     public void numberOfMinedNeighboursTest4(){
-    	assertEquals(5,boardAux.numberOfMinedNeighbours(1,0));
+      assertEquals(5,boardAux.numberOfMinedNeighbours(1,0));
     }
     
     @Test
@@ -246,7 +247,7 @@ public class MinesweeperBoardTest {
      * [*][*][*]
      */
     public void numberOfMinedNeighboursTest5(){
-    	assertEquals(8,boardAux.numberOfMinedNeighbours(1,1));
+      assertEquals(8,boardAux.numberOfMinedNeighbours(1,1));
     }
     
     @Test
@@ -256,7 +257,7 @@ public class MinesweeperBoardTest {
      * [ ][*][*]
      */
     public void numberOfMinedNeighboursTest6(){
-    	assertEquals(5,boardAux.numberOfMinedNeighbours(1,2));
+      assertEquals(5,boardAux.numberOfMinedNeighbours(1,2));
     }
     
     @Test
@@ -266,7 +267,7 @@ public class MinesweeperBoardTest {
      * [+][*][ ]
      */
     public void numberOfMinedNeighboursTest7(){
-    	assertEquals(3,boardAux.numberOfMinedNeighbours(2,0));
+      assertEquals(3,boardAux.numberOfMinedNeighbours(2,0));
     }
     
     @Test
@@ -276,7 +277,7 @@ public class MinesweeperBoardTest {
      * [*][+][*]
      */
     public void numberOfMinedNeighboursTest8(){
-    	assertEquals(5,boardAux.numberOfMinedNeighbours(2,1));
+      assertEquals(5,boardAux.numberOfMinedNeighbours(2,1));
     }
     
     @Test
@@ -286,7 +287,7 @@ public class MinesweeperBoardTest {
      * [ ][*][+]
      */
     public void numberOfMinedNeighboursTest9(){
-    	assertEquals(3,boardAux.numberOfMinedNeighbours(2,2));
+      assertEquals(3,boardAux.numberOfMinedNeighbours(2,2));
     }
     
     @Test
@@ -296,7 +297,7 @@ public class MinesweeperBoardTest {
      * [ ][ ][+]
      */
     public void numberOfMinedNeighboursTest10(){
-    	assertEquals(0,boardAux.numberOfMinedNeighbours(9,9));
+      assertEquals(0,boardAux.numberOfMinedNeighbours(9,9));
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -306,122 +307,122 @@ public class MinesweeperBoardTest {
      * [ ][ ][ ]
      */
     public void numberOfMinedNeighboursTest11(){
-    	boardAux.numberOfMinedNeighbours(30,10);
+      boardAux.numberOfMinedNeighbours(30,10);
     }
 
     
     @Test
     public void hasMineFalseTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
-    	assertFalse(board.hasMine(1, 1));
+      MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
+      assertFalse(board.hasMine(1, 1));
 
-	}
+  }
     
     @Test
     public void hasMineTrueTest() {
-    	MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
-    	board.putMine(1,1);
-    	assertTrue(board.hasMine(1, 1));
-    	
-	}
+      MinesweeperBoard board = new MinesweeperBoard(5, 5, 0);
+      board.putMine(1,1);
+      assertTrue(board.hasMine(1, 1));
+      
+  }
     //Test for AddRandomMines
     @Test
     public void addRandomMinesTestNominal(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	int n=8;
-    	boardAux1.addRandomMines(n);
-    	assertEquals(n,boardAux1.getMineCount());
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      int n=8;
+      boardAux1.addRandomMines(n);
+      assertEquals(n,boardAux1.getMineCount());
     }
     
     @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionNegative(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	int n=-1;
-    	boardAux1.addRandomMines(n);
-    	
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      int n=-1;
+      boardAux1.addRandomMines(n);
+      
     }
     @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionZero(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	int n=0;
-    	boardAux1.addRandomMines(n);
-    	
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      int n=0;
+      boardAux1.addRandomMines(n);
+      
     }
     @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionEdgeTop(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	int n=100;
-    	boardAux1.addRandomMines(n);
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      int n=100;
+      boardAux1.addRandomMines(n);
 
     } 
     @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionEdgeTop2(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	int n=101;
-    	boardAux1.addRandomMines(n);
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      int n=101;
+      boardAux1.addRandomMines(n);
 
     }
 
     @Test 
     public void addRandomMinesTestMark(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	boardAux1.mark(0, 0);
-    	int n=3;
-    	boardAux1.addRandomMines(n);
-    	assertEquals(n,boardAux1.getMineCount());
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      boardAux1.mark(0, 0);
+      int n=3;
+      boardAux1.addRandomMines(n);
+      assertEquals(n,boardAux1.getMineCount());
     }
     @Test
     public void addRandomMinesOpen(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	boardAux1.open(3, 3);
-    	int n=4;
-    	boardAux1.addRandomMines(n);
-    	assertEquals(n,boardAux1.getMineCount());
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      boardAux1.open(3, 3);
+      int n=4;
+      boardAux1.addRandomMines(n);
+      assertEquals(n,boardAux1.getMineCount());
     }
     @Test
     public void addRandomMinesTestPutMine(){
-    	MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
-    	boardAux1.putMine(3, 3);
-    	int n=4;
-    	boardAux1.addRandomMines(n);
-    	assertEquals(n+1,boardAux1.getMineCount());
+      MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
+      boardAux1.putMine(3, 3);
+      int n=4;
+      boardAux1.addRandomMines(n);
+      assertEquals(n+1,boardAux1.getMineCount());
     }
     
     @Test
     public void unMarkedTest() {
-	  MinesweeperBoard board = new MinesweeperBoard(8,8,10);
-	  board.mark(0,0);
-	  assertTrue(board.isBlocked(0, 0));
-	  board.unMarked(0, 0);
-	  assertFalse(board.isBlocked(0, 0));
+    MinesweeperBoard board = new MinesweeperBoard(8,8,10);
+    board.mark(0,0);
+    assertTrue(board.isBlocked(0, 0));
+    board.unMarked(0, 0);
+    assertFalse(board.isBlocked(0, 0));
     }
     
-	@Test
-	public void getClosedCellsCountTestCase1() {
-	  MinesweeperBoard board = new MinesweeperBoard(8,8);
-	  board.putMine(2,2);
-	  board.open(2,2);
-	  assertEquals(63,board.getClosedCellsCount());
-	}
-	
-	@Test
-	public void getClosedCellsCountTestCase2() {
-	  MinesweeperBoard board = new MinesweeperBoard(8,8);
-	  assertEquals(64,board.getClosedCellsCount());
-	}
-	
-	@Test
-	public void toStringTest(){
-		MinesweeperBoard board = new MinesweeperBoard(4,4);
-		board.putMine(0, 0);
-		board.open(1, 1);
-		board.mark(2, 2);
-		board.open(0,0);
-		String result="";
-		result += " X  -  -  - \n";
-		result += " -  1  -  - \n";
-		result += " -  -  B  - \n";
-		result += " -  -  -  - \n";
-		assertEquals(result,board.toString());
-	}
+  @Test
+  public void getClosedCellsCountTestCase1() {
+    MinesweeperBoard board = new MinesweeperBoard(8,8);
+    board.putMine(2,2);
+    board.open(2,2);
+    assertEquals(63,board.getClosedCellsCount());
+  }
+  
+  @Test
+  public void getClosedCellsCountTestCase2() {
+    MinesweeperBoard board = new MinesweeperBoard(8,8);
+    assertEquals(64,board.getClosedCellsCount());
+  }
+  
+  @Test
+  public void toStringTest(){
+    MinesweeperBoard board = new MinesweeperBoard(4,4);
+    board.putMine(0, 0);
+    board.open(1, 1);
+    board.mark(2, 2);
+    board.open(0,0);
+    String result="";
+    result += " X  -  -  - \n";
+    result += " -  1  -  - \n";
+    result += " -  -  B  - \n";
+    result += " -  -  -  - \n";
+    assertEquals(result,board.toString());
+  }
 }
