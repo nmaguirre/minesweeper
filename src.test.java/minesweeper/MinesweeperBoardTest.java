@@ -331,7 +331,7 @@ public class MinesweeperBoardTest {
       MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
       int n=8;
       boardAux1.addRandomMines(n);
-      assertEquals(n,boardAux1.getMineCount());
+      assertEquals(8,boardAux1.getMineCount());
     }
     
     @Test(expected=IllegalArgumentException.class)
@@ -341,19 +341,20 @@ public class MinesweeperBoardTest {
       boardAux1.addRandomMines(n);
       
     }
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void addRandomMinesTestExceptionZero(){
       MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
       int n=0;
       boardAux1.addRandomMines(n);
+      assertEquals(0,boardAux1.getMineCount());
       
     }
-    @Test(expected=IllegalArgumentException.class)
+    @Test
     public void addRandomMinesTestExceptionEdgeTop(){
       MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
       int n=100;
       boardAux1.addRandomMines(n);
-
+      assertEquals(100,boardAux1.getMineCount());
     } 
     @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionEdgeTop2(){

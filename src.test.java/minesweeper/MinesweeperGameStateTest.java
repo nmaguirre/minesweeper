@@ -1,11 +1,16 @@
 package minesweeper;
 
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 
 public class MinesweeperGameStateTest {
+	@Rule
+	public ExpectedException expected = ExpectedException.none();
 	
     @Test
     public void gameEndedTest () {
@@ -59,7 +64,33 @@ public class MinesweeperGameStateTest {
 	public void MinesweeperGameStateWhithParamsError(){
 		MinesweeperGameState gamestate1 = new MinesweeperGameState(0,0,-2);	
 	}
+	
+	@Test
+	public void MinesweeperGameStateWhithParamBoard(){
+		MinesweeperBoard boardAux = new MinesweeperBoard(2,2);
+		boardAux.putMine(0, 0);
+		MinesweeperGameState gamestate = new MinesweeperGameState(boardAux);
+		assertEquals(1, gamestate.numberOfMines());
+				
+	}
+	
+	@Test
+	public void MinesweeperGameStateWhithParamBoardErrorNull(){
+		MinesweeperBoard boardAux = null;
+		expected.expect(NullPointerException.class);
+		MinesweeperGameState gamestate = new MinesweeperGameState(boardAux);	
+	}
 
+	@Test
+	public void MinesweeperGameStateWhithParamBoardErrorBoardEnded(){
+		MinesweeperBoard boardAux = new MinesweeperBoard(2,2);
+		boardAux.putMine(0,0);
+		boardAux.putMine(1, 1);
+		boardAux.open(0, 1);
+		boardAux.open(1, 0);
+		expected.expect(IllegalArgumentException.class);
+		MinesweeperGameState gamestate = new MinesweeperGameState(boardAux);	
+	}
 	
 	@Test
 	public void endGame(){
