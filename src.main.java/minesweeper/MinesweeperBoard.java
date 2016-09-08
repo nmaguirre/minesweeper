@@ -119,78 +119,27 @@ public class MinesweeperBoard {
 		if (!isValidCoordinate(row,col)){
     		throw new IllegalArgumentException("Invalid coordenate.");
     	} else {
-            if (isValidCoordinate(row,col+1) && !isOpened(row, col+1) && !isBlocked(row, col+1) && !hasMine(row, col+1)){
-            	if ( numberOfMinedNeighbours(row, col+1) == 0){
-            		open(row, col+1);
-            		openNeighboringMines(row, col+1);
-            		
-            	} else{
-            		open(row, col+1);
-            	}
-            }   
-            if (isValidCoordinate(row + 1, col + 1) && !isOpened(row + 1, col + 1) && !isBlocked(row + 1, col + 1) && !hasMine(row + 1, col + 1)){
-            	if ( numberOfMinedNeighbours(row + 1, col + 1) == 0){
-            		open(row+1, col+1);
-            		openNeighboringMines(row+1, col+1);
-            	} else{
-            		open(row + 1, col + 1);
-            	}
-            }
-            if (isValidCoordinate(row + 1, col) && !isOpened(row + 1, col) && !isBlocked(row + 1, col) && !hasMine(row + 1, col)){
-            	if ( numberOfMinedNeighbours(row + 1, col) == 0){
-            		open(row + 1, col);
-            		openNeighboringMines(row+1, col);
-            	} else{
-            		open(row + 1, col);
-            	}
-            }
-            if (isValidCoordinate(row + 1, col - 1) && !isOpened(row + 1, col - 1) && !isBlocked(row + 1, col - 1) && !hasMine(row + 1, col - 1)){
-            	if ( numberOfMinedNeighbours(row + 1, col - 1) == 0){
-            		open(row + 1, col - 1);
-            		openNeighboringMines(row+1, col-1);
-            		
-            	} else{
-            		open(row + 1, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row, col - 1) && !isOpened(row, col - 1) && !isBlocked(row, col - 1) && !hasMine(row, col - 1)){
-            	if ( numberOfMinedNeighbours(row, col - 1) == 0){
-            		open(row, col - 1);
-            		openNeighboringMines(row, col-1);
-            		
-            	} else{
-            		open(row, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col - 1) && !isOpened(row - 1, col - 1) && !isBlocked(row - 1, col - 1) && !hasMine(row - 1, col - 1)){
-            	if ( numberOfMinedNeighbours(row - 1, col - 1) == 0){
-            		open(row - 1, col - 1);
-            		openNeighboringMines(row-1, col-1);
-            		
-            	} else{
-            		open(row - 1, col - 1);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col) && !isOpened(row - 1, col) && !isBlocked(row - 1, col) && !hasMine(row - 1, col)){
-            	if ( numberOfMinedNeighbours(row - 1, col) == 0){
-            		open(row - 1, col);
-            		openNeighboringMines(row-1, col);
-            		
-            	} else{
-            		open(row - 1, col);
-            	}
-            }
-            if (isValidCoordinate(row - 1, col + 1) && !isOpened(row - 1, col + 1) && !isBlocked(row - 1, col + 1) && !hasMine(row - 1, col + 1)){
-            	if ( numberOfMinedNeighbours(row - 1, col + 1) == 0){
-            		open(row - 1, col + 1);
-            		openNeighboringMines(row-1, col+1);
-            		
-            	} else{
-            		open(row - 1, col + 1);
-            	}
-            }
+    		openNeighbor(row,col+1);
+    		openNeighbor(row,col-1);
+    		openNeighbor(row+1,col);
+    		openNeighbor(row-1,col);
+    		openNeighbor(row+1,col+1);
+    		openNeighbor(row-1, col-1);
+    		openNeighbor(row+1,col-1);
+    		openNeighbor(row-1, col+1);
 		}
 	}
+	
+	
+	private void openNeighbor(int row, int col){
+		if (isValidCoordinate(row, col) && !isOpened(row, col) && !isBlocked(row, col) && !hasMine(row, col)){
+        	open(row, col);
+        	if ( numberOfMinedNeighbours(row, col) == 0){
+        		openNeighboringMines(row, col);
+        	}
+        }
+	}
+	
 
     /**
      * @param row - number of row of the board
