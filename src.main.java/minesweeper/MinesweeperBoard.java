@@ -33,7 +33,6 @@ public class MinesweeperBoard {
     public MinesweeperBoard(int rows, int cols, int mines) {
         boardRows = rows;
         boardCols = cols;
-        boardMines = mines;
         if(rows < 1 || cols < 1){
         	throw new IllegalArgumentException("Invalid size of board");
         }else{
