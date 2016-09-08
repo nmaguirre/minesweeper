@@ -150,16 +150,20 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    
     /**
      * This method provides a text-based representation of the state of the game.
      * @return String that represent visually the state of the game.
      */
     public String toString() {
-    	System.out.println(board.toString());
-    	if(gameEnded){
-    		return "Game Over.";
-    	}else{
-    		return "Game On.";
-    	}
+
+        String result = "";
+        if(gameEnded){
+            result = result + "Game Over.\n";
+        }else{
+            result = result + "Game On.\n";
+        }
+        result = result + board.toString() + "\n";
+        return result;
     }
 }
