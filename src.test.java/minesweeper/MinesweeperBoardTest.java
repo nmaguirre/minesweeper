@@ -148,13 +148,13 @@ public class MinesweeperBoardTest {
     public void isMarkedTest(){
     	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
     	board.mark(0,0);
-    	assertTrue(board.isMarked(0, 0));
+    	assertTrue(board.isBlocked(0, 0));
     }
 
     @Test
     public void isNotMarkedTest(){
     	MinesweeperBoard board = new MinesweeperBoard(8,8,10);
-    	assertFalse(board.isMarked(0,0));
+    	assertFalse(board.isBlocked(0,0));
     }
     
     @Rule
@@ -391,9 +391,9 @@ public class MinesweeperBoardTest {
     public void unMarkedTest() {
 	  MinesweeperBoard board = new MinesweeperBoard(8,8,10);
 	  board.mark(0,0);
-	  assertTrue(board.isMarked(0, 0));
+	  assertTrue(board.isBlocked(0, 0));
 	  board.unMarked(0, 0);
-	  assertFalse(board.isMarked(0, 0));
+	  assertFalse(board.isBlocked(0, 0));
     }
     
 	@Test
