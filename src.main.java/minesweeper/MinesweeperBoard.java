@@ -34,11 +34,18 @@ public class MinesweeperBoard {
         boardRows = rows;
         boardCols = cols;
         boardMines = mines;
-        
-        board = new MinesweeperCell[boardRows][boardCols];
-        for (int r=0; r < boardRows;r++)
-        	for (int c=0; c < boardCols; c++) 
-        		board[r][c]=new MinesweeperCell();       
+        if(rows < 1 || cols < 1){
+        	throw new IllegalArgumentException("Invalid size of board");
+        }else{
+	        if (mines > rows * cols){
+	        	throw new IllegalArgumentException("Invalid cant of mines");
+	        }else{
+	        	board = new MinesweeperCell[boardRows][boardCols];
+	        	for (int r=0; r < boardRows;r++)
+	        		for (int c=0; c < boardCols; c++) 
+	        			board[r][c]=new MinesweeperCell();  
+	        }
+    	}
     }
 
     /**
@@ -52,12 +59,15 @@ public class MinesweeperBoard {
         boardRows = height;
         boardCols = width;
         boardMines = 0;
-        
-        board = new MinesweeperCell[boardRows][boardCols];
-        
-        for (int r=0; r < boardRows;r++)
-        	for (int c=0; c < boardCols; c++) 
-        		board[r][c]=new MinesweeperCell(); 
+        if(height < 1 || width < 1){
+        	throw new IllegalArgumentException("Invalid size of board");
+        }else{
+	        board = new MinesweeperCell[boardRows][boardCols];
+	        
+	        for (int r=0; r < boardRows;r++)
+	        	for (int c=0; c < boardCols; c++) 
+	        		board[r][c]=new MinesweeperCell(); 
+        }
     }
     /**
      * 
@@ -357,7 +367,7 @@ public class MinesweeperBoard {
     			}
     		}
     	}
-    	if (!((0<n)&&(n<freeCells.size()))) {
+    	if (!((0<=n)&&(n<=freeCells.size()))) {
     		throw new IllegalArgumentException("The argument is not valid.");
     	}
     	// freeCells is reordered by the Fisher-Yates algorithm implemented in shuffle(List<?> list) method. This method runs in linear time.
@@ -365,6 +375,7 @@ public class MinesweeperBoard {
     	//In each of the first N cells in the freeCells list, a mine is inserted.
     	for (MinesweeperCell cell : freeCells.subList(0, n)){
     		cell.putMine();
+    		this.boardMines++;
     	}
     }
     

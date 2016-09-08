@@ -16,6 +16,7 @@ public class MinesweeperGameState {
     public MinesweeperGameState() {
       
     	board = new MinesweeperBoard(10, 10, 8);
+    	board.addRandomMines(8);
     	gameEnded = false;
     }
     
@@ -28,6 +29,7 @@ public class MinesweeperGameState {
     
     public MinesweeperGameState(int rows, int cols, int mines){
     	board = new MinesweeperBoard(rows, cols, mines);
+    	board.addRandomMines(mines);
     	gameEnded = false;
     	
     }
@@ -117,25 +119,31 @@ public class MinesweeperGameState {
     }
 
     /**
+     * This method open a cell in a position.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
-     * This method open a cell in a position.
      */
     public void open(int row, int col) {
-    	if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
-    		board.open(row, col);//open the cell
-    		if(!board.hasMine(row, col)){//if the cell has not a mine
-    			if(board.numberOfMinedNeighbours(row, col) == 0){
-    				board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
-    			}
-    			if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
-    				endGame();
-    			}
-    		} else { //if the cell has a mine
+    	if(gameEnded){
+    		throw new IllegalStateException();
+    	}
+    	else {
+    		if( board.isValidCoordinate(row, col) && !board.isOpened(row, col) && !board.isBlocked(row, col)){ //if the cell is not open or marked
+    			board.open(row, col);//open the cell
+    			if(!board.hasMine(row, col)){//if the cell has not a mine
+    				if(board.numberOfMinedNeighbours(row, col) == 0){
+    					board.openNeighboringMines(row, col);//open all neighbor cells that do not have mines
+    				}
+    				if(board.getClosedCellsCount() == board.getMineCount()){ //if the number of closed cell is equal to number of mines
+    					endGame();
+    				}
+    			} else { //if the cell has a mine
     			endGame();
+    			}
     		}
     	}
     }
+    
     
     /**
      *This method finish the game. 
@@ -144,16 +152,19 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    
     /**
      * This method provides a text-based representation of the state of the game.
      * @return String that represent visually the state of the game.
      */
     public String toString() {
-    	System.out.println(board.toString());
-    	if(gameEnded){
-    		return "Game Over.";
-    	}else{
-    		return "Game On.";
-    	}
+        String result = "";
+        if(gameEnded){
+            result = result + "Game Over.\n";
+        }else{
+            result = result + "Game On.\n";
+        }
+        result = result + board.toString() + "\n";
+        return result;
     }
 }
