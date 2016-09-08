@@ -16,7 +16,6 @@ public class MinesweeperGameState {
     public MinesweeperGameState() {
       
     	board = new MinesweeperBoard(10, 10, 8);
-    	board.addRandomMines(8);
     	gameEnded = false;
     }
     
@@ -162,6 +161,13 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    /**
+     * This method open all mines from the board
+     */
+    public void openAllMines(){
+    	board.openAllMines();
+    }
+    
     
     /**
      * This method provides a text-based representation of the state of the game.
@@ -182,3 +188,7 @@ public class MinesweeperGameState {
         return result;
     }
 }
+
+
+
+
