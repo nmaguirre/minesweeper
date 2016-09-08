@@ -162,6 +162,9 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    /**
+     * This method open all mines from the board
+     */
     public void openAllMines(){
     	board.openAllMines();
     }

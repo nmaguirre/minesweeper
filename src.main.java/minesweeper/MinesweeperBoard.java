@@ -378,8 +378,12 @@ public class MinesweeperBoard {
 		}
 		return count;
 	}
-
-	public void openAllMines() {
+    
+    
+    /**
+     * This method open all mines from the board
+     */
+    public void openAllMines() {
 		for (int r = 0;r<getRowCount();r++){
 			for (int c = 0; c<getColCount();c++){
 				if (!board[r][c].isOpen())
