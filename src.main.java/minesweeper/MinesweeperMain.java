@@ -11,40 +11,110 @@ import java.util.Scanner;
  */
 public class MinesweeperMain {
 
-	private static MinesweeperGameState game;
-	
-	private static Scanner comScanner;
-	private static Scanner coord1Scanner;
-	private static Scanner coord2Scanner;
-	
-	
 	/**
-	 * Take the actions provided by the user and return a String with the action and cell.
-	 * @return a String with the action and cell.
+	 * User input handling
+	 * 
+	 * 
+	 * 
+	 *
 	 */
+	private static final String cmdOpen = "open";
+	private static final String cmdBlock = "block";
+	private static final String cmdUnblock = "unblock";
+	
+	private static Scanner comScanner = new Scanner(System.in);
 
-
-	public static String getUserInput(){
-		String command;
-		String coord1= new String("");
-		String coord2= new String("");
-		comScanner = new Scanner(System.in);
-		coord1Scanner = new Scanner(System.in);
-		coord2Scanner = new Scanner(System.in);
-
-		command = comScanner.nextLine();
-		try {
-			if(command!="o" || command!="b" || command!="u" || command!="O" || command!="B" || command!="U"){
-				System.out.println("Incorrect Command");
-				getUserInput();
+	public static String[] getUserInput() {
+		String[] command = null;
+		while (true) {
+			command = comScanner.nextLine().split(" ");
+			//for(String s:command)
+			//	System.out.print(s + "---");
+			
+			// Sanitize number of arguments
+			if(command.length != 3) {
+				System.out.println(usage("Wrong number of arguments. "));
+//				System.out.print("Wrong number of arguments. ");
+//				System.out.println("Usage: <cmd> <coordX> <coordY>");
+				continue;
 			}
-		}catch(Exception e){
-			coord1 = coord1Scanner.nextLine();
-			coord2 = coord2Scanner.nextLine();
+			
+			// Sanitize X coordinate
+			try {
+				int coordX = Integer.parseInt(command[1]);
+				if(!(0 <= coordX && coordX < game.numberOfRows())) {
+					System.out.println(usage("Invalid X coordinate: out of bounds. "));
+//					System.out.print("Invalid X coordinate: out of bounds. "); 
+//					System.out.println("Usage: <cmd> <coordX> <coordY>");
+					continue;
+				}	
+			} catch (NumberFormatException e) {
+				System.out.println(usage("Invalid X coordinate: not a number. "));
+//				System.out.print("Invalid X coordinate: not a number. ");
+//				System.out.println("Usage: <cmd> <coordX> <coordY>");
+				continue;
+			}
+			
+			// Sanitize Y coordinate
+			try {
+				int coordY = Integer.parseInt(command[2]);
+				if(!(0 <= coordY && coordY < game.numberOfRows())) {
+					System.out.println(usage("Invalid Y coordinate: out of bounds. "));
+//					System.out.print("Invalid Y coordinate: out of bounds. "); 
+//					System.out.println("Usage: <cmd> <coordX> <coordY>");
+					continue;
+				}	
+			} catch (NumberFormatException e) {
+				System.out.println(usage("Invalid Y coordinate: not a number. "));
+//				System.out.print("Invalid Y coordinate: not a number. ");
+//				System.out.println("Usage: <cmd> <coordX> <coordY>");
+				continue;
+			}
+			
+			// Sanitize command: If succeds we're done.
+			if(command[0].equals(cmdOpen))
+				break;
+			if(command[0].equals(cmdBlock))
+				break;
+			if(command[0].equals(cmdUnblock)) 
+				break;
+			
+			// If it got here input didn`t check
+			System.out.println(usage("Wrong command"));
+//			System.out.print("Wrong command, only ");
+//			System.out.print("\"" + cmdOpen + "\", ");
+//			System.out.print("\"" + cmdBlock + "\" or ");
+//			System.out.print("\"" + cmdUnblock + "\" ");
+//			System.out.print("are accepted. ");
+//			System.out.println("Usage: <cmd> <coordX> <coordY>");
 		}
-		return command + coord1 + "," + coord2;
+		// Some assumptions. Should check out fine. 
+		assert command != null;
+		assert command.length == 3;
+		
+		return command;
 	}
 	
+	private static String usage(String errorMsg) {
+		String res = errorMsg + "\n";
+		res += "\"" + cmdOpen + "\", ";
+		res += "\"" + cmdBlock + "\" or ";
+		res += "\"" + cmdUnblock + "\" ";
+		res += "are accepted.\n";
+		res += "Usage: <cmd> <coordX> <coordY>";
+		return res;
+	}
+	
+	
+	/** THE GAME. 
+	 * 
+	 *  ENJOY :)
+	 * 
+	 *  DOSE 2016 TEAM
+	 *   
+	 */
+	private static MinesweeperGameState game;
+
 	/**
 	 * Runs minesweeper game with simple settings:
 	 * 10 rows, 10 cols, 8 mines in random places.
@@ -53,13 +123,34 @@ public class MinesweeperMain {
 	 */
 	public static void main(String[] args) {
 		game = new MinesweeperGameState();
-		
-		String cmd = "";
-		
+		String[] cmd;
 		while(!game.gameEnded()){
 			game.toString();
+			System.out.println(usage(""));
 			cmd = getUserInput();
-			//executeUserInptu(cmd);
+			
+			int coordX = -1, coordY = -1; 
+			try {
+				coordX = Integer.parseInt(cmd[1]);
+				coordY = Integer.parseInt(cmd[2]);
+			} catch (NumberFormatException e) {
+				// Should not happen
+				// Get medieval!!
+				assert false; 
+			}
+			
+			
+			if(cmd[0].equals(cmdOpen)) {
+				game.open(coordX, coordY);
+			} else if(cmd[0].equals(cmdBlock)) {
+				game.mark(coordX, coordY);
+			} else if(cmd[0].equals(cmdUnblock)) {
+				throw new Error("Unimplemented. Missing from API in game state");
+			} else {
+				// Should have been one of the above
+				// Get medieval!!
+				assert false; 
+			}
 		}
 	}
 
