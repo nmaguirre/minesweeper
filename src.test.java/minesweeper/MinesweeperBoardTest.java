@@ -409,4 +409,19 @@ public class MinesweeperBoardTest {
 	  MinesweeperBoard board = new MinesweeperBoard(8,8);
 	  assertEquals(64,board.getClosedCellsCount());
 	}
+	
+	@Test
+	public void toStringTest(){
+		MinesweeperBoard board = new MinesweeperBoard(4,4);
+		board.putMine(0, 0);
+		board.open(1, 1);
+		board.mark(2, 2);
+		board.open(0,0);
+		String result="";
+		result += " X  -  -  - \n";
+		result += " -  1  -  - \n";
+		result += " -  -  B  - \n";
+		result += " -  -  -  - \n";
+		assertEquals(result,board.toString());
+	}
 }
