@@ -37,7 +37,7 @@ public class MinesweeperGameStateTest {
 	public void markTest() {
 		MinesweeperGameState state = new MinesweeperGameState();
 		state.mark(0, 0);	
-		assertTrue(state.isMarked(0, 0));
+		assertTrue(state.isBlocked(0, 0));
 	}
 	
 	@Test
@@ -71,11 +71,10 @@ public class MinesweeperGameStateTest {
         
         @Test
         public void openTest (){
-            MinesweeperGameState gameState = new MinesweeperGameState();
-		gameState.open(0, 0);	
-                assertFalse(gameState.isMarked(0, 0));
-		assertTrue(gameState.isOpened(0, 0));               
-        
+	        MinesweeperGameState gameState = new MinesweeperGameState();
+			gameState.open(0, 0);	
+	        assertFalse(gameState.isBlocked(0, 0));
+			assertTrue(gameState.isOpened(0, 0));               
         }
         
         @Test
