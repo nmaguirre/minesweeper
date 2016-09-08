@@ -170,7 +170,11 @@ public class MinesweeperGameState {
     public String toString() {
         String result = "";
         if(gameEnded){
-            result = result + "Game Over.\n";
+           	if (board.getClosedCellsCount() == board.getMineCount()){
+        		result = result + "You Win!!!.\n";
+        	}
+        	else 
+        		result = result + "You Loose.\n";
         }else{
             result = result + "Game On.\n";
         }
