@@ -339,16 +339,15 @@ public class MinesweeperBoard {
      * This method Unmark the current position if a mine is Marked.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
+     * @throws IllegalStateException when invalid coordinates.
+     * @throws IllegalStateException when called on unblocked cell.
      */
     
     public void unMarked (int row, int col){
-    	if(isValidCoordinate(row,col)){
-    		if(isBlocked(row,col)){
-    			board[row][col].unblock();
-    		}
-    	}
+      if (!isValidCoordinate(row,col)) throw new IllegalArgumentException("Coordenate is invalid");
+      if (!isBlocked(row,col)) throw new IllegalStateException("Can't unblock an unblocked cell");
+      board[row][col].unblock(); 
     }
-    
     
     /**
      * This method takes a integer value that represents how many mines to add to the board,
