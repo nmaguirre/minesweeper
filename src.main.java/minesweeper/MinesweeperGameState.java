@@ -109,11 +109,9 @@ public class MinesweeperGameState {
     }
     
     /**
-     * This method Unmark the current position if a mine is Marked.
+     * This method UnMarked the current position if a mine is Marked.
      * @param row file number of the board where the cell is located.
      * @param col column number of the board where the cell is located.
-     * @throws IllegalStateException when invalid coordinates.
-     * @throws IllegalStateException when called on unblocked cell.
      */
     
     public void unMarked (int row, int col){
