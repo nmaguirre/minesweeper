@@ -365,6 +365,7 @@ public class MinesweeperBoard {
     	//In each of the first N cells in the freeCells list, a mine is inserted.
     	for (MinesweeperCell cell : freeCells.subList(0, n)){
     		cell.putMine();
+    		this.boardMines++;
     	}
     }
     
