@@ -38,6 +38,9 @@ public class MinesweeperGameState {
      */
         
     public MinesweeperGameState(MinesweeperBoard b){
+    	if (b==null){
+    		throw new NullPointerException ("the board cannot be null");
+    	}
     	if(b.getClosedCellsCount() == b.getMineCount()){ //if the number of closed cell is equal to number of mines
     		throw new IllegalArgumentException("the board must not be ended");
     	}
