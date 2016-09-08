@@ -158,7 +158,6 @@ public class MinesweeperGameState {
      * @return String that represent visually the state of the game.
      */
     public String toString() {
-
         String result = "";
         if(gameEnded){
             result = result + "Game Over.\n";
