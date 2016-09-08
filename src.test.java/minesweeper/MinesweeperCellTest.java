@@ -76,11 +76,31 @@ public class MinesweeperCellTest {
         assertTrue(cell.hasMine());
     }
     
+    @Test
+    public void notPutMineWhenHaveMineTest(){
+        MinesweeperCell cell = new MinesweeperCell();
+        cell.putMine();
+        cell.putMine();
+        assertTrue(cell.hasMine());
+    }
+    
     @Test(expected=IllegalStateException.class)
     public void notPutMineTest(){
         MinesweeperCell cell = new MinesweeperCell();
         cell.open();
+        assertFalse(cell.hasMine());
+    }
+    
+    @Test(expected=IllegalStateException.class)
+    public void notPutMineWhenIsOpenTest(){
+        MinesweeperCell cell = new MinesweeperCell();
+        cell.open();
         cell.putMine();
+    }
+    
+    @Test(expected=IllegalStateException.class)
+    public void notPutMineWhenIsCloseTest(){
+        MinesweeperCell cell = new MinesweeperCell();        
         assertFalse(cell.hasMine());
     }
     
