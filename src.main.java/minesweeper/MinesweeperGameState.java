@@ -162,6 +162,10 @@ public class MinesweeperGameState {
     	gameEnded = true;
     }
     
+    public void openAllMines(){
+    	board.openAllMines();
+    }
+    
     
     /**
      * This method provides a text-based representation of the state of the game.
@@ -178,3 +182,7 @@ public class MinesweeperGameState {
         return result;
     }
 }
+
+
+
+

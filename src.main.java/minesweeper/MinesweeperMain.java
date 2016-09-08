@@ -152,6 +152,10 @@ public class MinesweeperMain {
 				assert false; 
 			}
 		}
+
+		if(game.gameEnded()){
+			game.openAllMines();
+		}
 		System.out.print(game.toString());
 	}
 
