@@ -392,8 +392,12 @@ public class MinesweeperBoard {
     public void openAllMines() {
 		for (int r = 0;r<getRowCount();r++){
 			for (int c = 0; c<getColCount();c++){
-				if (!board[r][c].isOpen())
-				board[r][c].open();
+				if (!board[r][c].isOpen()){
+				if(board[r][c].isBlocked()){
+					board[r][c].unblock();
+				}
+					board[r][c].open();
+				}
 			}
 		}
 		
