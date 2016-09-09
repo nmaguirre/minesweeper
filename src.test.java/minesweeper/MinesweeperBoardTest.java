@@ -522,7 +522,7 @@ public class MinesweeperBoardTest {
                      assertEquals(true, (aux1 && aux2 && aux3));
                      }
     
-    @Test(expected=IllegalArgumentException.class);
+    @Test(expected=IllegalArgumentException.class)
     public void addRandomMinesTestExceptionNegative(){
       MinesweeperBoard boardAux1 = new MinesweeperBoard(10,10);
       int n=-1;
