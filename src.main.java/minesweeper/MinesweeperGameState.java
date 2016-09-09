@@ -167,6 +167,12 @@ public class MinesweeperGameState {
     public void openAllMines(){
     	board.openAllMines();
     }
+    
+    /**
+     * this method return true if you win. The game should be ended
+     * @return true if the closed cells are equal that the Mine Count
+     * @throws IllegalStateException if the game is not ended
+     */
     public boolean result(){
     	if (!gameEnded){
     		throw new IllegalStateException ("The game is not ended");
