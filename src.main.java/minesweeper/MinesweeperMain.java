@@ -153,6 +153,12 @@ public class MinesweeperMain {
 		}
 
 		if(game.gameEnded()){
+			if (game.result()){
+				System.out.println ("You Win!!");
+			}
+			else {
+				System.out.println ("You Lose");	
+			}
 			game.openAllMines();
 		}
 		System.out.print(game.toString());

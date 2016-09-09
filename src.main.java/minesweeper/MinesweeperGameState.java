@@ -167,7 +167,16 @@ public class MinesweeperGameState {
     public void openAllMines(){
     	board.openAllMines();
     }
-    
+    public boolean result(){
+    	if (!gameEnded){
+    		throw new IllegalStateException ("The game is not ended");
+    	}
+    	boolean res = false;
+    	if (board.getClosedCellsCount() == board.getMineCount()){
+    		res = true; 
+    	}
+    	return res;
+    }
     
     /**
      * This method provides a text-based representation of the state of the game.
@@ -176,11 +185,7 @@ public class MinesweeperGameState {
     public String toString() {
         String result = "";
         if(gameEnded){
-           	if (board.getClosedCellsCount() == board.getMineCount()){
-        		result = result + "You Win!!!.\n";
-        	}
-        	else 
-        		result = result + "You Loose.\n";
+        	result = result + "Game Over.\n";
         }else{
             result = result + "Game On.\n";
         }
