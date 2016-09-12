@@ -608,10 +608,14 @@ public class MinesweeperBoardTest {
     board.mark(2, 2);
     board.open(0,0);
     String result="";
-    result += " X  -  -  - \n";
-    result += " -  1  -  - \n";
-    result += " -  -  B  - \n";
-    result += " -  -  -  - \n";
+    result = result + ("   0  1  2  3  4  5  6  7  8  9 \n");
+	result = result + ("   ---------------------------- \n");
+    result += "0| X  -  -  - |0\n";
+    result += "1| -  1  -  - |1\n";
+    result += "2| -  -  B  - |2\n";
+    result += "3| -  -  -  - |3\n";
+    result = result + ("   ---------------------------- \n");
+	result = result + ("   0  1  2  3  4  5  6  7  8  9\n");
     assertEquals(result,board.toString());
   }
 }
