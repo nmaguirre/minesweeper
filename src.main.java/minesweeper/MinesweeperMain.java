@@ -13,105 +13,109 @@ public class MinesweeperMain {
 
 	/**
 	 * User input handling
-	 * 
-	 * 
-	 * 
-	 *
 	 */
-	private static final String cmdOpen = "open";
-	private static final String cmdBlock = "block";
-	private static final String cmdUnblock = "unblock";
+	private static final String CMD_OPEN = "open";
+	private static final String CMD_BLOCK = "block";
+	private static final String CMD_UNBLOCK = "unblock";
+	private static final int COMMAND = 0;
+	private static final int X_CORD = 1;
+	private static final int Y_CORD = 2;
+	private static final int COLS = 0;
+	private static final int ROWS= 1;
+	private static final int MINES = 2;
 	
 	private static Scanner comScanner = new Scanner(System.in);
 
 	public static String[] getUserInput() {
-		String[] command = null;
+		String[] input = null;
 		while (true) {
-			command = comScanner.nextLine().split(" ");
-			//for(String s:command)
-			//	System.out.print(s + "---");
+			input = comScanner.nextLine().split(" ");
 			
 			// Sanitize number of arguments
-			if(command.length != 3) {
+			if(input.length != 3) {
 				System.out.println(usage("Wrong number of arguments. "));
-//				System.out.print("Wrong number of arguments. ");
-//				System.out.println("Usage: <cmd> <coordX> <coordY>");
 				continue;
 			}
 			
 			// Sanitize X coordinate
 			try {
-				int coordX = Integer.parseInt(command[1]);
+				int coordX = Integer.parseInt(input[1]);
 				if(!(0 <= coordX && coordX < game.numberOfRows())) {
 					System.out.println(usage("Invalid X coordinate: out of bounds. "));
-//					System.out.print("Invalid X coordinate: out of bounds. "); 
-//					System.out.println("Usage: <cmd> <coordX> <coordY>");
 					continue;
 				}	
 			} catch (NumberFormatException e) {
 				System.out.println(usage("Invalid X coordinate: not a number. "));
-//				System.out.print("Invalid X coordinate: not a number. ");
-//				System.out.println("Usage: <cmd> <coordX> <coordY>");
 				continue;
 			}
 			
 			// Sanitize Y coordinate
 			try {
-				int coordY = Integer.parseInt(command[2]);
+				int coordY = Integer.parseInt(input[2]);
 				if(!(0 <= coordY && coordY < game.numberOfRows())) {
 					System.out.println(usage("Invalid Y coordinate: out of bounds. "));
-//					System.out.print("Invalid Y coordinate: out of bounds. "); 
-//					System.out.println("Usage: <cmd> <coordX> <coordY>");
 					continue;
 				}	
 			} catch (NumberFormatException e) {
 				System.out.println(usage("Invalid Y coordinate: not a number. "));
-//				System.out.print("Invalid Y coordinate: not a number. ");
-//				System.out.println("Usage: <cmd> <coordX> <coordY>");
 				continue;
 			}
 			
 			// Sanitize command: If succeds we're done.
-			if(command[0].equals(cmdOpen))
+			if(input[COMMAND].equals(CMD_OPEN))
 				break;
-			if(command[0].equals(cmdBlock))
+			if(input[COMMAND].equals(CMD_BLOCK))
 				break;
-			if(command[0].equals(cmdUnblock)) 
+			if(input[COMMAND].equals(CMD_UNBLOCK)) 
 				break;
 			
 			// If it got here input didn`t check
 			System.out.println(usage("Wrong command"));
-//			System.out.print("Wrong command, only ");
-//			System.out.print("\"" + cmdOpen + "\", ");
-//			System.out.print("\"" + cmdBlock + "\" or ");
-//			System.out.print("\"" + cmdUnblock + "\" ");
-//			System.out.print("are accepted. ");
-//			System.out.println("Usage: <cmd> <coordX> <coordY>");
 		}
 		// Some assumptions. Should check out fine. 
-		assert command != null;
-		assert command.length == 3;
+		assert input != null;
+		assert input.length == 3;
 		
-		return command;
+		return input;
 	}
 	
 	private static String usage(String errorMsg) {
 		String res = errorMsg + "\n";
-		res += "\"" + cmdOpen + "\", ";
-		res += "\"" + cmdBlock + "\" or ";
-		res += "\"" + cmdUnblock + "\" ";
+		res += "\"" + CMD_OPEN + "\", ";
+		res += "\"" + CMD_BLOCK + "\" or ";
+		res += "\"" + CMD_UNBLOCK + "\" ";
 		res += "are accepted.\n";
 		res += "Usage: <cmd> <coordX> <coordY>";
 		return res;
 	}
 	
+	private static void executeUserInput(String[] user_input) {
+		int coordX = -1, coordY = -1; 
+		try {
+			coordX = Integer.parseInt(user_input[X_CORD]);
+			coordY = Integer.parseInt(user_input[Y_CORD]);
+		} catch (NumberFormatException e) {
+			// Should not happen
+			// Get medieval!!
+			assert false; 
+		}
+		
+		if (user_input[COMMAND].equals(CMD_OPEN))
+			game.open(coordX, coordY);
+		else if (user_input[COMMAND].equals(CMD_BLOCK))
+			game.mark(coordX, coordY);
+		else if (user_input[COMMAND].equals(CMD_UNBLOCK))
+			game.unMarked(coordX, coordY);
+		else 
+			// Should have been one of the above
+			// Get medieval!!
+			assert false; 
+	}
+	
 	
 	/** THE GAME. 
-	 * 
 	 *  ENJOY :)
-	 * 
 	 *  DOSE 2016 TEAM
-	 *   
 	 */
 	private static MinesweeperGameState game;
 
@@ -122,45 +126,30 @@ public class MinesweeperMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		game = new MinesweeperGameState();
-		String[] cmd;
+		String[] input;
+		
+		if (args.length != 3)
+			game = new MinesweeperGameState();
+		else
+			game = new MinesweeperGameState(Integer.parseInt(args[ROWS]), 
+					                        Integer.parseInt(args[COLS]), 
+							                Integer.parseInt(args[MINES]));
+		
 		while(!game.gameEnded()){
 			System.out.println(game.toString());
 			System.out.println(usage(""));
-			cmd = getUserInput();
-			int coordX = -1, coordY = -1; 
-			try {
-				coordX = Integer.parseInt(cmd[1]);
-				coordY = Integer.parseInt(cmd[2]);
-			} catch (NumberFormatException e) {
-				// Should not happen
-				// Get medieval!!
-				assert false; 
-			}
-			
-			
-			if(cmd[0].equals(cmdOpen)) {
-				game.open(coordX, coordY);
-			} else if(cmd[0].equals(cmdBlock)) {
-				game.mark(coordX, coordY);
-			} else if(cmd[0].equals(cmdUnblock)) {
-				game.unMarked(coordX, coordY);
-			} else {
-				// Should have been one of the above
-				// Get medieval!!
-				assert false; 
-			}
+			input = getUserInput();
+			executeUserInput(input);
 		}
 
 		if(game.gameEnded()){
-			if (game.result()){
-				System.out.println ("You Win!!");
-			}
-			else {
-				System.out.println ("You Lose");	
-			}
 			game.openAllMines();
+			if (game.result())
+				System.out.println("You Win!!");
+			else
+				System.out.println("You Lose :(");	
 		}
+		
 		System.out.print(game.toString());
 	}
 
